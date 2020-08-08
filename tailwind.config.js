@@ -12,6 +12,18 @@ module.exports = {
       xl: '1280px',
     },
     colors: {
+      background:{
+        primary: 'var(--bg-primary-color)',
+        secondary:'var(--bg-secondary-color)',
+        ternary:'var(--bg-ternary-color)'
+        
+      },
+      text:{
+        textColor:'var(--text-color)',
+        greenNumbers:'var(--green-numbers)'
+      },
+
+
       transparent: 'transparent',
       current: 'currentColor',
 

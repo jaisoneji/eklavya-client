@@ -1,0 +1,26 @@
+/* @tailwind base;
+
+@tailwind components;
+
+@tailwind utilities; */
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+.theme-light{
+    --bg-primary-color: white;
+    --bg-secondary-color:#f7fafc;
+    --bg-ternary-color:#e2e8f0;
+    --text-color:black;
+}
+.theme-dark{
+    --bg-primary-color: #0D2438;
+    --bg-secondary-color:#102C44;
+    --bg-ternary-color:#1E3951;
+    --text-color:white;
+    --green-numbers:#41b883
+
+    /* background-color:#0D2438 ; */
+}
