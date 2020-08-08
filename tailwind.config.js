@@ -13,7 +13,7 @@ module.exports = {
     },
     colors: {
       background:{
-        primary: 'var(--bg-primary-color)',
+        primary: '#023e7d',
         secondary:'var(--bg-secondary-color)',
         ternary:'var(--bg-ternary-color)'
         
@@ -257,6 +257,7 @@ module.exports = {
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
+        'Sriracha', 'cursive'
       ],
       serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
