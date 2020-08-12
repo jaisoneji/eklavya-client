@@ -14,7 +14,7 @@ module.exports = {
     colors: {
       background:{
         primary: '#023e7d',
-        secondary:'var(--bg-secondary-color)',
+        secondary:'#0353a4',
         ternary:'var(--bg-ternary-color)'
         
       },
