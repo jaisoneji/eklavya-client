@@ -19,3 +19,14 @@ export const getAccountLink = async ()=>{
         // console.error(error)
     }
 }
+
+export const verifyAndLoginOAuth2Code = async (oauth2_code) => {
+  try {
+    const res = await axios.post(`${baseDomain}/auth/oauth/google`, {
+      oauth_code: oauth2_code, // This is the body part
+    });
+    return res.data;
+  } catch (error) {
+    console.error(error)
+  }
+};
