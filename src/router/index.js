@@ -1,15 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import GoogleLoader from '../components/GoogleLoader.vue'
 
+// http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
 
   const routes = [
+    {
+      path:'/GoogleLoader',
+      name:'GoogleLoader',
+      component: GoogleLoader
+    },
   {
     path: '/',
     name: 'Home',
     component: Home
   },
+ 
   // {
   //   path: '/about',
   //   name: 'About',

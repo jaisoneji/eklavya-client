@@ -13,7 +13,6 @@ export default axios.create({
 export const getAccountLink = async ()=>{
     try{
         const data = await axios.get(`${baseDomain}/auth/get-OAuth2-url`)
-        
         return data
     }
     catch(error){

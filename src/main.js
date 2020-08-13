@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import queryString from 'query-string'
 // import Axios from 'axios'
 import '@/assets/css/main.css'
 import './registerServiceWorker'
@@ -17,5 +18,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  queryString,
   render: h => h(App)
 }).$mount('#app')
