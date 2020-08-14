@@ -8,11 +8,18 @@ import {verifyAndLoginOAuth2Code} from '../services';
 
 export default{
     name:'GoogleLoader',
+    data(){
+        return{
+            token:''
+        }
+    },
     async created(){
         var oauth2_code = this.$route.query.code 
-        console.log(oauth2_code);
         const data = await verifyAndLoginOAuth2Code(oauth2_code);
-        console.log(data);
-    }
+        this.token=data.token
+        localStorage.setItem('token',this.token)
+        
+    },
+    
 }
 </script>
