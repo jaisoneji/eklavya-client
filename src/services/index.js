@@ -25,8 +25,12 @@ export const verifyAndLoginOAuth2Code = async (oauth2_code) => {
     const res = await axios.post(`${baseDomain}/auth/oauth/google`, {
       oauth_code: oauth2_code, // This is the body part
     });
+    localStorage.setItem('token',res.data.token)
+    this.$store.commit('setToken',res.data.token)
     return res.data;
   } catch (error) {
+    localStorage.removeItem('token')
+    
     console.error(error)
   }
 };

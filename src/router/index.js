@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Login from '../components/Login.vue'
 import GoogleLoader from '../components/GoogleLoader.vue'
 import Register from '../components/Register.vue'
 import Loader from '../components/Loader.vue'
@@ -29,7 +30,12 @@ Vue.use(VueRouter)
     name: 'Loader',
     component: Loader
   },
- 
+
+ {
+  path:'/login',
+  name:'Login',
+  component: Login
+ },
   // {
   //   path: '/about',
   //   name: 'About',

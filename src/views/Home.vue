@@ -1,7 +1,8 @@
 <template>
-  <div class="container h-full bg-background-primary flex flex-col md:flex-row-reverse md:justify-around md:content-center md:items-center">
+  <div class="overflow-hidden w-full h-full bg-background-primary flex flex-col md:flex-row-reverse overflow-x-hidden md:justify-center md:items-center">
+
     <!-- Landing Image pencile -->
-    <div class="h-1 my-0 flex-1 md:w-1/2 md:h-screen"><img src="@/assets/LandingImage.svg" class="h-full m-auto" /></div>
+    <div class="h-1 my-0 flex-1 md:w-1/2 md:h-full"><img src="@/assets/LandingImage.svg" class="h-full m-auto" /></div>
     <!-- Div with message and buttons -->
     <div class="message  mt-0 text-center flex-1 flex-col md:w-1/2">
       <p class="eklavya text-white text-4xl">eklavya</p>
