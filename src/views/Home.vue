@@ -1,5 +1,6 @@
 <template>
   <div class="overflow-hidden w-full h-full bg-background-primary flex flex-col md:flex-row-reverse overflow-x-hidden md:justify-center md:items-center">
+
     <!-- Landing Image pencile -->
     <div class="h-1 my-0 flex-1 md:w-1/2 md:h-full"><img src="@/assets/LandingImage.svg" class="h-full m-auto" /></div>
     <!-- Div with message and buttons -->
