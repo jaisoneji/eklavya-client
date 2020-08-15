@@ -1,15 +1,19 @@
 <template>
 <div>
-    <h1 v-if="isLoggedIn">Welcome to dashboard</h1>
-    <h1 class="text-yellow" v-if="!isLoggedIn">Loading...</h1>
+    <Loader v-if="!isLoggedIn"/>
+    <h1 class="text-yellow" v-if="isLoggedIn">Welcome to Dashboard</h1>
     
 </div>
 </template>
 <script>
+import Loader from '@/components/Loader.vue'
 import {verifyAndLoginOAuth2Code} from '../services';
 
 export default{
     name:'GoogleLoader',
+    components:{
+        Loader
+    },
     computed:{
         isLoggedIn: function(){
            return  this.$store.getters.isLoggedIn

@@ -10,26 +10,19 @@
 
 <!-- heading -->
           <h1 class="text-blue-700 text-3xl text-center mb-4">Registration</h1>
-
-          
-          <form action="" class="text-gray-600">
             <div class="my-3">
-              <input type="text" placeholder="First Name" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline" />
+              <input v-model="name" type="text" placeholder="Username" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline" />
             </div>
             <div class="my-3">
-              <input type="text" placeholder="Last Name" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline" />
+                <input v-model="email" type="email" placeholder="Email" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline" />
             </div>
             <div class="my-3">
-                <input type="Email" placeholder="Email" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline" />
-            </div>
-            <div class="my-3">
-                <input type="password" placeholder="Password" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline" />
+                <input v-model="password" type="password" placeholder="Password" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline" />
               </div>
             <div class="my-6 flex">
-              <button class="border rounded w-1/2 border-blue-700 md:w-full py-2">REGISTER</button>
+              <button class="border rounded w-1/2 border-blue-700 md:w-full py-2" @click.prevent="register">REGISTER</button>
               <button class="border rounded w-1/2 md:w-full py-2 border-blue-700 bg-blue-600 text-white ml-2">SIGN IN</button>
             </div>
-          </form>
           </div>
         </div>
         <!-- <div class="lg:w-1/2 ">
@@ -42,6 +35,31 @@
 
 <script>
 export default {
+  name:'Register',
+  data(){
+    return{
+      name:'',
+      email:'',
+      password:''
+    }
+  },
+  methods:{
+    register(){
+      console.log(this.name)
+      this.$store.dispatch('REGISTER',{
+        name:this.name,
+        email:this.email,
+        password:this.password
+      })
+      .then(response=>{
+        console.log("Register.vue Response"+response)
+        this.$router.push('/Login')
+      })
+      .catch(error=>{
+        console.log("Registration.vue error"+error)
+      })
+    }
+  }
 
 }
 </script>

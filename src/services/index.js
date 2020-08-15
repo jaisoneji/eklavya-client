@@ -27,6 +27,7 @@ export const verifyAndLoginOAuth2Code = async (oauth2_code) => {
     });
     localStorage.setItem('token',res.data.token)
     this.$store.commit('setToken',res.data.token)
+    this.$store.commit('setUserDetails',res.data)
     return res.data;
   } catch (error) {
     localStorage.removeItem('token')
