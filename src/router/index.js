@@ -7,7 +7,7 @@ import Register from '../components/Register.vue'
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
-mode: 'history'
+  
   const routes = [
     
     {
@@ -41,6 +41,7 @@ mode: 'history'
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
