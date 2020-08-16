@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import {verifyAndLoginOAuth2Code} from '@/services'
 export default {
     name:'GoogleLogin',
     props:['googleLink'],
