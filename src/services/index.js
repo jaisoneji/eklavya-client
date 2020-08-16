@@ -21,7 +21,7 @@ export const getAccountLink = async ()=>{
 }
 
 export const verifyAndLoginOAuth2Code =  (oauth2_code) => {
-  console.log(oauth2_code)
+  console.log("Outh Code:"+oauth2_code)
   // var data=JSON.stringify({
   //    // This is the body part
 

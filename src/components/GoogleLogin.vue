@@ -18,14 +18,18 @@ export default {
     },
     methods:{
     async login() {
-     const authCode = await this.$gAuth.getAuthCode()
-     await verifyAndLoginOAuth2Code(authCode)
-     .then(()=>{
-         this.$router.push('/Dashboard')
-     })
-     .catch(error=>{
-         console.log(error)
-     })
+    try{ 
+    const authCode = await this.$gAuth.getAuthCode()
+    const res=await verifyAndLoginOAuth2Code(authCode)
+    console.log(res)
+    localStorage.setItem('token',res.data.token)
+    this.$store.commit('setToken',res.data.token)
+    this.$store.commit('setUserDetails',res.data)
+    this.$router.push('/Dashboard')
+    }
+    catch(error){
+         console.log("GoogleLogin.vue"+error)
+     }
    }
     }
    
