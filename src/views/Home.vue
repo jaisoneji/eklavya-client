@@ -20,8 +20,8 @@
       
       <hr class="w-1/2 m-auto md:mt-4 md:m-auto ">
       <!-- Google Sign in button -->
-      <GoogleLogin :googleLink="googleLink"/>
-      <button @click="login()"> GOogle </button>
+      <GoogleLogin/>
+      <!-- <button @click="login()"> GOogle </button> -->
 
     </div>
     
@@ -39,13 +39,7 @@ import {getAccountLink} from '../services';
 export default {
   name: 'Home',
   async mounted(){
-    try{
-    const data =await getAccountLink();
-    this.googleLink=data.data.OAuth2URL
-    }
-    catch(error){
-      console.log(error)
-    }
+ 
      
   },
 
@@ -55,17 +49,12 @@ export default {
   },
   data(){
       return {
-        queryLink:"",
-        code : "",
-        googleLink:""
+      
 
       }
   },
   methods:{
-   async login() {
-     const authCode = await this.$gAuth.getAuthCode()
-     console.log(authCode);
-   }
+   
   }
 }
 </script>
