@@ -12,7 +12,7 @@ export default new Vuex.Store({
       role:'',
       token:localStorage.getItem('token') || null,
       
-    }
+    },
     
   },
   getters:{
@@ -21,7 +21,8 @@ export default new Vuex.Store({
     },
     getUserDetails(state){
       return state.user
-    }
+    },
+    
   },
   mutations: {
     setToken(state,token){
@@ -31,7 +32,8 @@ export default new Vuex.Store({
       state.user.name=name,
       state.user.email=email,
       state.user.role=role
-    }
+    },
+    
   },
   actions: {
     // This action is used for Sign in
@@ -53,6 +55,9 @@ export default new Vuex.Store({
           console.log("Login error"+JSON.stringify(error.message))
           reject(error)
 
+        })
+        .finally(()=>{
+          
         })
       })
     },

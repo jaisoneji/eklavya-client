@@ -21,7 +21,7 @@
               </div>
             <div class="my-6 flex">
               <button class="border rounded w-1/2 border-blue-700 md:w-full py-2" @click.prevent="register">REGISTER</button>
-              <button class="border rounded w-1/2 md:w-full py-2 border-blue-700 bg-blue-600 text-white ml-2">SIGN IN</button>
+              <router-link :to="Login" class="border rounded w-1/2 md:w-full py-2 border-blue-700 bg-blue-600 text-white ml-2">SIGN IN ?</router-link>
             </div>
           </div>
         </div>

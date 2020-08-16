@@ -1,41 +1,34 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Dashboard from '../views/Dashboard.vue'
 import Login from '../components/Login.vue'
-import GoogleLoader from '../components/GoogleLoader.vue'
 import Register from '../components/Register.vue'
-import Loader from '../components/Loader.vue'
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
 
   const routes = [
     {
-      path:'/GoogleLoader',
-      name:'GoogleLoader',
-      component: GoogleLoader
+      path:'/Dashboard',
+      name:'Dashboard',
+      component: Dashboard
     },
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/Register',
-    name: 'Register',
-    component: Register
-  },
-  {
-    path: '/Loader',
-    name: 'Loader',
-    component: Loader
-  },
-
- {
-  path:'/Login',
-  name:'Login',
-  component: Login
- },
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/Register',
+      name: 'Register',
+      component: Register
+    },
+    {
+      path:'/Login',
+      name:'Login',
+      component: Login
+    }
   // {
   //   path: '/about',
   //   name: 'About',
