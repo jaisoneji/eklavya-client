@@ -16,7 +16,7 @@ Vue.config.productionTip = false
 //   Vue.prototype.$http.defaults.headers.common['Authorization'] = token
 // }
 const gauthOption = {
-  clientId: "426192843722-40g87d9749a3s2hf8nra76ull3a5fk71.apps.googleusercontent.com",
+  clientId: process.env.VUE_APP_CLIENT_ID,
   scope: "profile email",
   prompt: "select_account",
 };

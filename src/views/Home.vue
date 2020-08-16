@@ -34,8 +34,6 @@
 // import queryString from 'query-string'
 import GoogleLogin from '../components/GoogleLogin.vue'
 // @ is an alias to /src
-import {getAccountLink} from '../services';
-
 export default {
   name: 'Home',
   async mounted(){

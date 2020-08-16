@@ -5,7 +5,7 @@
 </div>
 </template>
 <script>
-import {verifyAndLoginOAuth2Code} from '../services';
+// import {verifyAndLoginOAuth2Code} from '../services';
 
 export default{
     name:'Dashboard',
@@ -15,11 +15,11 @@ export default{
         }
     },
     async created(){
-     if(this.$route.query.code){
-        console.log("inside google")
-        var oauth2_code = this.$route.query.code 
-        await verifyAndLoginOAuth2Code(oauth2_code);
-    }            
+    //  if(this.$route.query.code){
+    //     console.log("inside google")
+    //     var oauth2_code = this.$route.query.code 
+    //     await verifyAndLoginOAuth2Code(oauth2_code);
+    // }            
     }
     
 }

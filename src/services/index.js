@@ -20,18 +20,30 @@ export const getAccountLink = async ()=>{
     }
 }
 
-export const verifyAndLoginOAuth2Code = async (oauth2_code) => {
-  try {
-    const res = await axios.post(`${baseDomain}/auth/oauth/google`, {
-      oauth_code: oauth2_code, // This is the body part
-    });
-    localStorage.setItem('token',res.data.token)
-    this.$store.commit('setToken',res.data.token)
-    this.$store.commit('setUserDetails',res.data)
-    return res.data;
-  } catch (error) {
-    localStorage.removeItem('token')
+export const verifyAndLoginOAuth2Code =  (oauth2_code) => {
+  console.log(oauth2_code)
+  // var data=JSON.stringify({
+  //    // This is the body part
+
+  // })
+  return new Promise((resolve,reject)=>{
+    axios.post(`${baseDomain}/auth/oauth/google`,{
+      oauth_code: oauth2_code
+    })
+    .then((res)=>{
+    // localStorage.setItem('token',res.data.token)
+    // this.$store.commit('setToken',res.data.token)
+    // this.$store.commit('setUserDetails',res.data)
+    resolve(res)
+    })
+    .catch(error=>{
+      localStorage.removeItem('token')
+      console.log("Axios google error:"+error)
+      alert(error.response.data.errors.message)
+      reject(error)
+    })
     
-    console.error(error)
-  }
+  })
+    
+
 };
