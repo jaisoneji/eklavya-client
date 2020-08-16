@@ -1,6 +1,5 @@
 <template>
 <div>
-    
     <h1 class="text-yellow">Welcome to dashboard</h1>
     
 </div>
@@ -17,6 +16,7 @@ export default{
     },
     async created(){
      if(this.$route.query.code){
+        console.log("inside google")
         var oauth2_code = this.$route.query.code 
         await verifyAndLoginOAuth2Code(oauth2_code);
     }            

@@ -7,8 +7,9 @@ import Register from '../components/Register.vue'
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
-
+mode: 'history'
   const routes = [
+    
     {
       path:'/Dashboard',
       name:'Dashboard',
@@ -40,7 +41,6 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
-  mode: 'history',
   routes
 })
 
