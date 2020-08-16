@@ -6,6 +6,7 @@ import queryString from 'query-string'
 // import Axios from 'axios'
 import '@/assets/css/main.css'
 import './registerServiceWorker'
+import GAuth from "vue-google-oauth2";
 
 Vue.config.productionTip = false
 
@@ -14,6 +15,14 @@ Vue.config.productionTip = false
 // if (token) {
 //   Vue.prototype.$http.defaults.headers.common['Authorization'] = token
 // }
+const gauthOption = {
+  clientId: "426192843722-40g87d9749a3s2hf8nra76ull3a5fk71.apps.googleusercontent.com",
+  scope: "profile email",
+  prompt: "select_account",
+};
+
+Vue.use(GAuth, gauthOption);
+
 
 new Vue({
   router,

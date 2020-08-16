@@ -21,7 +21,7 @@
       <hr class="w-1/2 m-auto md:mt-4 md:m-auto ">
       <!-- Google Sign in button -->
       <GoogleLogin :googleLink="googleLink"/>
-
+      <button @click="login()"> GOogle </button>
 
     </div>
     
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+
 // import queryString from 'query-string'
 import GoogleLogin from '../components/GoogleLogin.vue'
 // @ is an alias to /src
@@ -61,7 +62,10 @@ export default {
       }
   },
   methods:{
-   
+   async login() {
+     const authCode = await this.$gAuth.getAuthCode()
+     console.log(authCode);
+   }
   }
 }
 </script>
