@@ -33,12 +33,13 @@
 
 // import queryString from 'query-string'
 import GoogleLogin from '../components/GoogleLogin.vue'
+import {checkServerStatus} from '../services/index';
 // @ is an alias to /src
 export default {
   name: 'Home',
   async mounted(){
- 
-     
+    const status = await checkServerStatus();
+    console.log(status.message);
   },
 
   components: {
