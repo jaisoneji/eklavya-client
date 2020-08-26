@@ -9,6 +9,14 @@ export default axios.create({
   baseURL
 });
 
+export const checkServerStatus = async () => {
+  try {
+    const status = await axios.get(`${baseDomain}/ping`);
+    return status.data;
+  } catch (error) {
+    console.error(error)
+  }
+};
 // This method gets google link
 export const getAccountLink = async ()=>{
     try{
