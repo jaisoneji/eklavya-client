@@ -1,6 +1,7 @@
 <template>
-  <div class="p-5 w-screen h-full bg-background-primary md:items-center">
-      <div class=" flex flex-col md:flex-row md:justify-center md:content-center md:items-center">
+  <div class="p-5 flex w-screen h-full bg-background-primary md:justify-center md:content-center md:align-center md:items-center ">
+      <div class=" flex flex-col md:flex-row md:justify-center md:content-center md:align-center md:items-center ">
+          <!-- Form div starts here -->
       <div class=" px-5 md:py-10 w-full h-5/6 mt-20 md:mt-10 md:w-1/3  my-1 items-center md:flex-row md:content-center md:items-center">
         <!-- <div class="flex items-center text-white ">
             Full Name:
@@ -72,10 +73,11 @@
             </div>         
         </div>
     </div>
-    <div class=" w-full md:w-1/3" >
-            <div><img src="@/assets/clip-sign-up.png"/>
-            </div> 
-    </div>      
+    <!-- Image div -->
+    <div class=" w-full md:w-1/2 md:align-center md:pl-6" >
+        <img src="@/assets/clip-sign-up.png"/>   
+    </div>   
+    <!-- ends here    -->
   </div>
 </div>
 </template>
