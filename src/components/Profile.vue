@@ -1,0 +1,91 @@
+<template>
+  <div class="p-5 w-screen h-full bg-background-primary md:items-center">
+      <div class=" flex flex-col md:flex-row md:justify-center md:content-center md:items-center">
+      <div class=" px-5 md:py-10 w-full h-5/6 mt-20 md:mt-10 md:w-1/3  my-1 items-center md:flex-row md:content-center md:items-center">
+        <!-- <div class="flex items-center text-white ">
+            Full Name:
+        </div>
+            <div class="border-b border-white py-1">
+                <input class="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" aria-label="Full name">
+            </div> -->
+            <div class="flex flex-col">
+                <span class="text-white">Register As:</span>
+                <div class="mt-5">
+                    <label class="inline-flex items-center text-white">
+                    <input type="radio" class="form-radio" name="Registeras" value="student">
+                    <span class="ml-2">Student</span>
+                    </label>
+                    <label class="inline-flex items-center text-white ml-16">
+                    <input type="radio" class="form-radio" name="Registeras" value="teacher">
+                    <span class="ml-2">Teacher</span>
+                    </label>
+                </div>
+            </div>
+        <div class="flex items-center text-white mt-5 md:mt-10">
+            Roll No.
+        </div>
+            <div class="border-b border-white py-1">
+                <input class="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" aria-label="Full name">
+            </div>
+        
+        <div class="mt-10 p-2 inline-block relative w-18">
+            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option>SEM</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-white">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+        </div>
+        <div class="mt-10 p-2 inline-block relative w-18">
+            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option>DEPT</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-white">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+        </div>
+       <div class="mt-10 p-2 inline-block relative w-18">
+            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option>CLASS</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-white">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+        </div>
+        <div class="flex items-center text-white mt-5">
+        Mobile Number:
+        </div>
+        <div class="border-b border-white py-1">
+            <input class="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" aria-label="Full name">
+        </div>
+        <div class="flex justify-end ">        
+            <div class="mt-3 w-1/3 p-2">
+                    <button class="border border-white text-white font-bold py-1 px-4 rounded">
+                            Confirm
+                    </button>
+            </div>         
+        </div>
+    </div>
+    <div class=" w-full md:w-1/3" >
+            <div><img src="@/assets/clip-sign-up.png"/>
+            </div> 
+    </div>      
+  </div>
+</div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
