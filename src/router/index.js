@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
+import Profile from '../components/Profile.vue'
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
@@ -29,6 +30,11 @@ Vue.use(VueRouter)
       path:'/Login',
       name:'Login',
       component: Login
+    },
+    {
+      path:'/Profile',
+      name:'Profile',
+      component: Profile
     }
   // {
   //   path: '/about',
