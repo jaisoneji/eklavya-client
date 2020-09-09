@@ -3,7 +3,7 @@
     <div class="w-full h-2 bg-background-secondary"></div>
     <Mode/>
     <router-view />
-    <div class="w-full h-2 bg-background-secondary absolute bottom-0"></div>
+    
   </div>
 </template>
 <script>
