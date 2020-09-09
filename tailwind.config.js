@@ -163,6 +163,8 @@ module.exports = {
       '48': '12rem',
       '56': '14rem',
       '64': '16rem',
+      '128': '32rem',
+      '132': '40rem',
       '184':'46rem'
     },
     backgroundColor: theme => theme('colors'),

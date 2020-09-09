@@ -1,54 +1,72 @@
 <template>
-<div class="px-0 py-5 flex flex-col w-screen h-full bg-background-primary md:justify-around md:content-center md:items-center ">
+<!-- main background -->
+<div class="flex justify-center align-center items-center content-center w-screen h-full bg-background-primary md:flex-row " :class="theme">
 
-  <Loader v-if="isLoading"/>
-  
-  <div v-else class="px-0 py-5 flex flex-col w-screen h-full bg-background-primary md:justify-around md:content-center md:items-center md:px-0">
-  
-    <div  class=" px-5 py-5 w-full h-5/6 mt-20 md:mt-2 md:w-1/3 bg-gray-200 rounded-lg my-4 items-center md:flex-row md:content-center md:items-center">
-  
-            <h1 class="font-hairline mb-8 text-background-secondary text-center text-5xl md:justify-around md:content-center md:items-center ">Login</h1>
-  
-            <div class="border-teal p-8 border-t-12 bg-white mb-8 rounded-lg shadow-lg md:h-4/5">
-  
-                <div class="mb-4">
-                    <!-- <label class="font-bold text-black block mb-2 ">Email</label> -->
-                    <input required type="email" v-model="email" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Your Username">
+    
+            
+    <div class=" flex justify-center align-center items-center content-center md:w-1/2 w-full md:h-screen" >
+        
+        <!-- first div -->
+        <div class="flex  justify-center items-center flex-col rounded-lg  w-11/12 h-132 bg-background-secondary md:w-1/2 md:h-132"   :class="theme">
+                    
+            <!-- heading -->
+            <h1 class="text-white text-center mt-4 font-hairline text-5xl"  :class="theme">Sign in</h1>
+                    
+                <!-- fields -->
+                <div class="flex flex-col w-full items-center mt-6  ">
+                        
+                    <div class="flex flex-row w-10/12 justify-center items-center">
+                                <img src="@/assets/enter.png" class="h-8 w-8  align-center color-white mr-4" />
+                                <input required type="email" class="flex-1 border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="abc.xyz@ves.in">
+                    </div>
+
+                    <div class="flex flex-row w-10/12 justify-center items-center mt-6">
+                                <img src="@/assets/pass.png" class="h-8 w-8  align-center color-white mr-4" />
+                                <input required type="password" class=" border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Password">
+                    </div>
+
+                    <div class="mt-6 flex flex-row border bg-white rounded-full w-1/2 h-12 justify-center items-center">
+                                <button class="flex font-bold text-2xl text-text   font-bold  rounded outline-none align-center" :class="theme">Login</button>
+                                <img src="@/assets/log.png" class="h-8 w-8 ml-4 align-center color-white  color-white" />
+                    </div>
+
+                    <h1 class="text-text-text mt-8 " :class="theme">Not Yet Registered?<a href="#">Register Now</a></h1>
+
                 </div>
 
-                <div class="mb-4">
-                    <!-- <label class="font-bold text-black block mb-2">Password</label> -->
-                    <input required type="password" v-model="password" class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline" placeholder="Your Password">
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <button @click.prevent="login"  class="border border-black hover:bg-background-secondary hover:text-white text-black font-bold py-2 px-4 rounded">
-                        Login
-                    </button>
-  
-
-                    <a class="no-underline inline-block align-baseline font-bold text-sm text-black hover:text-black float-right" href="#">
-                        Forgot Password?
-                    </a>
-                </div>
-                
-            </div>
-            <div class="text-center">
-                <p class="text-black text-sm">Don't have an account? <a href="Register" class="no-underline text-blue font-bold">Create an Account</a>.</p>
-            </div>
         </div>
+
+     </div>
     
+    <!-- landing -->
+    <div class="   hidden md:block md:w-1/2 md:h-11/12   ">
+        <img src="@/assets/authentication.png" class=" flex md:w-1/2 m-auto " />
+    </div>
     
-  </div>
-  </div>
+</div>
+
+
+
+
+
 </template>
 
 <script>
-import Loader from '@/components/Loader.vue'
+//import Loader from '@/components/Loader.vue'
 export default {
     name:'Login',
-    components:{
-        Loader
+    // components:{
+    //     Loader
+    // },
+    computed:{
+    theme(){
+        if(this.$store.getters.getMode === 'theme-dark'){
+            return 'theme-dark'
+        }
+        else{
+            return 'theme-light'
+        }
+        }
     },
     data(){
         return{
