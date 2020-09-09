@@ -1,6 +1,6 @@
 <template>
     <div @click.prevent="login" class="active:bg-background-pressed disabled:bg-background-disbaled mt-2 hover:shadow-btn outline-none border google-btn w-1/2 h-12 bg-background-google m-auto flex flex-row items-center align-center md:w-48">
-            <div class="rounded-sm ml-px google-icon-wrapper h-10 w-10 flex items-center justify-center bg-white">
+            <div class="h-full google-icon-wrapper w-12 flex items-center justify-center bg-white">
                 <img class="google-icon h-6 flex" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
             </div>
 
