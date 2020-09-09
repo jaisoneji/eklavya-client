@@ -13,11 +13,18 @@
     --bg-primary-color: white;
     --bg-secondary-color:#023e7d;
     --text:#023e7d;
+    --text-google:#888A8A;
+    --bg-google:white;
+    --bg-pressed:#EEEEEE
+
 }
 .theme-dark{
     --bg-primary-color: #151b26;
     --bg-secondary-color:#1c75bc;
     --text:white;
+    --text-google:white;
+    --bg-google:#4285f4;
+    --bg-pressed:#3367D6
 
     /* background-color:#0D2438 ; */
 }

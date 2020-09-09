@@ -13,11 +13,15 @@ module.exports = {
     },
     colors: {
       background:{
+        disabled:'#E3E5E5',
         primary: 'var(--bg-primary-color)',
         secondary:'var(--bg-secondary-color)',
+        google:'var(--bg-google)',
+        pressed:'var(--bg-pressed)'
       },
       text:{
         text:'var(--text)',
+        google:'var(--text-google)',
       },
 
 
@@ -155,9 +159,11 @@ module.exports = {
       '24': '6rem',
       '32': '8rem',
       '40': '10rem',
+      '42': '11rem',
       '48': '12rem',
       '56': '14rem',
       '64': '16rem',
+      '184':'46rem'
     },
     backgroundColor: theme => theme('colors'),
     backgroundOpacity: theme => theme('opacity'),
@@ -207,6 +213,7 @@ module.exports = {
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
+      btn:'0 0 6px #4285f4',
       none: 'none',
     },
     container: {},

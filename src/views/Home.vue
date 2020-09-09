@@ -40,7 +40,7 @@ export default {
   name: 'Home',
   async mounted(){
     const status = await checkServerStatus();
-    console.log(status.message);
+    console.log(status);
   },
 
   components: {
