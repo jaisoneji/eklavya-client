@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    theme:localStorage.getItem('theme') || 'theme-light',
     user:{
       name:'',
       email:'',
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     getUserDetails(state){
       return state.user
     },
+    getMode(state){
+      return state.theme
+    }
     
   },
   mutations: {
@@ -33,6 +37,10 @@ export default new Vuex.Store({
       state.user.email=email,
       state.user.role=role
     },
+    setMode(state){
+      state.theme = state.theme === 'theme-light' ? 'theme-dark':'theme-light'
+      localStorage.setItem('theme',state.theme)
+    }
     
   },
   actions: {
@@ -89,6 +97,9 @@ export default new Vuex.Store({
 
         })
       })
+    },
+    TOGGLEMODE(context){
+      context.commit('setMode')
     }
   },
   modules: {

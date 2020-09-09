@@ -13,14 +13,11 @@ module.exports = {
     },
     colors: {
       background:{
-        primary: '#023e7d',
-        secondary:'#0353a4',
-        ternary:'var(--bg-ternary-color)'
-        
+        primary: 'var(--bg-primary-color)',
+        secondary:'var(--bg-secondary-color)',
       },
       text:{
-        textColor:'var(--text-color)',
-        greenNumbers:'var(--green-numbers)'
+        text:'var(--text)',
       },
 
 

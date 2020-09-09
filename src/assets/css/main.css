@@ -11,16 +11,13 @@
 
 .theme-light{
     --bg-primary-color: white;
-    --bg-secondary-color:#f7fafc;
-    --bg-ternary-color:#e2e8f0;
-    --text-color:black;
+    --bg-secondary-color:#023e7d;
+    --text:#023e7d;
 }
 .theme-dark{
-    --bg-primary-color: #0D2438;
-    --bg-secondary-color:#102C44;
-    --bg-ternary-color:#1E3951;
-    --text-color:white;
-    --green-numbers:#41b883
+    --bg-primary-color: #151b26;
+    --bg-secondary-color:#1c75bc;
+    --text:white;
 
     /* background-color:#0D2438 ; */
 }
