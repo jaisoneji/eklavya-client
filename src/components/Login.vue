@@ -16,21 +16,21 @@
                 <div class="flex flex-col w-full items-center mt-6  ">
                         
                     <div class="flex flex-row w-10/12 justify-center items-center">
-                                <img src="@/assets/enter.png" class="h-8 w-8  align-center color-white mr-4" />
+                                <img src="@/assets/email.png" class="h-8 w-8  align-center color-white mr-4" />
                                 <input required type="email" class="flex-1 border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="abc.xyz@ves.in">
                     </div>
 
-                    <div class="flex flex-row w-10/12 justify-center items-center mt-6">
+                    <div class="flex flex-row w-10/12 justify-center items-center mt-6 ">
                                 <img src="@/assets/pass.png" class="h-8 w-8  align-center color-white mr-4" />
                                 <input required type="password" class=" border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Password">
                     </div>
 
-                    <div class="mt-6 flex flex-row border bg-white rounded-full w-1/2 h-12 justify-center items-center">
+                    <div class="mt-6 flex flex-row border bg-white rounded-full w-1/2 h-12 justify-center items-center hover:shadow-2 transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300">
                                 <button class="flex font-bold text-2xl text-text   font-bold  rounded outline-none align-center" :class="theme">Login</button>
                                 <img src="@/assets/log.png" class="h-8 w-8 ml-4 align-center color-white  color-white" />
                     </div>
 
-                    <h1 class="text-text-text mt-8 " :class="theme">Not Yet Registered?<a href="#">Register Now</a></h1>
+                    <h1 class="text-text-text mt-8 " :class="theme">Not Yet Registered?<a href="Register">Register Now</a></h1>
 
                 </div>
 
