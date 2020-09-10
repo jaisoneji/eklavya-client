@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 flex w-screen h-full bg-background-primary md:justify-center md:content-center md:align-center md:items-center ">
+  <div class="p-5 flex w-screen h-full bg-background-primary md:justify-center md:content-center md:align-center md:items-center " :class="theme">
       <div class=" flex flex-col md:flex-row md:justify-center md:content-center md:align-center md:items-center ">
           <!-- Form div starts here -->
       <div class=" px-5 md:py-10 w-full h-5/6 mt-20 md:mt-10 md:w-1/3  my-1 items-center md:flex-row md:content-center md:items-center">
@@ -30,7 +30,7 @@
             </div>
         
         <div class="mt-10 p-2 inline-block relative w-18">
-            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                 <option>SEM</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="mt-10 p-2 inline-block relative w-18">
-            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                 <option>DEPT</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -50,7 +50,7 @@
             </div>
         </div>
        <div class="mt-10 p-2 inline-block relative w-18">
-            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <select class=" text-white appearance-none bg-background-primary border border-white px-2 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                 <option>CLASS</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -67,7 +67,7 @@
         </div>
         <div class="flex justify-end ">        
             <div class="mt-3 w-1/3 p-2">
-                    <button class="border border-white text-white font-bold py-1 px-4 rounded">
+                    <button class="border border-white text-white font-bold py-1 px-4 rounded" >
                             Confirm
                     </button>
             </div>         
@@ -84,7 +84,16 @@
 
 <script>
 export default {
-
+    computed:{
+    theme(){
+        if(this.$store.getters.getMode === 'theme-dark'){
+            return 'theme-dark'
+        }
+        else{
+            return 'theme-light'
+        }
+        }
+    },
 }
 </script>
 
