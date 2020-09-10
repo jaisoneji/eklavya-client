@@ -11,7 +11,8 @@
 
 .theme-light{
     --bg-primary-color: white;
-    --bg-secondary-color:#023e7d;
+    /* --bg-secondary-color:#023e7d; */
+    --bg-secondary-color:#1c75bc;
     --text:#023e7d;
     --text-google:#888A8A;
     --bg-google:white;
@@ -20,7 +21,8 @@
 }
 .theme-dark{
     --bg-primary-color: #151b26;
-    --bg-secondary-color:#1c75bc;
+    /* --bg-secondary-color:#1c75bc; */
+    --bg-secondary-color:#023e7d;
     --text:white;
     --text-google:white;
     --bg-google:#4285f4;

@@ -11,6 +11,10 @@ import Mode from '@/components/Mode.vue'
 export default {
   components:{
     Mode
+  },
+  beforeCreate(){
+    
+
   }
 }
 </script>

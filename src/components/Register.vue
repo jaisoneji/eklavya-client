@@ -15,27 +15,27 @@
                 <!-- fields -->
                 <div class="flex flex-col w-full items-center mt-6  ">
                         
-                    <div class="flex flex-row w-10/12 justify-center items-center">
+                    <div :class="theme" class="flex flex-row w-10/12 justify-center items-center">
                                 <img src="@/assets/name.png" class="h-8 w-8  align-center color-white mr-4" />
-                                <input required type="text" class="flex-1 border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Full Name">
+                                <input v-model="name" required type="text" class="flex-1 border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Full Name">
                     </div>
 
-                    <div class="flex flex-row w-10/12 justify-center items-center mt-6">
+                    <div :class="theme" class="flex flex-row w-10/12 justify-center items-center mt-6">
                                 <img src="@/assets/email.png" class="h-8 w-8  align-center color-white mr-4" />
-                                <input required type="email" class=" border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="VES Email">
+                                <input v-model="email"  required type="email" class=" border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="VES Email">
                     </div>
 
-                    <div class="flex flex-row w-10/12 justify-center items-center mt-6">
+                    <div :class="theme" class="flex flex-row w-10/12 justify-center items-center mt-6">
                                 <img src="@/assets/pass.png" class="h-8 w-8  align-center color-white mr-4" />
-                                <input required type="password" class="border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Password">
+                                <input v-model="password"  required type="password" class="border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Password">
                     </div>
 
-                    <div class="mt-6 flex flex-row border bg-white rounded-full w-1/2 h-12 justify-center items-center  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300  ">
-                                <button class="flex font-bold text-2xl text-text   font-bold  rounded outline-none align-center " :class="theme">Confirm</button>
+                    <div :class="theme" @click.prevent="register()" class="mt-6 flex flex-row border bg-white rounded-full w-1/2 h-12 justify-center items-center  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline ">
+                                <button class="flex font-bold text-xl text-text-btn rounded outline-none align-center " :class="theme">Confirm</button>
                                 <img src="@/assets/tick.png" class="h-8 w-8 ml-4 align-center color-white  color-white" />
                     </div>
 
-                    <h1 class="text-text-text mt-8 " :class="theme">Already Registered?<a href="Login">Login Now</a></h1>
+                    <h1 class="text-white mt-8 " :class="theme">Already Registered?<a href="Login">Login Now</a></h1>
 
                 </div>
 

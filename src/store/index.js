@@ -1,19 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueCookies from 'vue-cookies'
 import Axios from 'axios'
 
 Vue.use(Vuex)
-
+Vue.use(VueCookies)
 export default new Vuex.Store({
   state: {
     theme:localStorage.getItem('theme') || 'theme-light',
     user:{
-      name:'',
-      email:'',
-      role:'',
-      token:localStorage.getItem('token') || null,
-      
+      name:localStorage.getItem("name") || '',
+      email:localStorage.getItem("email") || '',
+      role:localStorage.getItem("role") || '',
+      method:localStorage.getItem("method")||'',
+      token:VueCookies.get("token") || null,
     },
+    profileComplete:{
+      isCompleted: localStorage.getItem("isCompleted") || false,
+      complete: localStorage.getItem("complete") || 0
+    }
     
   },
   getters:{
@@ -32,14 +37,25 @@ export default new Vuex.Store({
     setToken(state,token){
       state.user.token=token
     },
-    setUserDetails(state,{name,email,role}){
+    setUserDetails(state,{name,email,role,method}){
       state.user.name=name,
       state.user.email=email,
-      state.user.role=role
+      state.user.role=role,
+      state.user.method=method,
+      localStorage.setItem("name",name)
+      localStorage.setItem("email",email)
+      localStorage.setItem("role",role)
+      localStorage.setItem("method",method)
     },
     setMode(state){
       state.theme = state.theme === 'theme-light' ? 'theme-dark':'theme-light'
       localStorage.setItem('theme',state.theme)
+    },
+    setProfileDetails(state,{status,completed}){
+      state.profileComplete.isCompleted=status
+      state.profileComplete.complete=completed
+      localStorage.setItem("isProfileCompleted",status)
+      localStorage.setItem("completed",completed)
     }
     
   },
@@ -52,10 +68,12 @@ export default new Vuex.Store({
           password:credentials.password
         })
         .then(response => {
-          localStorage.setItem('token',response.data.token)
+          let expires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+          VueCookies.set("token",response.data.token,expires);
           context.commit('setToken',response.data.token)
-          context.commit('setUserDetails',response.data)
-          console.log(response)
+          context.commit('setUserDetails',response.data.user_data)
+          context.commit('setProfileDetails',response.data.user_data.profileCompletion)
+          console.log(response.data.user_data)
           resolve(response)
           
         })
