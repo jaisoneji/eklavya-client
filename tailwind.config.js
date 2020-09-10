@@ -163,6 +163,8 @@ module.exports = {
       '48': '12rem',
       '56': '14rem',
       '64': '16rem',
+      '128': '32rem',
+      '132': '40rem',
       '184':'46rem'
     },
     backgroundColor: theme => theme('colors'),
@@ -214,6 +216,7 @@ module.exports = {
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
       btn:'0 0 6px #4285f4',
+      btn1:'0 0 6px #023e7d',
       none: 'none',
     },
     container: {},
