@@ -5,6 +5,8 @@ import Dashboard from '../views/Dashboard.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import Profile from '../components/Profile.vue'
+import Profile_error from '../components/Profile_error.vue'
+import Email_error from '../components/Email_error.vue'
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
@@ -35,7 +37,17 @@ Vue.use(VueRouter)
       path:'/Profile',
       name:'Profile',
       component: Profile
-    }
+    },
+    {
+      path:'/Profile_error',
+      name:'Profile_error',
+      component: Profile_error
+    },
+    {
+      path:'/Email_error',
+      name:'Email_error',
+      component: Email_error
+    },
   // {
   //   path: '/about',
   //   name: 'About',
