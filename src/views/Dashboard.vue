@@ -11,7 +11,8 @@ import Profile from '@/components/Profile.vue';
 export default{
     name:'Dashboard',
     components:{
-        Profile
+        Profile,
+      
     },
     computed:{
         isProfileComplete(){

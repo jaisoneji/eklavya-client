@@ -68,7 +68,7 @@ export default new Vuex.Store({
           password:credentials.password
         })
         .then(response => {
-          let expires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+          let expires = (new Date(Date.now()+ 43200*1000)).toUTCString();
           VueCookies.set("token",response.data.token,expires);
           context.commit('setToken',response.data.token)
           context.commit('setUserDetails',response.data.user_data)

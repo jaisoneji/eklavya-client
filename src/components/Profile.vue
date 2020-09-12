@@ -1,5 +1,8 @@
 <template>
-  <div class="p-5 flex w-screen h-full bg-background-primary md:justify-center md:content-center md:align-center md:items-center " :class="theme">
+<div class="flex w-screen h-screen bg-background-primary md:justify-center md:content-center md:align-center md:items-center" :class="theme">
+    <ProfileError @hideError="hideError()" v-if="toggleError==false" />
+    <div v-else class="flex w-screen h-full bg-background-primary md:justify-center md:content-center md:align-center md:items-center " :class="theme">
+      
       <div class=" flex flex-col md:flex-row md:justify-center md:content-center md:align-center md:items-center ">
           <!-- Form div starts here -->
       <div class=" px-5 md:py-10 w-full h-5/6 mt-20 md:mt-10 md:w-1/3  my-1 items-center md:flex-row md:content-center md:items-center">
@@ -80,10 +83,16 @@
     <!-- ends here    -->
   </div>
 </div>
+</div>
 </template>
 
 <script>
+import ProfileError from '@/components/ProfileError.vue';
+
 export default {
+    components:{
+          ProfileError
+    },
     computed:{
     theme(){
         if(this.$store.getters.getMode === 'theme-dark'){
@@ -92,8 +101,21 @@ export default {
         else{
             return 'theme-light'
         }
+    },
+    toggleError(){
+        return this.showForm
+    }
+    },
+    data(){
+        return{
+            showForm:false
         }
     },
+    methods:{
+        hideError(){
+            this.showForm = true
+        }
+    }
 }
 </script>
 
