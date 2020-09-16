@@ -1,6 +1,9 @@
 <template>
+<div class="h-full w-screen">
+<Loader v-if="Loading===true"/>
 <!-- main background -->
 <div class="flex justify-center align-center items-center content-center w-screen h-full bg-background-primary md:flex-row " :class="theme">
+    
     <div class=" flex justify-center align-center items-center content-center md:w-1/2 w-full md:h-screen" >
         <!-- first div -->
         <div class="flex  justify-center items-center flex-col rounded-lg  w-11/12 h-132 bg-background-secondary md:w-1/2 md:h-132"   :class="theme">      
@@ -39,20 +42,16 @@
     </div>
     
 </div>
-
-
-
-
-
+</div>
 </template>
 
 <script>
-//import Loader from '@/components/Loader.vue'
+import Loader from '@/components/Loader.vue'
 export default {
     name:'Login',
-    // components:{
-    //     Loader
-    // },
+    components:{
+        Loader
+    },
     computed:{
     theme(){
         if(this.$store.getters.getMode === 'theme-dark'){
@@ -61,7 +60,10 @@ export default {
         else{
             return 'theme-light'
         }
-        }
+        },
+    Loading(){
+        return this.isLoading
+    }
     },
     data(){
         return{

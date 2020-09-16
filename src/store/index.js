@@ -16,7 +16,8 @@ export default new Vuex.Store({
       token:VueCookies.get("token") || null,
     },
     profileComplete:{
-      isCompleted: localStorage.getItem("isCompleted") || false,
+      isCompleted: localStorage.getItem("isProfileCompleted") || false,
+      // isCompleted: true,
       complete: localStorage.getItem("complete") || 0
     }
     
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     getMode(state){
       return state.theme
+    },
+    getProfileStatus(state){
+      return state.profileComplete.isCompleted
     }
     
   },
@@ -56,6 +60,10 @@ export default new Vuex.Store({
       state.profileComplete.complete=completed
       localStorage.setItem("isProfileCompleted",status)
       localStorage.setItem("completed",completed)
+    },
+    profileCompleted(state){
+      localStorage.setItem("isProfileCompleted","true")
+      state.profileComplete.isCompleted=true
     }
     
   },
@@ -118,6 +126,42 @@ export default new Vuex.Store({
     },
     TOGGLEMODE(context){
       context.commit('setMode')
+    },
+    // For completing profile
+    CONFIRM_PROFILE(context,payload){
+      return new Promise((resolve,reject)=>{
+        let data = JSON.stringify({
+          role:payload.RegisterAs,
+          semester:payload.Sem,
+          department:payload.Dept,
+          class:payload.Class,
+          uid:payload.uid,
+          mobileno:payload.mobileno
+
+        })
+        let method = localStorage.getItem("method")
+        let token = VueCookies.get("token")
+        console.log(payload)
+        Axios.patch('https://eklavya-server.herokuapp.com/API/auth/profile_patch',data,
+        {
+        headers:{
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ${method} ${token}`
+        }
+        }
+        )
+        .then(response => {
+          console.log(response)
+          resolve(response)
+          
+        })
+        .catch(error=>{
+          console.log(error)
+          reject(error)
+
+        })
+      })
     }
   },
   modules: {
