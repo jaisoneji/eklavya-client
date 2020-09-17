@@ -141,9 +141,23 @@ export default {
             this.showForm = !this.showForm
         },
         confirm(){
-            this.$emit("confirm")
-                        // this.Loading=true
-            //   
+            this.Loading=true
+            this.$store.dispatch('CONFIRM_PROFILE',{
+                RegisterAs:this.RegisterAs,
+                Sem:this.Sem,
+                Dept:this.Dept,
+                Class:this.Class,
+                mobileno:this.mobileno,
+                uid:this.uid
+            })
+            .then(response=>{
+                console.log(response)
+                this.Loading=false
+                
+            })
+            .catch(error=>{
+                console.log(error)
+            })
         }
     }
 }

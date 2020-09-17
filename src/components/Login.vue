@@ -28,7 +28,9 @@
                                 <img src="@/assets/log.png" class="h-8 w-8 ml-4 align-center color-white  color-white" />
                     </div>
 
-                    <h1 class="text-text-text mt-8 " :class="theme">Not Yet Registered?<a href="Register">Register Now</a></h1>
+                    <h1 class="text-text-text mt-8 " :class="theme">Not Yet Registered?
+                        <router-link to="Register">Register Now</router-link>
+                    </h1>
 
                 </div>
 
@@ -85,6 +87,7 @@ export default {
                 this.$router.push('/Dashboard')
             })
             .catch(error=>{
+                this.isLoading=false
                 console.log(error)
             })
             

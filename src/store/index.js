@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 import Axios from 'axios'
+// import router from '@/router'
 
 Vue.use(Vuex)
 Vue.use(VueCookies)
@@ -9,17 +10,21 @@ export default new Vuex.Store({
   state: {
     theme:localStorage.getItem('theme') || 'theme-light',
     user:{
+      
       name:localStorage.getItem("name") || '',
       email:localStorage.getItem("email") || '',
+      mobileno:localStorage.getItem("mobileno") || '',
       role:localStorage.getItem("role") || '',
       method:localStorage.getItem("method")||'',
+      class:localStorage.getItem("class") || '',
+      uid:localStorage.getItem("uid") || '',
+      semester:localStorage.getItem("semester") || '',
+      department:localStorage.getItem("department") || '',
+      course:'BE',
+      verified:localStorage.getItem("verified") || false,
       token:VueCookies.get("token") || null,
+      profileCompletion: localStorage.getItem("profileCompletion") || false,
     },
-    profileComplete:{
-      isCompleted: localStorage.getItem("isProfileCompleted") || false,
-      // isCompleted: true,
-      complete: localStorage.getItem("complete") || 0
-    }
     
   },
   getters:{
@@ -33,7 +38,7 @@ export default new Vuex.Store({
       return state.theme
     },
     getProfileStatus(state){
-      return state.profileComplete.isCompleted
+      return state.user.profileCompletion
     }
     
   },
@@ -41,25 +46,35 @@ export default new Vuex.Store({
     setToken(state,token){
       state.user.token=token
     },
-    setUserDetails(state,{name,email,role,method}){
+    setUserDetails(state,{name,email,role,method,mobileno,uid,semester,department,course,verified,profileCompletion}){
       state.user.name=name,
       state.user.email=email,
       state.user.role=role,
       state.user.method=method,
+      state.user.mobileno=mobileno,
+      state.user.class='D17A',
+      state.user.uid=uid,
+      state.user.semester=semester,
+      state.user.department=department,
+      state.user.course=course,
+      state.user.verified=verified,
+      state.user.profileCompletion=profileCompletion,
       localStorage.setItem("name",name)
       localStorage.setItem("email",email)
       localStorage.setItem("role",role)
       localStorage.setItem("method",method)
+      localStorage.setItem("mobileno",mobileno)
+      localStorage.setItem("class",'D17A')
+      localStorage.setItem("uid",uid)
+      localStorage.setItem("semester",semester)
+      localStorage.setItem("department",department)
+      localStorage.setItem("course",course)
+      localStorage.setItem("verified",verified)
+      localStorage.setItem("profileCompletion",profileCompletion)
     },
     setMode(state){
       state.theme = state.theme === 'theme-light' ? 'theme-dark':'theme-light'
       localStorage.setItem('theme',state.theme)
-    },
-    setProfileDetails(state,{status,completed}){
-      state.profileComplete.isCompleted=status
-      state.profileComplete.complete=completed
-      localStorage.setItem("isProfileCompleted",status)
-      localStorage.setItem("completed",completed)
     },
     profileCompleted(state){
       localStorage.setItem("isProfileCompleted","true")
@@ -80,13 +95,14 @@ export default new Vuex.Store({
           VueCookies.set("token",response.data.token,expires);
           context.commit('setToken',response.data.token)
           context.commit('setUserDetails',response.data.user_data)
-          context.commit('setProfileDetails',response.data.user_data.profileCompletion)
           console.log(response.data.user_data)
           resolve(response)
           
         })
         .catch(error=>{
-          console.log("Login error"+JSON.stringify(error.message))
+          console.log("Login error"+JSON.stringify(error.response.data.errors.message))
+          alert(error.response.data.errors.message)
+          
           reject(error)
 
         })
@@ -136,7 +152,8 @@ export default new Vuex.Store({
           department:payload.Dept,
           class:payload.Class,
           uid:payload.uid,
-          mobileno:payload.mobileno
+          mobileno:payload.mobileno,
+          course:'BE'
 
         })
         let method = localStorage.getItem("method")
@@ -153,6 +170,7 @@ export default new Vuex.Store({
         )
         .then(response => {
           console.log(response)
+          context.commit('setUserDetails',response.data.user_data)
           resolve(response)
           
         })
