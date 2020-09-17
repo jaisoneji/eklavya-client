@@ -31,10 +31,38 @@
                    
 
                     <div class=" flex flex-row">
+                        <!-- course -->
+                        <div class="mt-10 px-3 inline-block relative w-18">
+                            <select class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                                <option>Course</option>
+                                <option>MCA</option>
+                                <option>BE</option>
+                            </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-background-secondary" :class="theme">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                        <!-- course ends -->
+
+                        <!-- dept -->
+                        <div class="mt-10 px-3 inline-block relative w-18">
+                            <select class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                                <option>Dept</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-background-secondary" :class="theme">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- dept ends-->
+                        
+                         <div class=" flex flex-row">
                         <!-- sem -->
                         <div class="mt-10 px-3 inline-block relative w-18">
                             <select class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
-                                <option>SEM</option>
+                                <option>Sem</option>
                                 <option>Option 2</option>
                                 <option>Option 3</option>
                             </select>
@@ -44,23 +72,10 @@
                         </div>
                         <!-- sem ends -->
 
-                        <!-- dept -->
-                        <div class="mt-10 px-3 inline-block relative w-18">
-                            <select class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
-                                <option>DEPT</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-background-secondary" :class="theme">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                            </div>
-                        </div>
-                        <!-- dept ends-->
-
                         <!-- class -->
                         <div class="mt-10 px-3 inline-block relative w-18">
-                            <select  class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
-                                <option>CLASS</option>
+                            <select class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                                <option>Class</option>
                                 <option>Option 2</option>
                                 <option>Option 3</option>
                             </select>
@@ -68,8 +83,9 @@
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                             </div>
                         </div>
+                        </div>
                         <!-- class ends-->
-                    </div>
+                        
 
                        <!-- Roll no div -->
                     <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 mt-10 justify-center items-center">
