@@ -41,9 +41,7 @@ Vue.use(VueRouter)
           name:"Dashboard"
         })
       }else{
-        next({
-          name:"Home"
-        })
+        next()
       }
     }
     },
@@ -60,7 +58,8 @@ Vue.use(VueRouter)
     {
       path:'/Profile',
       name:'Profile',
-      component: Profile
+      component: Profile,
+
     },
     {
       path:'/ProfileError',
