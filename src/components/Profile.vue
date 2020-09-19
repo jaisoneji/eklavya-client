@@ -3,14 +3,17 @@
 <div class="flex justify-center align-center items-center content-center w-screen h-screen bg-background-primary md:flex-row " :class="theme">
 <ProfileError @hideError="hideError()" v-if="toggleError===false" />             
     <div v-else v-show="!isLoading" class=" flex  justify-center align-center items-center content-center md:w-1/2 w-full md:h-screen" >
+        
         <!-- first div -->
         <div class="flex justify-center items-center flex-col rounded-lg  w-11/12 h-132 bg-background-secondary md:w-1/2 md:h-132"   :class="theme">
+            
              <!-- heading -->
             <h1 class="text-white text-center mt-4 font-hairline text-5xl"  :class="theme">Profile</h1>
+            
             <!-- Register as  -->
                 <div class="mt-10 px-3 inline-block relative w-18 h-8">
                             <select v-model="RegisterAs" class="text-background-secondary appearance-none bg-white border border-white px-8 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
-                                <option disabled value="">Register as: </option>
+                                <option disabled value="">Register as </option>
                                 <option value="Teacher">Teacher</option>
                                 <option value="Student">Student</option>
                             </select>
@@ -20,12 +23,42 @@
                         </div>
                 <!--  Register as radio -->
                     
+               
                 <!-- fields -->
-                <div class="flex flex-col w-full items-center ">    
-                    <div class=" flex flex-row">
+                <div class="flex flex-col w-full items-center ">   
+
+                    <div  class=" flex flex-row">
+                      
+                      <!-- course -->
+                        <div class="mr-6 mt-10 inline-block relative w-18">
+                            <select v-model="course" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                                <option disabled value="">Course</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                        <!--course ends -->
+
+                        <!-- dept -->
+                        <div class="mt-10 inline-block relative ">
+                            <select v-model="Dept" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                                <option disabled value="">DEPT</option>
+                                <option value="CMPN">CMPN</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                        <!-- dept ends-->
+                    </div>
+
+                    <div  v-show="isStudent" class=" flex flex-row">
                         <!-- sem -->
-                        <div class="mr-2 mt-10 inline-block relative w-18">
-                            <select v-model="Sem" class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                        <div class="mr-6 mt-10 inline-block relative w-18">
+                            <select v-model="Sem" class=" text-background-secondary appearance-none bg-white border border-white px-8 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                                 <option disabled value="">SEM</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -34,40 +67,36 @@
                                 <option value="5">5</option>
                                 <option value="6">6</option>
                             </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-background-secondary" :class="theme">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                             </div>
                         </div>
-                        <!-- sem ends -->
+                        <!--sem ends -->
 
                         <!-- dept -->
                         <div class="mt-10 inline-block relative w-18">
-                            <select v-model="Dept" class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                            <select v-model="Dept" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                                 <option disabled value="">DEPT</option>
                                 <option value="CMPN">CMPN</option>
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-background-secondary" :class="theme">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                             </div>
                         </div>
+                        
                         <!-- dept ends-->
+                        
+                    </div>    
 
-                        <!-- class -->
-                        <div class="mt-10 ml-2 inline-block relative w-18">
-                            <select v-model="Class" class=" text-background-secondary appearance-none bg-white border border-white px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
-                                <option disabled value="">CLASS</option>
-                                <option value="D17A">D17A</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-background-secondary" :class="theme">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                            </div>
-                        </div>
-                        <!-- class ends-->
-                    </div>
-
+                    
                        <!-- Roll no div -->
-                    <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 mt-10 justify-center items-center">
-                                <input v-model="uid" required type="number" class="flex-1 border rounded-full w-full py-2 px-6 outline-none focus:shadow-outline " placeholder="Roll No/ Staff id">
+                    <div v-if="isStudent===true" :class="theme" class="flex flex-row w-11/12 md:w-9/12 mt-10 justify-center items-center">
+                                <input v-model="uid" required type="number" class="flex-1 border rounded-full w-full py-2 px-6 outline-none focus:shadow-outline " placeholder="Roll No">
+                    </div>
+                    <!-- Roll no div -->
+                      <!-- Roll no div -->
+                    <div v-else :class="theme" class="flex flex-row w-11/12 md:w-9/12 mt-10 justify-center items-center">
+                                <input v-model="uid" required type="number" class="flex-1 border rounded-full w-full py-2 px-6 outline-none focus:shadow-outline " placeholder=" Staff id">
                     </div>
                     <!-- Roll no div -->
 
@@ -109,6 +138,15 @@ export default {
           Loader
     },
     computed:{
+        isStudent(){
+            if(this.RegisterAs==='Student')
+            {
+                return true
+            }
+            else{
+                return false
+            }
+        },
     theme(){
         if(this.$store.getters.getMode === 'theme-dark'){
             return 'theme-dark'
@@ -129,6 +167,7 @@ export default {
             showForm:false,
             Loading:false,
             RegisterAs:'',
+            course:'',
             Sem:'',
             Dept:'',
             Class:'',
