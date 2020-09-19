@@ -8,6 +8,10 @@ import '@/assets/css/main.css'
 import './registerServiceWorker'
 import GAuth from "vue-google-oauth2";
 import VueCookies from 'vue-cookies'
+import VueSidebarMenu from 'vue-sidebar-menu'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+
+
 
 Vue.config.productionTip = false
 
@@ -31,6 +35,7 @@ const gauthOption = {
 
 Vue.use(GAuth, gauthOption);
 Vue.use(VueCookies)
+Vue.use(VueSidebarMenu)
 
 new Vue({
   router,

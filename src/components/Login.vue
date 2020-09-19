@@ -25,7 +25,7 @@
                                 <img src="@/assets/log.png" class="h-8 w-8 ml-4 align-center color-white  color-white" />
                     </div>
 
-                    <h1 class="text-text-text mt-8 " :class="theme">Not Yet Registered?<a href="Register">Register Now</a></h1>
+                    <h1 class="text-text-text mt-8 " :class="theme">Not Yet Registered?<a href="Dash">Register Now</a></h1>
 
                 </div>
 

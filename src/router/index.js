@@ -7,6 +7,7 @@ import Register from '../components/Register.vue'
 import Profile from '../components/Profile.vue'
 import ProfileError from '../components/ProfileError.vue'
 import EmailError from '../components/EmailError.vue'
+import Dash from '../components/Dash.vue'
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
@@ -14,9 +15,27 @@ Vue.use(VueRouter)
   const routes = [
     
     {
+      path:'/Dash',
+      name:'Dash',
+      component: Dash
+    },
+    {
       path:'/Dashboard',
       name:'Dashboard',
-      component: Dashboard
+      component: Dashboard,
+      children:[
+          {
+            path: '/EmailError',
+            name: 'EmailError',
+            component: EmailError
+          },
+          {
+            path: '/Login',
+            name: 'Login',
+            component: Login
+          },
+          
+      ]
     },
     {
       path: '/',
