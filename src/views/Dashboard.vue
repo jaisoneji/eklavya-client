@@ -1,20 +1,32 @@
 <template>
 <div>
+
+    <!-- <h1 v-if="isProfileComplete === true" class="text-yellow">Welcome to dashboard</h1> -->
+    <!-- <Dash v-if="isProfileComplete === true"/>
+    <Profile v-else/> -->
+    <Dash />
+
     <!-- <Loader v-show="Loader"/> -->
     <h1 class="text-yellow">Welcome to dashboard</h1>
+
     
     
 </div>
 </template>
 <script>
 // import {verifyAndLoginOAuth2Code} from '../services';
-// import Loader from '@/components/Loader.vue';
 
+// import Profile from '@/components/Profile.vue';
+import Dash from '@/components/Dash.vue';
+// import Loader from '@/components/Loader.vue';
 export default{
     name:'Dashboard',
     components:{
-        // Loader
-      
+        // Profile,
+         // Loader,
+        Dash
+
+    
     },
     computed:{
         // isProfileComplete(){

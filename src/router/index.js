@@ -7,8 +7,12 @@ import Register from '../components/Register.vue'
 import Profile from '../components/Profile.vue'
 import ProfileError from '../components/ProfileError.vue'
 import EmailError from '../components/EmailError.vue'
+
+import Dash from '../components/Dash.vue'
+
 import store from '@/store'
 import VueCookies from 'vue-cookies'
+
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
@@ -16,9 +20,27 @@ Vue.use(VueRouter)
   const routes = [
     
     {
+      path:'/Dash',
+      name:'Dash',
+      component: Dash
+    },
+    {
       path:'/Dashboard',
       name:'Dashboard',
       component: Dashboard,
+
+      children:[
+          {
+            path: '/EmailError',
+            name: 'EmailError',
+            component: EmailError
+          },
+          {
+            path: '/Login',
+            name: 'Login',
+            component: Login
+          },
+
       beforeEnter(to, from ,next){
           if(store.getters.getProfileStatus){
             console.log(store.getters.getProfileStatus)
@@ -30,6 +52,7 @@ Vue.use(VueRouter)
             })
           }
       }
+
     },
     {
       path: '/',
@@ -41,9 +64,7 @@ Vue.use(VueRouter)
           name:"Dashboard"
         })
       }else{
-        next({
-          name:"Home"
-        })
+        next()
       }
     }
     },
@@ -60,7 +81,8 @@ Vue.use(VueRouter)
     {
       path:'/Profile',
       name:'Profile',
-      component: Profile
+      component: Profile,
+
     },
     {
       path:'/ProfileError',

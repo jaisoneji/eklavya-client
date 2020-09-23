@@ -16,11 +16,11 @@ export default new Vuex.Store({
       mobileno:localStorage.getItem("mobileno") || '',
       role:localStorage.getItem("role") || '',
       method:localStorage.getItem("method")||'',
-      class:localStorage.getItem("class") || '',
+      division:localStorage.getItem("division") || '',
       uid:localStorage.getItem("uid") || '',
       semester:localStorage.getItem("semester") || '',
       department:localStorage.getItem("department") || '',
-      course:'BE',
+      course:localStorage.getItem("course") || '',
       verified:localStorage.getItem("verified") || false,
       token:VueCookies.get("token") || null,
       profileCompletion: localStorage.getItem("profileCompletion") || false,
@@ -39,6 +39,9 @@ export default new Vuex.Store({
     },
     getProfileStatus(state){
       return state.user.profileCompletion
+    },
+    getVerifiedStatus(state){
+      return state.user.verified
     }
     
   },
@@ -46,13 +49,13 @@ export default new Vuex.Store({
     setToken(state,token){
       state.user.token=token
     },
-    setUserDetails(state,{name,email,role,method,mobileno,uid,semester,department,course,verified,profileCompletion}){
+    setUserDetails(state,{name,email,role,method,mobileno,division,uid,semester,department,course,verified,profileCompletion}){
       state.user.name=name,
       state.user.email=email,
       state.user.role=role,
       state.user.method=method,
       state.user.mobileno=mobileno,
-      state.user.class='D17A',
+      state.user.division=division,
       state.user.uid=uid,
       state.user.semester=semester,
       state.user.department=department,
@@ -64,7 +67,7 @@ export default new Vuex.Store({
       localStorage.setItem("role",role)
       localStorage.setItem("method",method)
       localStorage.setItem("mobileno",mobileno)
-      localStorage.setItem("class",'D17A')
+      localStorage.setItem("division",division)
       localStorage.setItem("uid",uid)
       localStorage.setItem("semester",semester)
       localStorage.setItem("department",department)
@@ -150,10 +153,10 @@ export default new Vuex.Store({
           role:payload.RegisterAs,
           semester:payload.Sem,
           department:payload.Dept,
-          class:payload.Class,
+          division:payload.division,
           uid:payload.uid,
           mobileno:payload.mobileno,
-          course:'BE'
+          course:payload.course
 
         })
         let method = localStorage.getItem("method")

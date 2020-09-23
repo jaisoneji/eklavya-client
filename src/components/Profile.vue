@@ -19,6 +19,7 @@
                             </select>
                              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-background-secondary" :class="theme">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 8"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+
                             </div>
                         </div>
                 <!--  Register as radio -->
@@ -33,11 +34,12 @@
                         <div class="mr-6 mt-10 inline-block relative w-18">
                             <select v-model="course" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                                 <option disabled value="">Course</option>
-                                <option value="1">MCA</option>
-                                <option value="2">BE</option>
+                                <option value="BE">BE</option>
+                                <option value="2">2</option>
                             </select>
                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+
                             </div>
                         </div>
                         <!--course ends -->
@@ -50,6 +52,7 @@
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+
                             </div>
                         </div>
                         <!-- dept ends-->
@@ -73,18 +76,20 @@
                         </div>
                         <!--sem ends -->
 
-                        <!-- dept -->
+
+                        <!-- division -->
                         <div class="mt-10 inline-block relative w-18">
-                            <select v-model="Class" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                            <select v-model="division" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                                 <option disabled value="">Class</option>
-                                <option value="CMPN">D17A</option>
+                                <option value="D17A">D17A</option>
                             </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+
                             </div>
                         </div>
                         
-                        <!-- dept ends-->
+                        <!-- division ends-->
                         
                     </div>    
 
@@ -94,20 +99,25 @@
                                 <input v-model="uid" required type="number" class="flex-1 border rounded-full w-full py-2 px-6 outline-none focus:shadow-outline " placeholder="Roll No">
                     </div>
                     <!-- Roll no div -->
-                      <!-- Roll no div -->
+
+                      <!-- staff id div -->
                     <div v-else :class="theme" class="flex flex-row w-11/12 md:w-9/12 mt-10 justify-center items-center">
                                 <input v-model="uid" required type="number" class="flex-1 border rounded-full w-full py-2 px-6 outline-none focus:shadow-outline " placeholder=" Staff id">
                     </div>
-                    <!-- Roll no div -->
+                    <!-- staff id div -->
+
+                      
 
                     <!-- Mobile no -->
                     <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 justify-center items-center mt-10">
                                 <input v-model="mobileno"  required type="tel" class="border rounded-full w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Mobile Number">
+
                     </div>
                     <!-- Mobile no ends-->
 
                       <!-- confirm button -->
                     <div :class="theme" @click.prevent="confirm()" class="mt-10 flex flex-row border bg-white rounded-full w-1/2 h-12 justify-center items-center  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline ">
+
                         <button class="flex font-bold text-xl text-text-btn rounded outline-none align-center " :class="theme">Confirm</button>
                         <img src="@/assets/tick.png" class="h-8 w-8 ml-4 align-center color-white  color-white" />
                     </div>
@@ -125,6 +135,7 @@
         <img src="@/assets/clip-sign-up.png" class=" flex md:w-3/4 m-auto " />
     </div>
     <Loader v-show="isLoading" />
+
 </div>
 </template>
 
@@ -170,7 +181,7 @@ export default {
             course:'',
             Sem:'',
             Dept:'',
-            Class:'',
+            division:'',
             mobileno:'',
             uid:''
         }
@@ -185,13 +196,15 @@ export default {
                 RegisterAs:this.RegisterAs,
                 Sem:this.Sem,
                 Dept:this.Dept,
-                Class:this.Class,
+                course:this.course,
+                division:this.division,
                 mobileno:this.mobileno,
                 uid:this.uid
             })
             .then(response=>{
                 console.log(response)
                 this.Loading=false
+                this.$router.push('Dashboard')
                 
             })
             .catch(error=>{
