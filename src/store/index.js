@@ -42,6 +42,9 @@ export default new Vuex.Store({
     },
     getVerifiedStatus(state){
       return state.user.verified
+    },
+    getRole(state){
+      return state.user.role
     }
     
   },

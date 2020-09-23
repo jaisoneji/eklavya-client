@@ -5,6 +5,9 @@
         :class="theme"
         :to="href" />
         <router-view />
+        <Classroom/>
+        <Quizzes></Quizzes>
+        <Scheduled></Scheduled>
         <!-- container div of clasroom, quizzes and schedule -->
         <div class="border flex flex-col w-1/2 ">
             <!-- classroom -->

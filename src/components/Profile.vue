@@ -105,12 +105,6 @@
                     </div>
                     <!-- Roll no div -->
 
-                       <!-- Roll no div -->
-                    <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 mt-10 justify-center items-center">
-                                <input v-model="rollno" required type="rollno" class="flex-1 border rounded-full w-full py-2 px-6 outline-none focus:shadow-outline " placeholder="Roll No">
-                    </div>
-                    <!-- Roll no div -->
-
                     <!-- Mobile no -->
                     <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 justify-center items-center mt-10">
                                 <input v-model="mobileno"  required type="tel" class="border rounded-full w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Mobile Number">

@@ -23,7 +23,7 @@ export default{
     name:'Dashboard',
     components:{
         // Profile,
-         // Loader,
+        // Loader,
         Dash
 
     

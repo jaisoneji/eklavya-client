@@ -2,7 +2,7 @@
 <div class="h-full w-screen">
 <Loader v-if="Loading===true"/>
 <!-- main background -->
-<div class="flex justify-center align-center items-center content-center w-screen h-full bg-background-primary md:flex-row " :class="theme">
+<div v-else class="flex justify-center align-center items-center content-center w-screen h-full bg-background-primary md:flex-row " :class="theme">
     
     <div class=" flex justify-center align-center items-center content-center md:w-1/2 w-full md:h-screen" >
         <!-- first div -->

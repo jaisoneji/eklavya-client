@@ -7,9 +7,7 @@ import Register from '../components/Register.vue'
 import Profile from '../components/Profile.vue'
 import ProfileError from '../components/ProfileError.vue'
 import EmailError from '../components/EmailError.vue'
-
 import Dash from '../components/Dash.vue'
-
 import store from '@/store'
 import VueCookies from 'vue-cookies'
 
@@ -28,19 +26,9 @@ Vue.use(VueRouter)
       path:'/Dashboard',
       name:'Dashboard',
       component: Dashboard,
-
       children:[
-          {
-            path: '/EmailError',
-            name: 'EmailError',
-            component: EmailError
-          },
-          {
-            path: '/Login',
-            name: 'Login',
-            component: Login
-          },
-
+          
+        ],
       beforeEnter(to, from ,next){
           if(store.getters.getProfileStatus){
             console.log(store.getters.getProfileStatus)
