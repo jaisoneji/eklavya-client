@@ -21,11 +21,7 @@ Vue.config.productionTip = false
 // if (token) {
 //   Vue.prototype.$http.defaults.headers.common['Authorization'] = token
 // }
-if(VueCookies.isKey("token")){
-  router.push('/Dashboard')
-}else{
-  router.push('/')
-} 
+
 
 const gauthOption = {
   clientId: "426192843722-40g87d9749a3s2hf8nra76ull3a5fk71.apps.googleusercontent.com",
