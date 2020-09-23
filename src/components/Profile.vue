@@ -33,8 +33,8 @@
                         <div class="mr-6 mt-10 inline-block relative w-18">
                             <select v-model="course" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                                 <option disabled value="">Course</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
+                                <option value="1">MCA</option>
+                                <option value="2">BE</option>
                             </select>
                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -75,9 +75,9 @@
 
                         <!-- dept -->
                         <div class="mt-10 inline-block relative w-18">
-                            <select v-model="Dept" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
-                                <option disabled value="">DEPT</option>
-                                <option value="CMPN">CMPN</option>
+                            <select v-model="Class" class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                                <option disabled value="">Class</option>
+                                <option value="CMPN">D17A</option>
                             </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
