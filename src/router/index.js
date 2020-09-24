@@ -11,13 +11,20 @@ import Dash from '../components/Dash.vue'
 
 import store from '@/store'
 import VueCookies from 'vue-cookies'
-
+import Repository from '../components/Repository'
+import Collapse from '../components/Collapse'
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
   
   const routes = [
     
+   
+    {
+      path:'/Repository',
+      name:'Repository',
+      component: Repository
+    },
     {
       path:'/Dash',
       name:'Dash',
@@ -28,7 +35,11 @@ Vue.use(VueRouter)
       name:'Dashboard',
       component: Dashboard,
       children:[
-          
+        {
+          path:'/Collapse',
+          name:'Collapse',
+          component: Collapse
+        },
         ],
       beforeEnter(to, from ,next){
           if(store.getters.getProfileStatus){

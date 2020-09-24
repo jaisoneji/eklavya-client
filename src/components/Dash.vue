@@ -1,9 +1,10 @@
 <template>
   <!-- main div with the theme -->
   <div class="flex justify-center align-center items-center content-center w-screen h-screen bg-background-primary" :class="theme">
+
     <!-- sidebar start -->
     <sidebar-menu
-        :menu="menu"
+        :menu="menu" class="md:w-1/3 "
         :collapsed="collapsed"
         :theme="selectedTheme"
         :show-one-child="true"
@@ -12,33 +13,15 @@
         :to="href"
       />
       <!-- sidebar start ends-->
-        <router-view />
+        <router-view  class="md:ml-56 md:w-4/6 border h-full flex items-center "/>
         <Classroom/>
+        <Collapse/>
         <Quizzes></Quizzes>
         <Scheduled></Scheduled>
         <!-- Main right contents of the dashboard -->
-        <!-- container div of clasroom, quizzes and schedule -->
-        <div class="border flex flex-col w-1/2 ">
-            <!-- classroom -->
-            <div class="border flex flex-col ">
-                <p :class="theme" class="eklavya text-text-text text-2xl">Classroom</p>
-                <button class="flex font-bold text-xl text-white bg-background-secondary rounded outline-none align-center " :class="theme">Create</button>          
-            </div>
-            <!-- classroom ends -->
-            <hr style="margin: 50px 0px;border: 1px solid #e3e3e3;">
-             <!-- quiz -->
-            <div>
-                <p :class="theme" class="eklavya text-text-text text-2xl">Quizes</p>
-            </div>
-            <!-- quiz ends -->
-            <hr style="margin: 50px 0px;border: 1px solid #e3e3e3;">
-             <!-- schedule -->
-            <div>
-                <p :class="theme" class="eklavya text-text-text text-2xl">Schedule</p>
-            </div>
-            <!-- schedule ends -->
-        </div>
-        <!-- container div of clasroom, quizzes and schedule -->
+       
+
+
   </div>
   <!-- main div with the theme ends-->
 </template>
@@ -78,7 +61,7 @@ export default {
                         hiddenOnCollapse: true
                     },
                     {
-                        href:'',
+                        href:'/Collapse',
                         title: 'Create Quiz',
                         icon: 'fa fa-list-alt'
                     },
@@ -96,11 +79,6 @@ export default {
                     },
                     // scedule ends
                     // settings
-                    {
-                        href: '',
-                        title: 'Query',
-                        icon: 'fa  fa-question-circle',
-                    },
                     {
                         href:'',
                         title: 'Settings',
