@@ -1,10 +1,15 @@
 <template>
-<div>
+<div class="w-full h-full">
 
     <!-- <h1 v-if="isProfileComplete === true" class="text-yellow">Welcome to dashboard</h1> -->
     <!-- <Dash v-if="isProfileComplete === true"/>
     <Profile v-else/> -->
-    <Dash />
+    <div class="w-full h-full">
+    
+        <Dash />
+    
+    </div>
+   
 
     <!-- <Loader v-show="Loader"/> -->
     <h1 class="text-yellow">Welcome to dashboard</h1>
