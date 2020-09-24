@@ -8,6 +8,7 @@ import Profile from '../components/Profile.vue'
 import ProfileError from '../components/ProfileError.vue'
 import EmailError from '../components/EmailError.vue'
 import Dash from '../components/Dash.vue'
+
 import store from '@/store'
 import VueCookies from 'vue-cookies'
 import Repository from '../components/Repository'
