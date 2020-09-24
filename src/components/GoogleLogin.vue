@@ -10,6 +10,8 @@
 
 <script>
 import {verifyAndLoginOAuth2Code} from '@/services'
+import VueCookies from 'vue-cookies'
+
 export default {
     name:'GoogleLogin',
     computed:{
@@ -33,9 +35,10 @@ export default {
     const authCode = await this.$gAuth.getAuthCode()
     const res=await verifyAndLoginOAuth2Code(authCode)
     console.log(res)
-    localStorage.setItem('token',res.data.token)
+    let expires = (new Date(Date.now()+ 43200*1000)).toUTCString();
+    VueCookies.set("token",res.data.token,expires);
     this.$store.commit('setToken',res.data.token)
-    this.$store.commit('setUserDetails',res.data)
+    this.$store.commit('setUserDetails',res.data.user_data)
     this.$router.push('/Dashboard')
     }
     catch(error){

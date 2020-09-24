@@ -8,13 +8,14 @@
 </template>
 <script>
 import Mode from '@/components/Mode.vue'
+// import VueCookies from 'vue-cookies'
+
 export default {
   components:{
     Mode
   },
-  beforeCreate(){
-    
-
+  mounted(){
+  
   }
 }
 </script>

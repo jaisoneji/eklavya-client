@@ -14,10 +14,7 @@
       />
       <!-- sidebar start ends-->
         <router-view  class="md:ml-56 md:w-4/6 border h-full flex items-center "/>
-        <Classroom/>
-        <Collapse/>
-        <Quizzes></Quizzes>
-        <Scheduled></Scheduled>
+
         <!-- Main right contents of the dashboard -->
        
 
@@ -28,11 +25,10 @@
 <script>
 
 import { SidebarMenu } from 'vue-sidebar-menu'
+import ProfilePic from '../components/ProfilePic'
 
-const separator = {
 
-}
-export default {
+export default { 
   data() {
             return {
                 menu: [
@@ -42,12 +38,9 @@ export default {
                         hiddenOnCollapse: true
                     },
                     {
-                        header:'true',
-                        title: 'circle profiler',
-                    
-                    },
-                    {
-                        component: separator
+                        component: ProfilePic,
+                        hidden: false,
+                        hiddenOnCollapse: true,
                     },
                     {
                         header: true,
@@ -63,7 +56,7 @@ export default {
                     {
                         href:'/Collapse',
                         title: 'Create Quiz',
-                        icon: 'fa fa-list-alt'
+                        icon: 'fas fa-pen'
                     },
                     {
                         href:'',
@@ -82,7 +75,7 @@ export default {
                     {
                         href:'',
                         title: 'Settings',
-                        icon: 'fa fa-gears '
+                        icon: 'fa fa-cog '
                     },
                 ],
                 collapsed: false,
@@ -100,14 +93,10 @@ export default {
                 isOnMobile: false
             }
         },
-        mounted () {
-            this.onResize()
-            window.addEventListener('resize', this.onResize)
-        },
         
-        
-  components: {
-        SidebarMenu
+components: {
+        SidebarMenu,
+        // Collapse
     },
 computed:{
     theme(){
@@ -123,21 +112,23 @@ computed:{
         hideError(){
             this.$emit('hideError')
         },
-        onToggleCollapse (collapsed) {
-            console.log(collapsed)
-            this.collapsed = collapsed
-        }
+        // onToggleCollapse (collapsed) {
+        //     console.log(collapsed)
+        //     this.collapsed = collapsed
+        // }
     }
 }
 </script>
 <style >
-
+/* @import "custom-var.scss";
+@import "vue-sidebar-menu/src/scss/vue-sidebar-menu.scss"; */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
 .v-sidebar-menu .vsm-arrow:after{font-family: FontAwesome}
 
 .v-sidebar-menu .collapse-btn:after {
-content: "\f07e";
+content: "\f0c9";
 font-family: FontAwesome;
+border:1px solid red !important
 }
 
 </style>

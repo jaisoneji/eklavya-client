@@ -24,6 +24,7 @@ export default new Vuex.Store({
       verified:localStorage.getItem("verified") || false,
       token:VueCookies.get("token") || null,
       profileCompletion: localStorage.getItem("profileCompletion") || false,
+      picture: localStorage.getItem("picture") || '',
     },
     
   },
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     getMode(state){
       return state.theme
     },
+    getName(state){
+      return state.user.name
+    },
     getProfileStatus(state){
       return state.user.profileCompletion
     },
@@ -45,6 +49,12 @@ export default new Vuex.Store({
     },
     getRole(state){
       return state.user.role
+    },
+    getPicture(state){
+      return state.user.picture
+    },
+    getMethod(state){
+      return state.user.method
     }
     
   },
@@ -52,7 +62,7 @@ export default new Vuex.Store({
     setToken(state,token){
       state.user.token=token
     },
-    setUserDetails(state,{name,email,role,method,mobileno,division,uid,semester,department,course,verified,profileCompletion}){
+    setUserDetails(state,{name,email,role,method,mobileno,division,uid,semester,picture,department,course,verified,profileCompletion}){
       state.user.name=name,
       state.user.email=email,
       state.user.role=role,
@@ -60,6 +70,7 @@ export default new Vuex.Store({
       state.user.mobileno=mobileno,
       state.user.division=division,
       state.user.uid=uid,
+      state.user.picture=picture,
       state.user.semester=semester,
       state.user.department=department,
       state.user.course=course,
@@ -74,6 +85,7 @@ export default new Vuex.Store({
       localStorage.setItem("uid",uid)
       localStorage.setItem("semester",semester)
       localStorage.setItem("department",department)
+      localStorage.setItem("picture",picture)
       localStorage.setItem("course",course)
       localStorage.setItem("verified",verified)
       localStorage.setItem("profileCompletion",profileCompletion)
@@ -99,6 +111,7 @@ export default new Vuex.Store({
         .then(response => {
           let expires = (new Date(Date.now()+ 43200*1000)).toUTCString();
           VueCookies.set("token",response.data.token,expires);
+          console.log(response.data)
           context.commit('setToken',response.data.token)
           context.commit('setUserDetails',response.data.user_data)
           console.log(response.data.user_data)

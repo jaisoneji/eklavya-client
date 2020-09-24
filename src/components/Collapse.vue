@@ -30,9 +30,9 @@
 </template>
 
 <script>
-
-      import Repository from '@/components/Repository.vue';
+import Repository from '@/components/Repository.vue';
 export default {
+   name:'Collapse',
     components:{
       Repository
     },

@@ -13,12 +13,18 @@ import store from '@/store'
 import VueCookies from 'vue-cookies'
 import Repository from '../components/Repository'
 import Collapse from '../components/Collapse'
+import ProfilePic from '../components/ProfilePic'
+
 
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
   
   const routes = [
-    
+    {
+      path:'/ProfilePic',
+      name:'ProfilePic',
+      component: ProfilePic
+    },
    
     {
       path:'/Repository',
