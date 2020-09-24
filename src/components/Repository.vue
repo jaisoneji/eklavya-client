@@ -1,7 +1,7 @@
 <template>
   
     <!-- main div -->
-    <div class="h-128 w-full bg-background-secondary flex  justify-center flex-col" :class="theme">
+    <div class="h-80 w-full bg-background-secondary flex  justify-center flex-col" :class="theme">
         
         <!-- text and submit -->
         <div class=" w-full mt-10 flex flex-row ">

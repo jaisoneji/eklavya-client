@@ -39,7 +39,7 @@ Vue.use(VueRouter)
           name:'Collapse',
           component: Collapse
         },
-        ],
+      ],
       beforeEnter(to, from ,next){
           if(store.getters.getProfileStatus){
             console.log(store.getters.getProfileStatus)
@@ -81,6 +81,15 @@ Vue.use(VueRouter)
       path:'/Profile',
       name:'Profile',
       component: Profile,
+      beforeEnter(to,from,next){
+        if(VueCookies.isKey("token")){
+          next()
+        }else{
+          next({
+            name:'Login'
+          })
+        }
+      }
 
     },
     {

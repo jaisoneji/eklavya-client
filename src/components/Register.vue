@@ -2,12 +2,12 @@
 <!-- main background -->
 <div class="flex justify-center align-center items-center content-center w-screen h-full bg-background-primary md:flex-row " :class="theme">
 
-    
+    <Loader v-if="Loading===true"/>
             
     <div class=" flex justify-center align-center items-center content-center md:w-1/2 w-full md:h-screen" >
         
         <!-- first div -->
-        <div class="flex  justify-center items-center flex-col rounded-lg  w-11/12 h-132 bg-background-secondary md:w-1/2 md:h-132"   :class="theme">
+        <div class="flex  justify-center items-center flex-col rounded-lg  w-11/12 h-132 bg-background-secondary md:w-7/12 md:h-128"   :class="theme">
                     
             <!-- heading -->
             <h1 class="text-white text-center mt-4 font-hairline text-5xl"  :class="theme">Register</h1>
@@ -58,8 +58,12 @@
 
 
 <script>
+import Loader from '@/components/Loader.vue'
 export default {
   // name:'Register',
+     components:{
+        Loader
+    },
   computed:{
     theme(){
         if(this.$store.getters.getMode === 'theme-dark'){
@@ -68,17 +72,22 @@ export default {
         else{
             return 'theme-light'
         }
-        }
+      },
+    Loading(){
+        return this.isLoading
+    }
     },
   data(){
     return{
       name:'',
       email:'',
-      password:''
+      password:'',
+      isLoading: false
     }
   },
   methods:{
     register(){
+       this.isLoading=true
       console.log(this.name)
       this.$store.dispatch('REGISTER',{
         name:this.name,
@@ -86,10 +95,12 @@ export default {
         password:this.password
       })
       .then(response=>{
+         this.isLoading='false'
         console.log("Register.vue Response"+response)
         this.$router.push('/Login')
       })
       .catch(error=>{
+         this.isLoading=false
         console.log("Registration.vue error"+error)
       })
     }

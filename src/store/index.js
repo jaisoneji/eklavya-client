@@ -141,6 +141,7 @@ export default new Vuex.Store({
         })
         .catch(error=>{
           console.log(error)
+          alert(error.response.data.errors.message)
           reject(error)
 
         })
