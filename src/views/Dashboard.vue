@@ -6,7 +6,7 @@
     <Profile v-else/> -->
     <div class="w-full h-full">
     
-        <Dash />
+        <SideBar />
     
     </div>
    
@@ -22,14 +22,14 @@
 // import {verifyAndLoginOAuth2Code} from '../services';
 
 // import Profile from '@/components/Profile.vue';
-import Dash from '@/components/Dash.vue';
+import SideBar from '@/components/SideBar.vue';
 // import Loader from '@/components/Loader.vue';
 export default{
     name:'Dashboard',
     components:{
         // Profile,
         // Loader,
-        Dash
+        SideBar
 
     
     },
