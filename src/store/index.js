@@ -200,7 +200,73 @@ export default new Vuex.Store({
 
         })
       })
+    },
+    FETCH_DATA(context){
+      return new Promise((resolve,reject)=>{
+        let method = localStorage.getItem("method")
+        let token = VueCookies.get("token")
+        Axios.get('https://eklavya-server.herokuapp.com/API/auth/verify_token',
+        {
+        headers:{
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ${method} ${token}`
+        }
+        }
+        )
+        .then(response => {
+          console.log(response)
+          context.commit('setUserDetails',response.data.user_data)
+          resolve(response)
+          
+        })
+        .catch(error=>{
+          console.log(error)
+          reject(error)
+
+        })
+      })
+    },
+    // THis action will be used in scrapper module
+    SCRAPE_QUESTIONS(context,payload){
+      return new Promise((resolve,reject)=>{
+        let method = localStorage.getItem("method")
+        let token = VueCookies.get("token")
+        console.log(token)
+        console.log(`Bearer ${method} ${token}`)
+        let data=JSON.stringify({
+          scrapeURL: payload.scrapeURL
+        })
+        console.log(data)
+        let endpoint='https://eklavya-server.herokuapp.com/API/scrape'
+        console.log(`${endpoint}`)
+        // const config = {
+        //   headers:{
+        //     'Content-Type': 'application/json',
+        //     'Access-Control-Allow-Origin': '*',
+        //     'Authorization': `Bearer ${method} ${token}`
+        //   }
+        // };
+        // console.log(config);
+        Axios({
+          method: 'get',
+          url: `${endpoint}`,
+          data: data,
+          headers: { 'Authorization': `Bearer ${method} ${token}`,
+                      "Access-Control-Allow-Origin": "*",
+          }
+        })
+        .then(response=>{
+          console.log(response.data)
+          resolve(response)
+        })
+        .catch(error=>{
+          console.log("SCRAPE_QUESTIONS Error"+error)
+          reject(error)
+        })
+      })
     }
+    // Scrape action ends
   },
   modules: {
   }

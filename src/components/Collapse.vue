@@ -7,7 +7,7 @@
                <input class="absolute opacity-0 " id="tab-multi-one" type="radio" name="tabs">
                <label class="block p-5 leading-normal cursor-pointer text-text-text" :class="theme" for="tab-multi-one">Repository</label>
                <div class="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
-                  <Repository/>
+                  <Scrape/>
                </div>
             </div>
             <div class="tab w-full overflow-hidden border-t">
@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import Repository from '@/components/Repository.vue';
+import Scrape from '@/components/Scrape.vue';
 export default {
    name:'Collapse',
     components:{
-      Repository
+      Scrape
     },
      computed:{
     theme(){

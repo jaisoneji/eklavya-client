@@ -11,7 +11,7 @@ import SideBar from '../components/SideBar.vue'
 
 import store from '@/store'
 import VueCookies from 'vue-cookies'
-import Repository from '../components/Repository'
+import Scrape from '../components/Scrape.vue'
 import Collapse from '../components/Collapse'
 import ProfilePic from '../components/ProfilePic'
 
@@ -27,9 +27,9 @@ Vue.use(VueRouter)
     },
    
     {
-      path:'/Repository',
-      name:'Repository',
-      component: Repository
+      path:'/Scrape',
+      name:'Scrape',
+      component: Scrape
     },
     {
       path:'/SideBar',
@@ -48,6 +48,7 @@ Vue.use(VueRouter)
         },
       ],
       beforeEnter(to, from ,next){
+        if(store.getters.getVerifiedStatus){
           if(store.getters.getProfileStatus){
             console.log(store.getters.getProfileStatus)
             next()
@@ -57,6 +58,12 @@ Vue.use(VueRouter)
               name:"Profile"
             })
           }
+        }
+        else{
+          next({
+            name: "EmailError"
+          })
+        }
       }
 
     },
