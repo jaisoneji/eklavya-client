@@ -248,14 +248,15 @@ export default new Vuex.Store({
         //   }
         // };
         // console.log(config);
-        Axios({
-          method: 'get',
-          url: `${endpoint}`,
-          data: data,
-          headers: { 'Authorization': `Bearer ${method} ${token}`,
-                      "Access-Control-Allow-Origin": "*",
-          }
-        })
+        Axios.post('https://eklavya-server.herokuapp.com/API/scrape',data,
+        {
+        headers:{
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ${method} ${token}`
+        }
+        }
+        )
         .then(response=>{
           console.log(response.data)
           resolve(response)
