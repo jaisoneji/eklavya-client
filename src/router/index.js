@@ -19,103 +19,99 @@ import ProfilePic from '../components/ProfilePic'
 // http://localhost:8000/GoogleLoader
 Vue.use(VueRouter)
   
-  const routes = [
-    {
-      path:'/ProfilePic',
-      name:'ProfilePic',
-      component: ProfilePic
-    },
-   
-    {
-      path:'/Scrape',
-      name:'Scrape',
-      component: Scrape
-    },
-    {
-      path:'/SideBar',
-      name:'SideBar',
-      component: SideBar
-    },
-    {
-      path:'/Dashboard',
-      name:'Dashboard',
-      component: Dashboard,
-      children:[
-        {
-          path:'/Collapse',
-          name:'Collapse',
-          component: Collapse
-        },
-      ],
-      beforeEnter(to, from ,next){
-        if(store.getters.getVerifiedStatus){
-          if(store.getters.getProfileStatus){
-            console.log(store.getters.getProfileStatus)
-            next()
-          }
-          else{
-            next({
-              name:"Profile"
-            })
-          }
-        }
-        else{
-          next({
-            name: "EmailError"
-          })
-        }
-      }
-
-    },
-    {
-      path: '/',
-      name: 'Home',
-      component: Home,
-      beforeEnter(to,from,next){
-      if(VueCookies.isKey("token")){
+const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: Home,
+    beforeEnter(to, from, next) {
+      if (VueCookies.isKey("token")) {
         next({
-          name:"Dashboard"
-        })
-      }else{
-        next()
+          name: "Dashboard",
+        });
+      } else {
+        next();
       }
-    }
     },
-    {
-      path: '/Register',
-      name: 'Register',
-      component: Register
-    },
-    {
-      path:'/Login',
-      name:'Login',
-      component: Login
-    },
-    {
-      path:'/Profile',
-      name:'Profile',
-      component: Profile,
-      beforeEnter(to,from,next){
-        if(VueCookies.isKey("token")){
-          next()
-        }else{
-          next({
-            name:'Login'
-          })
-        }
-      }
+  },
+  {
+    path: "/ProfilePic",
+    name: "ProfilePic",
+    component: ProfilePic,
+  },
 
+  {
+    path: "/Scrape",
+    name: "Scrape",
+    component: Scrape,
+  },
+  {
+    path: "/SideBar",
+    name: "SideBar",
+    component: SideBar,
+  },
+  {
+    path: "/Dashboard",
+    name: "Dashboard",
+    component: Dashboard,
+    children: [
+      {
+        path: "/Collapse",
+        name: "Collapse",
+        component: Collapse,
+      },
+    ],
+    beforeEnter(to, from, next) {
+      if (store.getters.getVerifiedStatus) {
+        if (store.getters.getProfileStatus) {
+          console.log(store.getters.getProfileStatus);
+          next();
+        } else {
+          next({
+            name: "Profile",
+          });
+        }
+      } else {
+        next({
+          name: "EmailError",
+        });
+      }
     },
-    {
-      path:'/ProfileError',
-      name:'ProfileError',
-      component: ProfileError
+  },
+  {
+    path: "/Register",
+    name: "Register",
+    component: Register,
+  },
+  {
+    path: "/Login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: Profile,
+    beforeEnter(to, from, next) {
+      if (VueCookies.isKey("token")) {
+        next();
+      } else {
+        next({
+          name: "Login",
+        });
+      }
     },
-    {
-      path:'/EmailError',
-      name:'EmailError',
-      component: EmailError
-    },
+  },
+  {
+    path: "/ProfileError",
+    name: "ProfileError",
+    component: ProfileError,
+  },
+  {
+    path: "/EmailError",
+    name: "EmailError",
+    component: EmailError,
+  },
   // {
   //   path: '/about',
   //   name: 'About',
@@ -124,7 +120,7 @@ Vue.use(VueRouter)
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
