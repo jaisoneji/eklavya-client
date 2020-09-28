@@ -56,7 +56,7 @@ computed:{
             await this.$store.dispatch('FETCH_DATA')
             .then((response)=>{
                 console.log("Log from EmailError"+response)
-                this.$router.push('Dashboard')
+                this.$router.push('/Dashboard')
             })
             .catch((error)=>{
                 console.log("Error from EmailError"+error)
