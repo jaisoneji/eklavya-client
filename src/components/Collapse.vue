@@ -5,21 +5,21 @@
          <div class="shadow-md">
             <div class="tab w-full overflow-hidden border-t">
                <input class="absolute opacity-0 " id="tab-multi-one" type="radio" name="tabs">
-               <label class="block p-5 leading-normal cursor-pointer text-text-text" :class="theme" for="tab-multi-one">Repository</label>
+               <label class="block p-5 leading-normal cursor-pointer text-text-text" :class="theme" for="tab-multi-one">Scrape</label>
                <div class="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
                   <Scrape/>
                </div>
             </div>
             <div class="tab w-full overflow-hidden border-t">
                <input class="absolute opacity-0" id="tab-multi-two" type="radio" name="tabs">
-               <label class="block p-5 leading-normal cursor-pointer text-text-text" :class="theme" for="tab-multi-two">Label Two</label>
+               <label class="block p-5 leading-normal cursor-pointer text-text-text" :class="theme" for="tab-multi-two">Repository</label>
                <div class="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
                   
                </div>
             </div>
             <div class="tab w-full overflow-hidden border-t border-b">
                <input class="absolute opacity-0" id="tab-multi-three" type="radio" name="tabs">
-               <label class="block p-5 leading-normal cursor-pointer text-text-text" :class="theme"  for="tab-multi-three">Label Three</label>
+               <label class="block p-5 leading-normal cursor-pointer text-text-text" :class="theme"  for="tab-multi-three">Scan your media files here</label>
                <div class="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
                   
                </div>

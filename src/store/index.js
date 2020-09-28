@@ -120,8 +120,6 @@ export default new Vuex.Store({
         })
         .catch(error=>{
           console.log("Login error"+JSON.stringify(error.response.data.errors.message))
-          alert(error.response.data.errors.message)
-          
           reject(error)
 
         })
@@ -205,7 +203,7 @@ export default new Vuex.Store({
       return new Promise((resolve,reject)=>{
         let method = localStorage.getItem("method")
         let token = VueCookies.get("token")
-        Axios.get('https://eklavya-server.herokuapp.com/API/auth/verify_token',
+        Axios.post('https://eklavya-server.herokuapp.com/API/auth/verify_token',{},
         {
         headers:{
           'Content-Type': 'application/json',
