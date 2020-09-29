@@ -4,7 +4,7 @@
 
     <Loader v-if="Loading===true"/>
             
-    <div class=" flex justify-center align-center items-center content-center md:w-1/2 w-full md:h-screen" >
+    <div v-else class=" flex justify-center align-center items-center content-center md:w-1/2 w-full md:h-screen" >
         
         <!-- first div -->
         <div class="flex  justify-center items-center flex-col rounded-lg  w-11/12 h-132 bg-background-secondary md:w-7/12 md:h-128"   :class="theme">
