@@ -1,15 +1,18 @@
 <template>
   
     <!-- main div -->
-    <div class="h-80 w-full bg-background-secondary flex  justify-center flex-col" :class="theme">
-        
+    <div class="h-full w-full bg-background-secondary flex  justify-center flex-col" :class="theme">
+        <!-- --------Chips box-------------- -->
+        <div class="flex justify-center w-full">
+         <input type="textarea" class=" mt-4  border rounded-md w-49/50 h-10" placeholder="Enter tags">
+        </div>
         <!-- text and submit -->
-        <div class=" w-full mt-10 flex flex-row ">
+        <div class=" w-full mt-6 flex flex-row ">
             <input v-model="url" type="url" class="  mx-2 border rounded-md w-5/6 h-10" placeholder="Enter Url : https://www.sanfoundary.com/web/quiz1">
             <button @click.prevent="getQuestion()" class="mx-2 row-2 border bg-white text-text-btn rounded-full w-1/4 h-10  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline text-xl text-text-btn font-bold rounded outline-none align-center" :class="theme">Submit</button>
         </div>
 
-        <div  class="flex-1 m-4 border overflow-x-scroll bg-white h-8 rounded-md p-6">
+        <div  class="w-49/50 flex-1 mx-2 my-4 border overflow-x-scroll bg-white h-8 rounded-md p-6">
             <p v-if="isQuestion === false">Load Your data here!</p>
             <div v-else class="question" v-for="(item,index) in questions[0]" :key="index">
                 <div class="flex flex-row justify-center  items-center">
