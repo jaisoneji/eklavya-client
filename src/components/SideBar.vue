@@ -15,8 +15,7 @@
         :to="href"
       />
       <!-- sidebar start ends-->
-        <router-view  class="md:ml-56 md:w-4/6 border h-full flex items-center "/>
-
+        <router-view  class="md:ml-80 md:w-2/3 border h-132 flex w-10/12 ml-12"/>
         <!-- Main right contents of the dashboard -->
        
 
@@ -121,11 +120,12 @@ computed:{
             VueCookies.remove("token")
             this.$router.push('/')
         
-    }
-        // onToggleCollapse (collapsed) {
-        //     console.log(collapsed)
-        //     this.collapsed = collapsed
-        // }
+    },
+
+        onToggleCollapse (collapsed) {
+            console.log(collapsed)
+            this.collapsed = collapsed
+        }
     }
 }
 </script>
