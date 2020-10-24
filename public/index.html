@@ -82,8 +82,6 @@
         alert('The user selected: ' + fileId);
       }
     }
-    loadPicker();
-    createPicker();
     </script>
   <style>
     /* * {
@@ -103,10 +101,11 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <button onclick="loadPicker()"> loadPicker</button>
     <div id="app" class=""></ldiv>
 <div id="result"></div>
 
     <!-- built files will be auto injected -->
-    <script src="https://apis.google.com/js/api.js?onload=loadPicker"> </script>
+    <script src="https://apis.google.com/js/api.js"> </script>
   </body>
 </html>
