@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 import Axios from 'axios'
 // import router from '@/router'
-
+const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
 Vue.use(Vuex)
 Vue.use(VueCookies)
 export default new Vuex.Store({
@@ -103,8 +103,9 @@ export default new Vuex.Store({
   actions: {
     // This action is used for Sign in
     LOGIN(context,credentials){
+      console.log(`${baseDomain}/auth/signin`)
       return new Promise((resolve,reject)=>{
-        Axios.post('https://eklavya-server.herokuapp.com/API/auth/signin',{
+        Axios.post(`${baseDomain}/auth/signin`,{
           email:credentials.email,
           password:credentials.password
         })
@@ -137,13 +138,13 @@ export default new Vuex.Store({
           password:payload.password
         })
         console.log(payload)
-        Axios.post('https://eklavya-server.herokuapp.com/API/auth/signup',data,
-        {
-        headers:{
-          'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "*"
-        }
-        }
+        Axios.post(`${baseDomain}/auth/signup`,data,
+          {
+            headers:{
+              'Content-Type': 'application/json',
+              "Access-Control-Allow-Origin": "*"
+            }
+          }
         )
         .then(response => {
           console.log(response)
@@ -177,7 +178,7 @@ export default new Vuex.Store({
         let method = localStorage.getItem("method")
         let token = VueCookies.get("token")
         console.log(payload)
-        Axios.patch('https://eklavya-server.herokuapp.com/API/auth/profile_patch',data,
+        Axios.patch(`${baseDomain}/auth/profile_patch`,data,
         {
         headers:{
           'Content-Type': 'application/json',
@@ -203,7 +204,7 @@ export default new Vuex.Store({
       return new Promise((resolve,reject)=>{
         let method = localStorage.getItem("method")
         let token = VueCookies.get("token")
-        Axios.post('https://eklavya-server.herokuapp.com/API/auth/verify_token',{},
+        Axios.post(`${baseDomain}/auth/verify_token`,{},
         {
         headers:{
           'Content-Type': 'application/json',
@@ -236,7 +237,7 @@ export default new Vuex.Store({
           scrapeURL: payload.scrapeURL
         })
         console.log(data)
-        let endpoint='https://eklavya-server.herokuapp.com/API/scrape'
+        let endpoint=`${baseDomain}/scrape`
         console.log(`${endpoint}`)
         // const config = {
         //   headers:{
@@ -246,7 +247,7 @@ export default new Vuex.Store({
         //   }
         // };
         // console.log(config);
-        Axios.post('https://eklavya-server.herokuapp.com/API/scrape',data,
+        Axios.post(`${baseDomain}/scrape`,data,
         {
         headers:{
           'Content-Type': 'application/json',

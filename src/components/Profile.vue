@@ -124,13 +124,14 @@
                 </div>
 
         </div>
+            <!-- landing -->
+        <div class="   hidden md:block md:w-1/2 md:h-11/12   ">
+            <img src="@/assets/clip-sign-up.png" class=" flex md:w-3/4 m-auto " />
+        </div>
 
      </div>
     
-    <!-- landing -->
-    <div class="   hidden md:block md:w-1/2 md:h-11/12   ">
-        <img src="@/assets/clip-sign-up.png" class=" flex md:w-3/4 m-auto " />
-    </div>
+
     <Loader v-show="isLoading" />
 
 </div>
