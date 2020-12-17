@@ -4,17 +4,17 @@
       <ul class="flex md:w-full mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
         <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
           <a class="text-xs font-bold uppercase border px-12 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(1)" v-bind:class="{'text-text bg-white': openTab !== 1, 'text-white bg-background-secondary': openTab === 1}">
-            Profile
+            Scrape
           </a>
         </li>
         <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
           <a class="text-xs font-bold uppercase px-12 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(2)" v-bind:class="{'text-text bg-white': openTab !== 2, 'text-white bg-background-secondary': openTab === 2}">
-            Settings
+            Image OCR
           </a>
         </li>
         <li class=" last:mr-0 flex-auto text-center">
           <a class="text-xs font-bold uppercase px-12 py-3 shadow-lg rounded block leading-normal" v-on:click="toggleTabs(3)" v-bind:class="{'text-text bg-white': openTab !== 3, 'text-white bg-background-secondary': openTab === 3}">
-            Options
+            Generate from Text
           </a>
         </li>
       </ul>
