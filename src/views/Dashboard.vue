@@ -7,13 +7,7 @@
     <div class="w-full h-full">
     
         <SideBar />
-    
     </div>
-   
-
-    <!-- <Loader v-show="Loader"/> -->
-    <h1 class="text-yellow">Welcome to dashboard</h1>
-
     
     
 </div>

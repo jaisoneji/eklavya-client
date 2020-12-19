@@ -1,21 +1,24 @@
 <template>
   <!-- main div with the theme -->
-  <div class="flex justify-center align-center items-center content-center w-screen h-screen bg-background-primary" :class="theme">
+  <div class=" flex justify-center align-center items-center content-center w-screen h-screen bg-background-primary" :class="theme">
     <div @click.prevent="logout()" :class="theme" class="align-center flex justify-center text-text-text absolute top-0 right-0 mt-4 mr-20 bg-background-secondary text-center rounded-lg  w-20 h-8">
         <p class="text-white focus:outline-none">Logout</p>
     </div>
     <!-- sidebar start -->
+
     <sidebar-menu
-        :menu="menu" class="md:w-1/3 "
+        :menu="menu"
+        :width="width"
         :collapsed="collapsed"
         :theme="selectedTheme"
         :show-one-child="true"
+        :isOnMobile="isOnMobile"
         @toggle-collapse="onToggleCollapse"
         @item-click="onItemClick"
         :to="href"
       />
       <!-- sidebar start ends-->
-        <router-view  class="md:ml-80 md:w-2/3 border h-132 flex w-10/12 ml-12"/>
+    <router-view  class="mt-16 pt-0 md:ml-64 ml-14 h-128 md:w-9/12 w-64 md:mt-0 md:h-130"/>
         <!-- Main right contents of the dashboard -->
        
 
@@ -80,7 +83,10 @@ export default {
                         title: 'Settings',
                         icon: 'fa fa-cog '
                     },
+                   
                 ],
+                width: '250px',
+                
                 collapsed: false,
                 themes: [
                     {
@@ -93,7 +99,7 @@ export default {
                     }
                 ],
                 selectedTheme: 'Default theme   ',
-                isOnMobile: false
+                isOnMobile: true
             }
         },
         
