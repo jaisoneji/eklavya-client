@@ -18,7 +18,7 @@
         :to="href"
       />
       <!-- sidebar start ends-->
-    <router-view  class="mt-16 pt-0 md:ml-64 ml-14 h-128 md:w-9/12 w-64 md:mt-0 md:h-130"/>
+    <router-view  class="mt-16 pt-0 md:ml-8 ml-14 h-128 md:w-11/12 w-64 md:mt-0 md:h-130"/>
         <!-- Main right contents of the dashboard -->
        
 
@@ -87,7 +87,7 @@ export default {
                 ],
                 width: '250px',
                 
-                collapsed: false,
+                collapsed: true,
                 themes: [
                     {
                     name: 'Default theme',

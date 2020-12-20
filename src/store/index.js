@@ -265,8 +265,36 @@ export default new Vuex.Store({
           reject(error)
         })
       })
-    }
+    },
     // Scrape action ends
+    // Image OCR logic
+    IMAGEOCR(context,payload){
+      return new Promise((resolve,reject)=>{
+        let method = localStorage.getItem("method")
+        let token = VueCookies.get("token")
+        let imageURL=JSON.stringify({
+          image:payload
+        })
+        Axios.post(`${baseDomain}/processImage/filtertext`,imageURL,
+        {
+          headers:{
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ${method} ${token}`
+          }
+        })
+        .then(res=>{
+          console.log("Image ocr resposnse store"+res)
+          resolve(res)
+        })
+        .catch(error=>{
+
+          console.log("Image OCR Store error: "+error)
+          reject(error)
+        })
+      })
+    }
+    // Image OCR login ends
   },
   modules: {
   }

@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-wrap w-full h-full">
     <div class="w-full ">
-      <ul class="flex md:w-full mb-0 list-none space-y-2 flex-wrap pt-3 pb-4 flex-col md:flex-row">
-        <li class="mr-2 last:mr-0 flex-auto text-center">
-          <a class="text-xs font-bold uppercase border px-12 py-3 shadow-xl rounded-lg block leading-normal" v-on:click="toggleTabs(1)" v-bind:class="{'text-text bg-white': openTab !== 1, 'text-white bg-background-secondary': openTab === 1}">
+      <ul class="flex md:w-full mb-0 list-none space-y-2 md:space-y-0 flex-wrap pt-3 pb-4 flex-col md:flex-row">
+        <li class="m-0 mr-2 last:mr-0 flex-auto text-center">
+          <a class=" text-xs font-bold uppercase border px-12 py-3 shadow-xl rounded-lg block leading-normal" v-on:click="toggleTabs(1)" v-bind:class="{'text-text bg-white': openTab !== 1, 'text-white bg-background-secondary': openTab === 1}">
             Scrape
           </a>
         </li>
@@ -68,7 +68,7 @@ export default {
         else{
             return 'theme-light'
         }
-        },       
+      },       
  }
 }
 </script>
