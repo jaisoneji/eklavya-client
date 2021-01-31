@@ -29,7 +29,7 @@
 <script>
 
 import { SidebarMenu } from 'vue-sidebar-menu'
-import ProfilePic from '../components/ProfilePic'
+import ProfilePic from '@/components/AuthenticationComponents/ProfilePic'
 import VueCookies from 'vue-cookies'
 
 

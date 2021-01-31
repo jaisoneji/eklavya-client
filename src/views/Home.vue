@@ -32,7 +32,7 @@
 <script>
 
 // import queryString from 'query-string'
-import GoogleLogin from '../components/GoogleLogin.vue'
+import GoogleLogin from '../components/AuthenticationComponents/GoogleLogin.vue'
 import {checkServerStatus} from '../services/index';
 // import { mapState } from 'vuex';
 // @ is an alias to /src

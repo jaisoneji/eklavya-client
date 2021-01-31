@@ -86,7 +86,7 @@ export default {
             .then(response=>{
                 console.log(response)
                 this.isLoading='false'
-                this.$router.push('/Dashboard')
+                this.$router.push('/TeachersDashboard')
             })
             .catch(error=>{
                 this.isLoading=false

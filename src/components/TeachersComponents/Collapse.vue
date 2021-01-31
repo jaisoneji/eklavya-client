@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import Scrape from '@/components/Scrape.vue';
-import ImageOCR from '@/components/ImageOCR.vue';
+import Scrape from '@/components/TeachersComponents/Scrape.vue';
+import ImageOCR from '@/components/TeachersComponents/ImageOCR.vue';
 
 
 

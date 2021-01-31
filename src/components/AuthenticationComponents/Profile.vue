@@ -138,7 +138,7 @@
 </template>
 
 <script>
-import ProfileError from '@/components/ProfileError.vue';
+import ProfileError from '@/components/AuthenticationComponents/ProfileError.vue';
 import Loader from '@/components/Loader.vue';
 
 export default {
@@ -202,7 +202,7 @@ export default {
             .then(response=>{
                 console.log(response)
                 this.Loading=false
-                this.$router.push('Dashboard')
+                this.$router.push('TeachersDashboard')
                 
             })
             .catch(error=>{

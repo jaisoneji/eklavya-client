@@ -107,6 +107,7 @@ export default {
                 this.isUploading=false
                 this.image=''
                 this.isUploaded=true
+                console.log(response)
                 console.log("ImageOCR.vue response"+response)
             })
             .catch(error=>{

@@ -16,10 +16,10 @@
 // import {verifyAndLoginOAuth2Code} from '../services';
 
 // import Profile from '@/components/Profile.vue';
-import SideBar from '@/components/SideBar.vue';
+import SideBar from '@/components/TeachersComponents/SideBar.vue';
 // import Loader from '@/components/Loader.vue';
 export default{
-    name:'Dashboard',
+    name:'TeachersDashboard',
     components:{
         // Profile,
         // Loader,
