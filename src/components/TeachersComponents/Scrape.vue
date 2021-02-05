@@ -14,8 +14,8 @@
 
         <div  class="w-49/50 flex-1 mx-2 my-4 border overflow-x-scroll bg-white md:h-8 h-16 rounded-md p-6">
             <p v-if="isQuestion === false">Load Your data here!</p>
-            <div v-else class="question" v-for="(item,index) in questions[0]" :key="index">
-                <div class="flex flex-row justify-center  items-center">
+            <div v-else class="question bg-red-100 space-y-4" v-for="(item,index) in questions[0]" :key="index">
+                <div class="flex flex-row justify-center mt-2  items-center">
                     <div class="flex mr-2">{{index+1}}</div>
                     <div v-html="questions[0][index].question" class="mt-2 flex-1"></div>
                 </div>
