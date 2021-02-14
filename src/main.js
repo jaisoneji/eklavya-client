@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import queryString from 'query-string'
+
 // import Axios from 'axios'
 import '@/assets/css/main.css'
 import './registerServiceWorker'
@@ -10,7 +11,9 @@ import GAuth from "vue-google-oauth2";
 import VueCookies from 'vue-cookies'
 import VueSidebarMenu from 'vue-sidebar-menu'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
-
+// date time picker
+import { Datetime } from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
 
 
 Vue.config.productionTip = false
@@ -32,6 +35,9 @@ const gauthOption = {
 Vue.use(GAuth, gauthOption);
 Vue.use(VueCookies)
 Vue.use(VueSidebarMenu)
+Vue.use(Datetime)
+
+
 
 new Vue({
   router,

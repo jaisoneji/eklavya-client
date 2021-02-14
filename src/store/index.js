@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 import Axios from 'axios'
+import FormsData from './modules/FormsData'
+
 // import router from '@/router'
 const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
 Vue.use(Vuex)
@@ -55,6 +57,9 @@ export default new Vuex.Store({
     },
     getMethod(state){
       return state.user.method
+    },
+    getMDEMO(){
+      return 'HELLO'
     }
     
   },
@@ -101,7 +106,6 @@ export default new Vuex.Store({
     
   },
   actions: {
-    // This action is used for Sign in
     LOGIN(context,credentials){
       console.log(`${baseDomain}/auth/signin`)
       return new Promise((resolve,reject)=>{
@@ -297,5 +301,7 @@ export default new Vuex.Store({
     // Image OCR login ends
   },
   modules: {
+    // to import form data
+    formsData: FormsData
   }
 })
