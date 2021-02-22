@@ -1,7 +1,9 @@
 <template>
-    <button v-if="theme === 'theme-light'" @click.prevent="toggleTheme" class="focus:outline-none focus:bg-none mt-4 absolute top-0 right-0"><img src="@/assets/moon.png" class="focus:outline-none focus:bg-none w-1/2"/></button>
-    <button v-else @click.prevent="toggleTheme" class="focus:outline-none focus:bg-none mt-4 absolute top-0 right-0"><img src="@/assets/sun.png" class="focus:outline-none focus:bg-none w-1/2"/></button>
+    <div>
+      <button v-if="theme === 'theme-light'" @click.prevent="toggleTheme" class="focus:outline-none focus:bg-none mt-4 absolute top-0 right-0"><img src="@/assets/moon.png" class="focus:outline-none focus:bg-none w-1/2"/></button>
+      <button v-else @click.prevent="toggleTheme" class="focus:outline-none focus:bg-none mt-4 absolute top-0 right-0"><img src="@/assets/sun.png" class="focus:outline-none focus:bg-none w-1/2"/></button>
 
+    </div>
 </template>
 
 <script>
