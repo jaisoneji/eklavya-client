@@ -145,11 +145,6 @@ methods:{
 </script>
 
 <style>
-body {
-  background: #20262E;
-  padding: 20px;
-  font-family: Helvetica;
-}
 
 .oye-timepicker {
   display: flex;
@@ -160,10 +155,4 @@ body {
   padding: 5px;
 }
 
-#app {
-  background: #fff;
-  border-radius: 4px;
-  padding: 20px;
-  transition: all 0.2s;
-}
 </style>

@@ -1,13 +1,13 @@
 <template>
-<div class="w-full h-full">
+<div >
 
     <!-- <h1 v-if="isProfileComplete === true" class="text-yellow">Welcome to dashboard</h1> -->
     <!-- <Dash v-if="isProfileComplete === true"/>
     <Profile v-else/> -->
-    <div class="w-full h-full">
+    <!-- <div class="w-full h-full">
     
         <SideBar />
-    </div>
+    </div> -->
     
     
 </div>
@@ -16,14 +16,14 @@
 // import {verifyAndLoginOAuth2Code} from '../services';
 
 // import Profile from '@/components/Profile.vue';
-import SideBar from '@/components/TeachersComponents/SideBar.vue';
+// import SideBar from '@/components/TeachersComponents/SideBar.vue';
 // import Loader from '@/components/Loader.vue';
 export default{
     name:'TeachersDashboard',
     components:{
         // Profile,
         // Loader,
-        SideBar
+        // SideBar
 
     
     },

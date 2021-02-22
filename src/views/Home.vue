@@ -1,8 +1,8 @@
 <template>
-  <div :class="theme" class=" w-screen h-screen bg-background-primary flex flex-col md:flex-row-reverse overflow-x-hidden md:justify-center md:items-center">
+  <div :class="theme" class=" overflow-hidden w-screen h-screen bg-background-primary flex flex-col md:flex-row-reverse overflow-x-hidden md:justify-center md:items-center">
     
     <!-- Landing Image pencile -->
-    <div class="h-1 my-0 flex-1 md:w-1/2 md:h-screen flex"><img src="@/assets/LandingImage.png" class="md:w-2/3 md:m-auto md:items-center flex" /></div>
+    <div class="h-1 my-0 flex-1 md:w-1/2 md:h-full flex"><img src="@/assets/LandingImage.png" class="md:w-2/3 md:m-auto md:items-center flex" /></div>
     <!-- Div with message and buttons -->
     <div class="mt-0 text-center flex-1 flex-col md:w-1/2">
       <p :class="theme" class="eklavya text-text-text text-4xl">eklavya</p>
