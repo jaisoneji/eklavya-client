@@ -12,15 +12,15 @@
             
             <div class="flex content-center items-center rounded-md space-y-2 flex-col ">
                 
-                <div class="py-4 pl-2 rounded-lg shadow-lg  w-1/2" v-for="(question) in Questions" :key="question.id" >
+                <div class="py-4 pl-2 rounded-lg shadow-lg sm:w-100 md:w-1/2" v-for="(question) in Questions" :key="question.id" >
                     
                     
                     <div class="flex flex-row">
                         <!-- question -->
-                            <input type="textarea" class="  ml-2 mr-2 mt-1 rounded-md w-49/50 "
-                            v-model="question.question" placeholder="">
+                            <textarea class="resize-none md:ml-2 md:mr-2 md:mt-1 rounded-md w-49/50" style="height:fit-content"
+                            v-model="question.question" placeholder=""></textarea>
                         <!-- weightage -->
-                            <input type="number" class=" border justify-center ml-2 mr-2 mt-1 rounded-md w-10 "
+                            <input type="number" class="  justify-center md:ml-2 md:mr-2 mt-1 rounded-md w-10 "
                             v-model="question.weightage" placeholder="">
                     </div>
                      <!-- options -->
@@ -28,16 +28,16 @@
                         <div class="flex-col" >
                             
                             <input type="radio" id="one" value="One" v-model="question.options.op1">
-                            <label for="one">{{question.options[0]}}</label><br>
+                            <label class="p-2" for="one">{{question.options[0]}}</label><br>
                             
                             <input type="radio" id="one" value="Two" v-model="question.options.op2">
-                            <label for="two">{{question.options[1]}}</label><br>
+                            <label class="p-2" for="two">{{question.options[1]}}</label><br>
 
                              <input type="radio" id="one" value="Three" v-model="question.options.op3">
-                            <label for="three">{{question.options[2]}}</label><br>
+                            <label class="p-2" for="three">{{question.options[2]}}</label><br>
 
                              <input type="radio" id="one" value="Four" v-model="question.options.op4">
-                            <label for="four">{{question.options[3]}}</label><br>
+                            <label class="p-2" for="four">{{question.options[3]}}</label><br>
                             </div>
                        
                     </div>
