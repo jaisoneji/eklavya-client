@@ -10,6 +10,8 @@ import EmailError from '../components/EmailError.vue'
 import SideBar from '../components/TeachersComponents/SideBar.vue'
 import Schedule from '../components/TeachersComponents/Schedule.vue'
 import MCQForm from '../components/TeachersComponents/MCQForm.vue'
+import Welcome from '../components/TeachersComponents/Welcome.vue'
+
 // import Dummy from '../components/TeachersComponents/Dummy.vue'
 
 import store from '@/store'
@@ -51,6 +53,15 @@ const routes = [
     path: "/MCQForm",
     name: "MCQForm",
     component: MCQForm,
+    beforeEnter(to, from, next) {
+      if (VueCookies.isKey("token")) {
+        next();
+      } else {
+        next({
+          name:"Home"
+        });
+      }
+    },
   },
   {
     path: "/Schedule",
@@ -73,25 +84,37 @@ const routes = [
     component: TeachersDashboard,
     children: [
       {
+        path: "/",
+        name: "Welcome",
+        component: Welcome,
+      },
+      {
         path: "/Collapse",
         name: "Collapse",
         component: Collapse,
       },
     ],
     beforeEnter(to, from, next) {
-      if (store.getters.getVerifiedStatus) {
-        if (store.getters.getProfileStatus) {
-          console.log(store.getters.getProfileStatus);
-          next();
+      if(VueCookies.get("token")){
+        if (store.getters.getVerifiedStatus) {
+          if (store.getters.getProfileStatus) {
+            console.log(store.getters.getProfileStatus);
+            next();
+          } else {
+            next({
+              name: "Profile",
+            });
+          }
         } else {
           next({
-            name: "Profile",
+            name: "EmailError",
           });
         }
-      } else {
+      }
+      else{
         next({
-          name: "EmailError",
-        });
+          name:"Home"
+        })
       }
     },
   },

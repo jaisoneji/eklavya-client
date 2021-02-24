@@ -1,9 +1,7 @@
 <template>
   <!-- main div with the theme -->
-  <div class=" flex justify-center align-center items-center content-center w-screen h-screen bg-background-primary" :class="theme">
-    <div @click.prevent="logout()" :class="theme" class="align-center flex justify-center text-text-text absolute top-0 right-0 mt-4 mr-20 bg-background-secondary text-center rounded-lg  w-20 h-8">
-        <p class="text-white focus:outline-none">Logout</p>
-    </div>
+  <div class="flex justify-center align-center items-center content-center w-screen h-full bg-background-primary" :class="theme">
+    <Logout/>
     <!-- sidebar start -->
 
     <sidebar-menu
@@ -30,7 +28,7 @@
 
 import { SidebarMenu } from 'vue-sidebar-menu'
 import ProfilePic from '@/components/AuthenticationComponents/ProfilePic'
-import VueCookies from 'vue-cookies'
+import Logout from '@/components/Logout'
 
 
 
@@ -49,16 +47,22 @@ export default {
                         hiddenOnCollapse: true,
                     },
                     {
+                        href:'/',
+                        title: 'Home',
+                        icon: 'fas fa-home'
+                    },
+                    {
                         header: true,
                         title: 'Classroom',
                         hiddenOnCollapse: true
                     },
+                    
                     // quizes start
                     {
                         header: true,
                         title: 'Quizes',
                         hiddenOnCollapse: true
-                    },
+                    },                    
                     {
                         href:'/Collapse',
                         title: 'Create Quiz',
@@ -98,14 +102,14 @@ export default {
                     input: 'white-theme'
                     }
                 ],
-                selectedTheme: 'Default theme   ',
+                selectedTheme: 'Default theme ',
                 isOnMobile: true
             }
         },
         
 components: {
         SidebarMenu,
-        
+        Logout
     },
 computed:{
     theme(){
@@ -121,12 +125,7 @@ computed:{
         hideError(){
             this.$emit('hideError')
         },
-        logout(){
-            localStorage.clear()
-            VueCookies.remove("token")
-            this.$router.push('/')
         
-    },
 
         onToggleCollapse (collapsed) {
             console.log(collapsed)

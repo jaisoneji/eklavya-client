@@ -2,7 +2,6 @@
   <div id="app" class="w-screen h-screen overflow-hidden">
     <Mode/>
     <router-view />
-    
   </div>
 </template>
 <script>

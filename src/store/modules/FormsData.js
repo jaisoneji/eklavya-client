@@ -5,88 +5,7 @@ import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
 const defaultState = {
-    content:[
-      {
-          'id':1,
-          'question': ["This is a question1"],
-          'options':['op1 jai','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'2',
-      },
-      {
-          'id':2,
-          'question': ["This is a question2 sonia"],
-          'options':['op1 sonia','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'1',
-      },
-      {
-          'id':3,
-          'question': ["This is a sonia ashok thakurb question1"],
-          'options':['op1 smith','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'10',
-      },
-      {
-          'id':4,
-          'question': ["This is a sonia ashok thakurb question1"],
-          'options':['op1 smith','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'10',
-      },
-      {
-          'id':5,
-          'question': ["This is a sonia ashok thakurb question1"],
-          'options':['op1 smith','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'10',
-      },
-      {
-          'id':6,
-          'question': ["This is a sonia ashok thakurb question1"],
-          'options':['op1 smith','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'10',
-      },
-      {
-          'id':7,
-          'question': ["This is a sonia ashok thakurb question1"],
-          'options':['op1 smith','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'10',
-      },
-      {
-          'id':8,
-          'question': ["This is a sonia ashok thakurb question1"],
-          'options':['op1 smith','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'10',
-      },
-      {
-          'id':9,
-          'question': ["This is a sonia ashok thakurb question1"],
-          'options':['op1 smith','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'10',
-      },
-      {
-          'id':10,
-          'question': ["This is a sonia ashok thakurb question1"],
-          'options':['op1 smith','op2','op3','op4'],
-          'answer':['op1'],
-          'type':'',
-          'weightage':'10',
-      },
-  ],
+    content:JSON.parse(localStorage.getItem("MCQs")) || [],
     title:'',
     description:'',
     users:[],
@@ -155,8 +74,7 @@ const actions = {
 };
 
 const mutations = {
-    setMcq(state,{title, Rquestions}){
-        state.title = title,
+    setMcq(state,{Rquestions}){
         state.content = Rquestions
       },
     setSchedule(state,{title,description,users,attempts,duration,startTime,endTime}){
@@ -169,13 +87,25 @@ const mutations = {
       state.schedule.endTime=endTime,
         localStorage.setItem("startTime",startTime)
         localStorage.setItem("endTime",endTime)
-    }
+    },
+    setMcqFromImageOCR(state,payload){
+      state.content=payload.Rquestions[0]
+      // console.log(payload.Rquestions[0][0])
+      localStorage.setItem("MCQs",JSON.stringify(payload.Rquestions[0]))
+
+    },
+    saveTemporaryChanges(state,payload){
+      state.content=payload.Rquestions
+      // console.log(payload.Rquestions[0][0])
+      localStorage.setItem("MCQs",JSON.stringify(payload.Rquestions))
+
+    },
 };
 
 const getters = {
   getContent(state) {
       return state.content
-  },
+  }
 };
 
 export default {

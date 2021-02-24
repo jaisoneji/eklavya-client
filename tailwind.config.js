@@ -18,7 +18,8 @@ module.exports = {
         primary: 'var(--bg-primary-color)',
         secondary:'var(--bg-secondary-color)',
         google:'var(--bg-google)',
-        pressed:'var(--bg-pressed)'
+        pressed:'var(--bg-pressed)',
+        border:'var(--border)'
       },
       text:{
         text:'var(--text)',

@@ -11,7 +11,7 @@
             <h1 class="text-white text-center mt-4 font-hairline text-5xl"  :class="theme">Sign in</h1>
                     
                 <!-- fields -->
-                <div class="flex flex-col w-full items-center mt-6  ">
+                <div @keypress.enter="login()" class="flex flex-col w-full items-center mt-6  ">
                         
                     <div class="flex flex-row w-10/12 justify-center items-center">
                                 <img src="@/assets/email.png" class="h-8 w-8  align-center color-white mr-4" />
@@ -23,8 +23,8 @@
                                 <input v-model="password" required type="password" class=" border rounded-lg w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Password">
                     </div>
 
-                    <div @click.prevent="login()" class="mt-6 flex flex-row border bg-white rounded-full w-1/2 h-10 justify-center items-center transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline">
-                                <button class="flex text-xl text-text-btn font-bold rounded outline-none align-center" :class="theme">Login</button>
+                    <div  @click.prevent="login()" class="mt-6 flex flex-row border bg-white rounded-full w-1/2 h-10 justify-center items-center transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline">
+                                <button  class="flex text-xl text-text-btn font-bold rounded outline-none align-center" :class="theme">Login</button>
                                 <img src="@/assets/log.png" class="h-8 w-8 ml-4 align-center color-white  color-white" />
                     </div>
 

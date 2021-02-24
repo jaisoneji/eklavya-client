@@ -1,18 +1,18 @@
 <template>
-  <div class="flex flex-wrap w-full h-full">
+  <div class="flex flex-wrap w-full h-full overflow-y-scroll">
     <div class="w-full ">
       <ul class="flex md:w-full mb-0 list-none space-y-2 md:space-y-0 flex-wrap pt-3 pb-4 flex-col md:flex-row">
-        <li class="m-0 mr-2 last:mr-0 flex-auto text-center">
+        <li class="cursor-pointer m-0 mr-2 last:mr-0 flex-auto text-center">
           <a class=" text-xs font-bold uppercase border px-12 py-3 shadow-xl rounded-lg block leading-normal" v-on:click="toggleTabs(1)" v-bind:class="{'text-text bg-white': openTab !== 1, 'text-white bg-background-secondary': openTab === 1}">
             Scrape
           </a>
         </li>
-        <li class="mr-2 last:mr-0 flex-auto text-center">
+        <li class="cursor-pointer mr-2 last:mr-0 flex-auto text-center">
           <a class="text-xs font-bold uppercase px-12 py-3 shadow-xl rounded-lg block leading-normal" v-on:click="toggleTabs(2)" v-bind:class="{'text-text bg-white': openTab !== 2, 'text-white bg-background-secondary': openTab === 2}">
             Image OCR
           </a>
         </li>
-        <li class=" last:mr-0 flex-auto text-center">
+        <li class="cursor-pointer last:mr-0 flex-auto text-center">
           <a class="text-xs font-bold uppercase px-12 py-3 shadow-xl rounded-lg block leading-normal" v-on:click="toggleTabs(3)" v-bind:class="{'text-text bg-white': openTab !== 3, 'text-white bg-background-secondary': openTab === 3}">
             Generate from Text
           </a>
