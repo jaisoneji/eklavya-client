@@ -14,6 +14,8 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 // date time picker
 import { Datetime } from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
+// for grid 
+import Grid from 'gridjs-vue'
 
 
 Vue.config.productionTip = false
@@ -36,7 +38,7 @@ Vue.use(GAuth, gauthOption);
 Vue.use(VueCookies)
 Vue.use(VueSidebarMenu)
 Vue.use(Datetime)
-
+Vue.use(Grid)
 
 
 new Vue({

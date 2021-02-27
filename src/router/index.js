@@ -10,7 +10,7 @@ import EmailError from '../components/EmailError.vue'
 import SideBar from '../components/TeachersComponents/SideBar.vue'
 import Schedule from '../components/TeachersComponents/Schedule.vue'
 import MCQForm from '../components/TeachersComponents/MCQForm.vue'
-// import Dummy from '../components/TeachersComponents/Dummy.vue'
+import StudentLiveData from '../components/TeachersComponents/StudentLiveData.vue'
 
 import store from '@/store'
 import VueCookies from 'vue-cookies'
@@ -42,11 +42,11 @@ const routes = [
     name: "ProfilePic",
     component: ProfilePic,
   },
-  // {
-  //   path: "/Dummy",
-  //   name: "Dummy",
-  //   component: Dummy,
-  // },
+  {
+    path: "/StudentLiveData",
+    name: "StudentLiveData",
+    component: StudentLiveData,
+  },
   {
     path: "/MCQForm",
     name: "MCQForm",

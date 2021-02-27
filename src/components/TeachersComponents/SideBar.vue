@@ -53,6 +53,11 @@ export default {
                         title: 'Classroom',
                         hiddenOnCollapse: true
                     },
+                    {
+                        href:'/StudentLiveData',
+                        title: 'Live Student Data',
+                        icon: 'fas fa-address-card'
+                    },
                     // quizes start
                     {
                         header: true,

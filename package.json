@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "gridjs-vue": "^3.2.3",
     "luxon": "^1.25.0",
     "query-string": "^6.13.1",
     "register-service-worker": "^1.7.1",
