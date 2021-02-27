@@ -11,6 +11,7 @@ import SideBar from '../components/TeachersComponents/SideBar.vue'
 import Schedule from '../components/TeachersComponents/Schedule.vue'
 import MCQForm from '../components/TeachersComponents/MCQForm.vue'
 import Welcome from '../components/TeachersComponents/Welcome.vue'
+import StudentDataLive from '../components/TeachersComponents/StudentDataLive.vue'
 
 // import Dummy from '../components/TeachersComponents/Dummy.vue'
 
@@ -44,11 +45,7 @@ const routes = [
     name: "ProfilePic",
     component: ProfilePic,
   },
-  // {
-  //   path: "/Dummy",
-  //   name: "Dummy",
-  //   component: Dummy,
-  // },
+  
   {
     path: "/MCQForm",
     name: "MCQForm",
@@ -92,6 +89,11 @@ const routes = [
         path: "/Collapse",
         name: "Collapse",
         component: Collapse,
+      },
+      {
+        path: "/StudentDataLive",
+        name: "StudentDataLive",
+        component: StudentDataLive,
       },
     ],
     beforeEnter(to, from, next) {
