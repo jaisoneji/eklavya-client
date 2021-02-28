@@ -1,5 +1,5 @@
 <template class="">
-  <div :class="theme" class="overflow-y-scroll h-screen w-screen bg-background-primary flex justify-center align-center">
+  <div :class="theme" class="scrollstyle overflow-y-scroll h-full w-screen bg-background-primary flex justify-center align-center ">
       <div class="md:w-full md:h-full md:space-y-8 space-y-0 flex flex-col md:mt-16 mt-12  align-center items-center md:space-y-2">
           <h2 :class="theme" class="font-mono text-text-text txt-bold text-4xl">Welcome,{{name}}</h2>
           <div class=" md:w-19/20 w-full flex flex-col ">
@@ -163,6 +163,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 
 </style>

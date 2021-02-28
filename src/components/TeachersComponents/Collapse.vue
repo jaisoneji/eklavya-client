@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap w-full h-full overflow-y-scroll">
+  <div class="flex flex-wrap w-full h-full p-2 overflow-y-scroll">
     <div class="w-full ">
       <ul class="flex md:w-full mb-0 list-none space-y-2 md:space-y-0 flex-wrap pt-3 pb-4 flex-col md:flex-row">
         <li class="cursor-pointer m-0 mr-2 last:mr-0 flex-auto text-center">

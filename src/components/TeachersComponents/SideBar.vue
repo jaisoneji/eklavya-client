@@ -47,7 +47,7 @@ export default {
                         hiddenOnCollapse: true,
                     },
                     {
-                        href:'/',
+                        href:'/TeachersDashboard/',
                         title: 'Home',
                         icon: 'fas fa-home'
                     },
