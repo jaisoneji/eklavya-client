@@ -86,12 +86,12 @@
                     <!-- end picker -->
             
                 <!-- button div -->
-            <div @click.prevent="schedule()" class="flex justify-center m-10">
-                <button class="flex font-bold text-xl w-32 h-14 items-center justify-center bg-background-primary text-text-secondary rounded outline-none align-center">Schedule</button>
+            <div  class="md:space-x-2 flex justify-center m-10">
+                <button @click.prevent="schedule()" :class="theme" class="border flex w-32 h-14 items-center justify-center rounded-full bg-white transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline text-text-btn rounded outline-none align-cente">Schedule</button>
+                <button @click.prevent="cancelSchedule()" :class="theme" class="border flex w-32 h-14 items-center justify-center rounded-full bg-background-secondary transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline text-white rounded outline-none align-cente">Cancel</button>
+
             </div>
         <!-- button div-->
-                
-
         </div>
 </div>
 </template>
@@ -104,6 +104,12 @@ export default {
   },
     data() {
       return{
+          title:'',
+          desc:'',
+          user:'',
+          course:'',
+          dept:'',
+          attempts:'',
           startTime:'',
           endTime:'',
           
@@ -134,11 +140,16 @@ methods:{
             })
             .then(response=>{
                 console.log(response)
+                this.$router.push("/TeachersDashboard")
             })
             .catch(error=>{
                 console.log(error)
             })
             
+        },
+        cancelSchedule(){
+            localStorage.removeItem("MCQs")
+            this.$router.push("/TeachersDashboard")
         }
     }
 }

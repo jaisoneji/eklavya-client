@@ -16,7 +16,7 @@
         :to="href"
       />
       <!-- sidebar start ends-->
-    <router-view  class="mt-16 pt-0 md:ml-8 ml-14 h-128 md:w-11/12 w-64 md:mt-0 md:h-184"/>
+    <router-view  class="mt-16 pt-0 md:ml-8 ml-14 h-128 md:w-11/12 w-64 md:mt-0 md:h-130"/>
         <!-- Main right contents of the dashboard -->
        
 
@@ -73,7 +73,7 @@ export default {
                         icon: 'fas fa-pen'
                     },
                     {
-                        href:'',
+                        href:'/MCQForm',
                         title: 'Blank Quiz',
                         icon: 'fa fa-list-alt'
                     },
