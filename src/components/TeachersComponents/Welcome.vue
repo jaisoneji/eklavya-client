@@ -84,8 +84,8 @@ export default {
         getTime(payload){
             console.log(payload.startTimeStamp)
             console.log(payload.endTimeStamp)
-            let startTime = new Date(payload.startTimeStamp)
-            let endTime = new Date(payload.endTimeStamp)
+            let startTime = new Date(new Date(payload.startTimeStamp).toISOString())
+            let endTime = new Date(new Date(payload.endTimeStamp).toISOString())
             let minutes = (endTime.getTime()-startTime.getTime()) / (1000*60)
             console.log(minutes)
             if(minutes > 60){
