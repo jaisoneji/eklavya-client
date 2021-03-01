@@ -5,7 +5,8 @@ import Axios from 'axios'
 import FormsData from './modules/FormsData'
 
 // import router from '@/router'
-const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
+const baseDomain="http://localhost:4000/api/v1"
+const localDomain = "http://localhost:4000/api/v1"
 Vue.use(Vuex)
 Vue.use(VueCookies)
 export default new Vuex.Store({
@@ -251,7 +252,7 @@ export default new Vuex.Store({
         //   }
         // };
         // console.log(config);
-        Axios.post(`${baseDomain}/scrape`,data,
+        Axios.post(`${localDomain}/scrape`,data,
         {
         headers:{
           'Content-Type': 'application/json',

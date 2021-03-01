@@ -5,27 +5,29 @@
           <div class=" md:w-19/20 w-full flex flex-col ">
             <h2 :class="theme" class="font-mono justify-start text-text-text txt-bold text-2xl">Quiz</h2>
                 <div >
+                <div class="md:h-full p-4 flex  grid grid-flow-row m md:grid-cols-4 md:grid-rows-auto md:grid-flow-col gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
+                    <div  :class="theme" v-for="(form) in Forms" :key="form.title" class=" ">
+                        <div class="flex md:flex-col flex-col border px-2 py-4 border-background-border md:w-64 w-10/12 rounded-xl md:h-56">
+                                <div class="flex text-gray-700 md:w-full md:h-20 justify-center items-center" :class="getColor()">
+                                    <h3 class="font-mono text-6xl">{{form.title.charAt(0)}}</h3>
+                                </div>
+                                <div class="w-full flex mt-2 align-center md:space-x-1">
+                                    <div><i class="fas fa-calendar-times text-text-text align-center" :class="theme"></i></div>                    
+                                    <div class="text-text-google">{{form.schedule.startTimeStamp.substr(0,10)}}</div>
 
-                <div  :class="theme" v-for="(form) in Forms" :key="form.title" class="md:h-full p-4 flex grid grid-flow-row m md:grid-cols-4 md:grid-rows-auto md:grid-flow-row gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
-                <div class="flex md:flex-col flex-col border px-2 py-4 border-background-border md:w-64 w-10/12 rounded-xl md:h-56">
-                        <div class="flex text-gray-700 md:w-full md:h-20 justify-center items-center" :class="getColor()">
-                            <h3 class="font-mono text-6xl">{{form.title.charAt(0)}}</h3>
+                                    <div><i class="fa fa-clock text-text-text align-center md:ml-12" :class="theme"></i></div>                    
+                                    <div class="text-text-google">{{getTime(form.schedule)}}</div>
+                                </div>
+                                <div class="flex flex-col space-y-0">
+                                    <div class="flex"><h1 class="p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
+                                    <p class="text-text-google">{{form.description}}</p >
+                                </div>
+                                <div class="">
+                                    <h2 class="font-mono text-text-text"><span class="text-text-google">Owner: </span>{{form.owner.name}}</h2>
+                                </div>
                         </div>
-                        <div class="w-full flex mt-2 align-center md:space-x-1">
-                            <div><i class="fas fa-calendar-times text-text-text align-center" :class="theme"></i></div>                    
-                            <div class="text-text-google">{{form.schedule.startTimeStamp.substr(0,10)}}</div>
+                    </div>
 
-                            <div><i class="fa fa-clock text-text-text align-center md:ml-12" :class="theme"></i></div>                    
-                            <div class="text-text-google">{{getTime(form.schedule)}}</div>
-                        </div>
-                        <div class="flex flex-col space-y-0">
-                            <div class="flex"><h1 class="p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
-                            <p class="text-text-google">{{form.description}}</p >
-                        </div>
-                        <div class="">
-                            <h2 class="font-mono text-text-text"><span class="text-text-google">Owner: </span>{{form.owner.name}}</h2>
-                        </div>
-                </div>
                 </div>
                 </div>
                 <!-- <h2 v-else :class="theme" class="border-background-border border font-mono justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
@@ -84,7 +86,7 @@ export default {
             console.log(payload.endTimeStamp)
             let startTime = new Date(payload.startTimeStamp)
             let endTime = new Date(payload.endTimeStamp)
-            let minutes = (endTime-startTime) / (1000*60)
+            let minutes = (endTime.getTime()-startTime.getTime()) / (1000*60)
             console.log(minutes)
             if(minutes > 60){
                 return (minutes/60 + "hours")
