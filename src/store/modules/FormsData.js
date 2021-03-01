@@ -3,7 +3,7 @@ import Axios from 'axios'
 import VueCookies from 'vue-cookies'
 
 Vue.use(VueCookies)
-const baseDomain="http://localhost:4000/api/v1"
+const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
 const defaultState = {
     isFromScrape:localStorage.getItem("isFromScrape") || false,
     content:JSON.parse(localStorage.getItem("MCQs")) || [],

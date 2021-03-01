@@ -5,8 +5,8 @@ import Axios from 'axios'
 import FormsData from './modules/FormsData'
 
 // import router from '@/router'
-const baseDomain="http://localhost:4000/api/v1"
-const localDomain = "http://localhost:4000/api/v1"
+const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
+const localDomain = "https://eklavya-server.herokuapp.com/api/v1"
 Vue.use(Vuex)
 Vue.use(VueCookies)
 export default new Vuex.Store({
