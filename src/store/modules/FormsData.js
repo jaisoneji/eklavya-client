@@ -5,6 +5,7 @@ import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
 const defaultState = {
+    isFromScrape:localStorage.getItem("isFromScrape") || false,
     content:JSON.parse(localStorage.getItem("MCQs")) || [],
     title:'',
     description:'',
@@ -105,7 +106,10 @@ const actions = {
 
 const mutations = {
     setMcq(state,{Rquestions}){
+
         state.content = Rquestions
+        localStorage.setItem("MCQs",JSON.stringify(Rquestions))
+
       },
     setSchedule(state,{title,description,users,attempts,duration,startTime,endTime}){
       state.title=title,
@@ -119,6 +123,7 @@ const mutations = {
         localStorage.setItem("endTime",endTime)
     },
     setMcqFromImageOCR(state,payload){
+      localStorage.removeItem("isFromScrape")
       state.content=payload.Rquestions[0]
       // console.log(payload.Rquestions[0][0])
       localStorage.setItem("MCQs",JSON.stringify(payload.Rquestions[0]))
@@ -137,7 +142,19 @@ const mutations = {
 
 const getters = {
   getContent(state) {
+    console.log(localStorage.getItem("isFromScrape"))
+    if(localStorage.getItem("isFromScrape")){
+      console.log("Inside Scrape content")
+      console.log(JSON.parse(localStorage.getItem("MCQs")))
+      return JSON.parse(localStorage.getItem("MCQs"))
+    }
+    else{
+      console.log("Inside normal getContent")
+      // let ContentArray = []
+      // ContentArray.push(state.content)
+      // return ContentArray
       return state.content
+    }
   }
 };
 

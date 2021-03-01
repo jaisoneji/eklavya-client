@@ -1,9 +1,9 @@
 <template>
     <!-- 1. main div -->
-    <div class ="overflow-y-scroll justify-center flex-col w-full h-full">
+    <div class =" justify-center flex-col w-full h-screen">
         <!-- 2. Google form start -->
-        <div v-if="!isEmpty" class="flex-row justify-center h-full  ">            
-            <div :class="theme" class="h-full bg-background-primary flex content-center w-full items-center rounded-md space-y-2 flex-col ">
+        <div  class="flex-row justify-center h-screen  ">            
+            <div :class="theme" class="overflow-y-scroll h-screen bg-background-primary flex content-center w-full items-center rounded-md space-y-2 flex-col ">
                 <Logout/>
                 <div :class="theme" class="mt-6 bg-background-secondary py-4 pl-2 rounded-lg shadow-lg w-9/12 md:w-1/2" v-for="(question) in Questions" :key="question.id" >
                     <div class="flex flex-row">
@@ -38,10 +38,10 @@
         
         </div>
         <!-- 2. Google form end-->
-        <div v-else :class="theme" class="items-center align-center h-screen bg-background-primary flex flex-col w-full justify-center">
+        <!-- <div v-else :class="theme" class="items-center align-center h-screen bg-background-primary flex flex-col w-full justify-center">
             <img class="flex justify-center md:h-64 w-64" src="@/assets/nodatafound.png" alt="">
             <h2 :class="theme" class="flex font-mono text-text-text txt-bold text-4xl">No data Found!</h2>
-        </div>
+        </div> -->
     </div>
     <!-- 1. end main div -->
 </template>
@@ -53,11 +53,17 @@ export default {
         Logout
     },
     name: 'McqForm',
-    mounted() {
-        const content = this.$store.getters.getContent
+     mounted() {
+        // const content = await this.$store.getters.getContent
+        if(localStorage.getItem("isFromScrape")===true){
+            this.Questions = [...[...JSON.parse(localStorage.getItem("MCQs"))]]
+        }
+        else{
+            this.Questions = [... JSON.parse(localStorage.getItem("MCQs"))]
+            console.log("mounted:")
+            console.log(this.Questions)
 
-        this.Questions = [...content]
-        console.log(this.Questions)
+        }
     },
     data(){
             return{
@@ -75,18 +81,18 @@ export default {
                         return 'theme-light'
                     }
             },
-            isEmpty(){
-                if(this.Questions.length > 0){
-                    return false
-                }else{
-                    return true
-                }
-            }
+            // isEmpty(){
+            //     if(this.Questions.length > 0){
+            //         return false
+            //     }else{
+            //         return true
+            //     }
+            // }
         },
         methods:{
             async mcqform(){
                 try {
-                    await this.$store.dispatch('MCQFORM',{Rquestions: this.Questions})
+                    await this.$store.commit('setMcq',{Rquestions: this.Questions})
                     this.$router.push('/Schedule')
                 } catch(e) {
                     console.log(e)

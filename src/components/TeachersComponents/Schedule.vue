@@ -44,6 +44,9 @@
                             <select v-model="dept" type="dept"  class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                                 <option disabled value="">DIV</option>
                                 <option value="CMPN">D17A</option>
+                                <option value="IT">D16A</option>
+                                <option value="EXTC">D15A</option>
+                                <option value="ETRX">D14A</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -127,8 +130,8 @@ theme(){
      }
 },
 methods:{
-        schedule(){
-            this.$store.dispatch('SCHEDULE',{
+        async schedule(){
+            await this.$store.dispatch('SCHEDULE',{
                 title:this.title,
                 desc:this.desc,
                 user:this.user,
@@ -140,16 +143,18 @@ methods:{
             })
             .then(response=>{
                 console.log(response)
-                this.$router.push("/TeachersDashboard")
+                localStorage.removeItem("isFromScrape")
+                this.$router.push("/TeachersDashboard/")
             })
             .catch(error=>{
-                console.log(error)
+                console.log("Schedule.vue"+error)
             })
             
         },
         cancelSchedule(){
+            localStorage.removeItem("isFromScrape")
             localStorage.removeItem("MCQs")
-            this.$router.push("/TeachersDashboard")
+            this.$router.push("/TeachersDashboard/")
         }
     }
 }
