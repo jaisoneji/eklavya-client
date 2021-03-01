@@ -33,7 +33,7 @@ const routes = [
     beforeEnter(to, from, next) {
       if (VueCookies.isKey("token")) {
         next({
-          name: "TeachersDashboard",
+          path: "TeachersDashboard/",
         });
       } else {
         next();
