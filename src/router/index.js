@@ -8,6 +8,7 @@ import Profile from '../components/AuthenticationComponents/Profile.vue'
 import ProfileError from '../components/AuthenticationComponents/ProfileError.vue'
 import EmailError from '../components/EmailError.vue'
 import SideBar from '../components/TeachersComponents/SideBar.vue'
+import Schedule from '../components/TeachersComponents/Schedule.vue'
 import MCQForm from '../components/TeachersComponents/MCQForm.vue'
 import Welcome from '../components/TeachersComponents/Welcome.vue'
 import StudentDataLive from '../components/TeachersComponents/StudentDataLive.vue'
@@ -32,7 +33,7 @@ const routes = [
     beforeEnter(to, from, next) {
       if (VueCookies.isKey("token")) {
         next({
-          name: "TeachersDashboard",
+          path: "TeachersDashboard/",
         });
       } else {
         next();
@@ -44,20 +45,30 @@ const routes = [
     name: "ProfilePic",
     component: ProfilePic,
   },
+  
+  {
+    path: "/MCQForm",
+    name: "MCQForm",
+    component: MCQForm,
+    beforeEnter(to, from, next) {
+      if (VueCookies.isKey("token")) {
+        next();
+      } else {
+        next({
+          name:"Home"
+        });
+      }
+    },
+  },
   {
     path: "/Schedule",
     name: "Schedule",
-    component: Schedule,
+    component:Schedule,
   },
   {
     path: "/Scrape",
     name: "Scrape",
     component: Scrape,
-  },
-  {
-    path: "/MCQForm",
-    name: "MCQForm",
-    component: MCQForm,
   },
   {
     path: "/SideBar",
@@ -69,6 +80,11 @@ const routes = [
     name: "TeachersDashboard",
     component: TeachersDashboard,
     children: [
+      {
+        path: "/",
+        name: "Welcome",
+        component: Welcome,
+      },
       {
         path: "/Collapse",
         name: "Collapse",
@@ -86,19 +102,26 @@ const routes = [
       },
     ],
     beforeEnter(to, from, next) {
-      if (store.getters.getVerifiedStatus) {
-        if (store.getters.getProfileStatus) {
-          console.log(store.getters.getProfileStatus);
-          next();
+      if(VueCookies.get("token")){
+        if (store.getters.getVerifiedStatus) {
+          if (store.getters.getProfileStatus) {
+            console.log(store.getters.getProfileStatus);
+            next();
+          } else {
+            next({
+              name: "Profile",
+            });
+          }
         } else {
           next({
-            name: "Profile",
+            name: "EmailError",
           });
         }
-      } else {
+      }
+      else{
         next({
-          name: "EmailError",
-        });
+          name:"Home"
+        })
       }
     },
   },
@@ -150,5 +173,4 @@ const router = new VueRouter({
   mode: 'history',
   routes
 })
-
 export default router
