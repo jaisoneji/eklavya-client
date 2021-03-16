@@ -7,7 +7,20 @@
     <!-- sidebar start -->
 
     <sidebar-menu
-        :menu="menu"
+    v-if="this.role === 'student' "
+        :menu="student"
+        :width="width"
+        :collapsed="collapsed"
+        :theme="selectedTheme"
+        :show-one-child="true"
+        :isOnMobile="isOnMobile"
+        @toggle-collapse="onToggleCollapse"
+        @item-click="onItemClick"
+        :to="href"
+      />
+      <sidebar-menu
+        v-else
+        :menu="teacher"
         :width="width"
         :collapsed="collapsed"
         :theme="selectedTheme"
@@ -35,9 +48,14 @@ import VueCookies from 'vue-cookies'
 
 
 export default { 
+    mounted(){
+        this.role = this.$store.getters.getRole
+        console.log("role:::::"+typeof(this.role))
+    },
   data() {
             return {
-                menu: [
+                role:'',
+                teacher: [
                     {
                         header: true,
                         title: 'Eklavya',
@@ -85,6 +103,41 @@ export default {
                     },
                    
                 ],
+                student:[
+                    {
+                        header: true,
+                        title: 'Eklavya_Student',
+                        hiddenOnCollapse: true
+                    },
+                    {
+                        component: ProfilePic,
+                        hidden: false,
+                        hiddenOnCollapse: true,
+                    },
+                    {
+                        href:'/TeachersDashboard/',
+                        title: 'Home',
+                        icon: 'fas fa-home'
+                    },
+                    {
+                        header: true,
+                        title: 'Classroom',
+                        hiddenOnCollapse: true
+                    },
+                    
+                    // quizes start
+                    // {
+                    //     header: true,
+                    //     title: 'Quizes',
+                    //     hiddenOnCollapse: true
+                    // },
+                    // {
+                    //     href:'/Collapse',
+                    //     title: 'Quiz',
+                    //     icon: 'fas fa-pen'
+                    // },
+                    // QUIZES ENDS
+                ],
                 width: '250px',
                 
                 collapsed: true,
@@ -109,13 +162,22 @@ components: {
     },
 computed:{
     theme(){
-        if(this.$store.getters.getMode === 'theme-dark'){
-            return 'theme-dark'
-        }
-        else{
-            return 'theme-light'
-        }
-        }
+            if(this.$store.getters.getMode === 'theme-dark'){
+                return 'theme-dark'
+            }
+            else{
+                return 'theme-light'
+            }
+        },
+        getRole(){
+            if(this.role === 'student'){
+                console.log("inside getRole")
+                return 'student'
+            }
+            else{
+                return 'teacher'
+            }
+        },
     },
     methods:{
         hideError(){

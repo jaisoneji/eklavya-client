@@ -9,7 +9,10 @@ import ProfileError from '../components/AuthenticationComponents/ProfileError.vu
 import EmailError from '../components/EmailError.vue'
 import SideBar from '../components/TeachersComponents/SideBar.vue'
 import MCQForm from '../components/TeachersComponents/MCQForm.vue'
-import Schedule from '../components/TeachersComponents/Schedule.vue'
+import Welcome from '../components/TeachersComponents/Welcome.vue'
+import StudentDataLive from '../components/TeachersComponents/StudentDataLive.vue'
+import Student_quiz from '../components/StudentComponents/Student_quiz.vue'
+// import Dummy from '../components/TeachersComponents/Dummy.vue'
 
 import store from '@/store'
 import VueCookies from 'vue-cookies'
@@ -70,6 +73,16 @@ const routes = [
         path: "/Collapse",
         name: "Collapse",
         component: Collapse,
+      },
+      {
+        path: "/StudentDataLive",
+        name: "StudentDataLive",
+        component: StudentDataLive,
+      },
+      {
+        path: "/Student_quiz",
+        name: "StudentQuiz",
+        component: Student_quiz,
       },
     ],
     beforeEnter(to, from, next) {
