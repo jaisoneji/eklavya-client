@@ -102,7 +102,34 @@ const actions = {
     
             })
         })
-      }
+      },
+      FETCH_FORM_STUDENT(context){
+        return new Promise((resolve,reject)=>{
+          let method = localStorage.getItem("method")
+          let token = VueCookies.get("token")
+            Axios.get(`${baseDomain}/proctored/forms/`,
+              {
+                headers:{
+                  'Content-Type': 'application/json',
+                  "Access-Control-Allow-Origin": "*",
+                  "Authorization": `Bearer ${method} ${token}`
+                }
+              }
+            )
+            .then(response => {
+              console.log(response.data)
+              context.commit("saveFetchedForms",response.data)
+              resolve(response.data)
+              
+            })
+            .catch(error=>{
+              console.log(error)
+              alert(error.response.data.errors.message)
+              reject(error)
+    
+            })
+        })
+      },
 };
 
 const mutations = {

@@ -20,6 +20,8 @@ import VueCookies from 'vue-cookies'
 import Scrape from '../components/TeachersComponents/Scrape.vue'
 import Collapse from '../components/TeachersComponents/Collapse'
 import ProfilePic from '../components/AuthenticationComponents/ProfilePic'
+import DeleteProfile from '../components/DeleteProfile'
+
 
 
 // http://localhost:8000/GoogleLoader
@@ -45,7 +47,12 @@ const routes = [
     name: "ProfilePic",
     component: ProfilePic,
   },
-  
+  // Delte User route
+  {
+    path: "/DeleteProfile",
+    name: "DeleteProfile",
+    component: DeleteProfile,
+  },
   {
     path: "/MCQForm",
     name: "MCQForm",

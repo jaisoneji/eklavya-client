@@ -298,8 +298,32 @@ export default new Vuex.Store({
           reject(error)
         })
       })
-    }
+    },
     // Image OCR login ends
+    DELETE_USER(context,payload){
+      return new Promise((resolve,reject)=>{
+        let data=JSON.stringify({
+          email:payload
+        })
+        Axios.delete(`${baseDomain}/auth/delete/user`,{data},
+        {
+          headers:{
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+           
+          }
+        })
+        .then(res=>{
+          console.log("Delete user Store"+res)
+          resolve(res)
+        })
+        .catch(error=>{
+
+          console.log("Delete user Store: "+error)
+          reject(error)
+        })
+      })
+    }
   },
   modules: {
     // to import form data

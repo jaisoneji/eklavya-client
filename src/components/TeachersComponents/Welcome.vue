@@ -49,14 +49,27 @@ export default {
     },
     async created(){
         this.name=localStorage.getItem("name")
-        await this.$store.dispatch("FETCH_FORM")
-        .then(response => {
-            console.log(response)
-            this.Forms = response
-        })
-        .catch(error=> {
-            console.log(error)
-        })
+        // if else for checking role of user if it is teacher then this sameee else new call FETCH_FORM_STUDENT
+        if(this.$store.getters.getRole === 'faculty'){
+            await this.$store.dispatch("FETCH_FORM")
+            .then(response => {
+                console.log(response)
+                this.Forms = response
+            })
+            .catch(error=> {
+                console.log(error)
+            })
+        }
+        else{
+            await this.$store.dispatch("FETCH_FORM_STUDENT")
+            .then(response => {
+                console.log(response)
+                this.Forms = response
+            })
+            .catch(error=> {
+                console.log(error)
+            })
+        }
         
     },
     computed:{
