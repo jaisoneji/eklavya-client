@@ -39,7 +39,7 @@ export default {
         VueCookies.set("token",res.data.token,expires);
         this.$store.commit('setToken',res.data.token)
         this.$store.commit('setUserDetails',res.data.user_data)
-        this.$router.push('/TeachersDashboard')
+        this.$router.push('/TeachersDashboard/')
     }
     catch(error){
          console.log("GoogleLogin.vue"+error)

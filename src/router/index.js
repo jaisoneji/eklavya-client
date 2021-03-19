@@ -115,7 +115,7 @@ const routes = [
       }
       else{
         next({
-          name:"Home"
+          path:"/"
         })
       }
     },

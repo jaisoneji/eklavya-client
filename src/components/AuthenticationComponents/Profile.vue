@@ -140,7 +140,7 @@
 <script>
 import ProfileError from '@/components/AuthenticationComponents/ProfileError.vue';
 import Loader from '@/components/Loader.vue';
-
+import router from '@/router'
 export default {
     components:{
           ProfileError,
@@ -202,7 +202,7 @@ export default {
             .then(response=>{
                 console.log(response)
                 this.Loading=false
-                this.$router.push('TeachersDashboard')
+                router.push({name:'Home'})
                 
             })
             .catch(error=>{
