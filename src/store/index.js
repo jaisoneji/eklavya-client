@@ -301,18 +301,17 @@ export default new Vuex.Store({
     },
     // Image OCR login ends
     DELETE_USER(context,payload){
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        data: {
+          email: payload
+        }
+      }
       return new Promise((resolve,reject)=>{
-        let data=JSON.stringify({
-          email:payload
-        })
-        Axios.delete(`${baseDomain}/auth/delete/user`,{data},
-        {
-          headers:{
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-           
-          }
-        })
+        Axios.delete(`${baseDomain}/auth/delete/user`,config)
         .then(res=>{
           console.log("Delete user Store"+res)
           resolve(res)
