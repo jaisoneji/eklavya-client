@@ -12,6 +12,7 @@ import Schedule from '../components/TeachersComponents/Schedule.vue'
 import MCQForm from '../components/TeachersComponents/MCQForm.vue'
 import Welcome from '../components/TeachersComponents/Welcome.vue'
 import StudentDataLive from '../components/TeachersComponents/StudentDataLive.vue'
+import Classroom from '../components/TeachersComponents/Classroom.vue'
 
 // import Dummy from '../components/TeachersComponents/Dummy.vue'
 
@@ -101,6 +102,11 @@ const routes = [
         path: "/StudentDataLive",
         name: "StudentDataLive",
         component: StudentDataLive,
+      },
+      {
+        path: "/Classroom",
+        name: "Classroom",
+        component: Classroom,
       },
     ],
     beforeEnter(to, from, next) {
