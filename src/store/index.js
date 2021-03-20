@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 import Axios from 'axios'
 import FormsData from './modules/FormsData'
+import Classroom from './modules/Classroom'
 
 // import router from '@/router'
 const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
@@ -326,6 +327,7 @@ export default new Vuex.Store({
   },
   modules: {
     // to import form data
-    formsData: FormsData
+    formsData: FormsData,
+    classroom: Classroom
   }
 })

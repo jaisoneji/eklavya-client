@@ -81,6 +81,11 @@ export default {
                         title: 'Student Data Live',
                         icon: 'fas fa-address-card'
                     },
+                    {
+                        href:'/Classroom',
+                        title: 'Create Classroom',
+                        icon: 'fas fa-folder-plus'
+                    },
                     // quizes start
                     {
                         header: true,
