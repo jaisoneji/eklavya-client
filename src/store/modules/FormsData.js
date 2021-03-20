@@ -33,7 +33,8 @@ const actions = {
             description:payload.desc,
             attempts:payload.attempts,
             users:payload.user,
-            class:payload.dept,
+            class:[payload.dept],
+            division:[payload.division],
             keywords: [payload.title],
             course:payload.course,
             content: getters.getContent,
@@ -107,7 +108,7 @@ const actions = {
         return new Promise((resolve,reject)=>{
           let method = localStorage.getItem("method")
           let token = VueCookies.get("token")
-            Axios.get(`${baseDomain}/proctored/forms/`,
+            Axios.get(`${baseDomain}/proctored/students/`,
               {
                 headers:{
                   'Content-Type': 'application/json',
