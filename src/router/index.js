@@ -12,6 +12,7 @@ import Schedule from '../components/TeachersComponents/Schedule.vue'
 import MCQForm from '../components/TeachersComponents/MCQForm.vue'
 import Welcome from '../components/TeachersComponents/Welcome.vue'
 import StudentDataLive from '../components/TeachersComponents/StudentDataLive.vue'
+import AttemptQuiz from '../components/StudentComponents/AttemptQuiz.vue'
 
 // import Dummy from '../components/TeachersComponents/Dummy.vue'
 
@@ -21,6 +22,7 @@ import Scrape from '../components/TeachersComponents/Scrape.vue'
 import Collapse from '../components/TeachersComponents/Collapse'
 import ProfilePic from '../components/AuthenticationComponents/ProfilePic'
 import DeleteProfile from '../components/DeleteProfile'
+// import { component } from 'vue/types/umd'
 
 
 
@@ -161,6 +163,11 @@ const routes = [
     name: "EmailError",
     component: EmailError,
   },
+  {
+    path:"/AttempQuiz",
+    name:"AttempQuiz",
+    component:AttemptQuiz
+  }
   // {
   //   path: '/about',
   //   name: 'About',
