@@ -165,6 +165,7 @@ const mutations = {
 
     },
     saveFetchedForms(state,payload){
+      localStorage.setItem("MCQs",JSON.stringify(payload))
       state.Forms = payload
     }
 };

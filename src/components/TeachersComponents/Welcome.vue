@@ -5,7 +5,7 @@
           <!-- quiz start -->
           <div class=" md:w-19/20 w-full flex flex-col ">
             <h2 :class="theme" class="font-mono justify-start text-text-text txt-bold text-2xl">Quiz</h2>
-                <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-5  gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
+                <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto  gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
                     <div  :class="theme" v-for="(form) in Forms" :key="form.title" class=" ">
                         <div class="flex md:flex-col flex-col border px-2 py-4 border-background-border md:w-48 w-10/12 rounded-xl md:h-auto">
                                 <div class="flex text-gray-700 md:w-full md:h-20 justify-center items-center" :class="getColor()">
@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="flex flex-col space-y-0">
                                     <div v-if="getRole" class="flex "><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
-                                    <div v-else @click.prevent="attemptQuiz()" target="_blank" class="flex"><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
+                                    <div v-else @click.prevent="attemptQuiz(form.title)" target="_blank" class="flex"><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
                                     <p class="text-text-google">{{form.description}}</p >
                                 </div>
                                 <div class="">
@@ -91,24 +91,37 @@ export default {
         this.name=localStorage.getItem("name")
         // if else for checking role of user if it is teacher then this sameee else new call FETCH_FORM_STUDENT
         if(this.$store.getters.getRole === 'faculty'){
-            await this.$store.dispatch("FETCH_FORM")
-            .then(response => {
-                console.log(response)
-                this.Forms = response
-            })
-            .catch(error=> {
-                console.log(error)
-            })
+            if(JSON.parse(localStorage.getItem('MCQs')).length > 0){
+                console.log("Inside Welcome's local fetch")
+                this.Forms = JSON.parse(localStorage.getItem('MCQs'))
+            }
+            else{
+                console.log("Inside Welcome's call fetch")
+                await this.$store.dispatch("FETCH_FORM")
+                .then(response => {
+                    console.log(response)
+                    this.Forms = response
+                })
+                .catch(error=> {
+                    console.log(error)
+                })
+            }
         }
         else{
-            await this.$store.dispatch("FETCH_FORM_STUDENT")
-            .then(response => {
-                console.log(response)
-                this.Forms = response
-            })
-            .catch(error=> {
-                console.log(error)
-            })
+            if(JSON.parse(localStorage.getItem('MCQs')).length > 0){
+                console.log("Inside Welcome's local fetch")
+                this.Forms = JSON.parse(localStorage.getItem('MCQs'))
+            }else{
+
+                await this.$store.dispatch("FETCH_FORM_STUDENT")
+                .then(response => {
+                    console.log(response)
+                    this.Forms = response
+                })
+                .catch(error=> {
+                    console.log(error)
+                })
+            }
         }
         
     },
@@ -157,9 +170,9 @@ export default {
             
 
         },
-        attemptQuiz(){
-            
-            this.$router.push('/AttemptQuiz')
+        attemptQuiz(title){
+            console.log(title)
+            this.$router.push({name: 'AttemptQuiz', params: { quizName: title}});
         }
     }
 }

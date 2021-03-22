@@ -56,6 +56,12 @@ const routes = [
     component: DeleteProfile,
   },
   {
+    path:"/AttemptQuiz/:quizName",
+    params: true,
+    name:"AttemptQuiz",
+    component:AttemptQuiz
+  },
+  {
     path: "/MCQForm",
     name: "MCQForm",
     component: MCQForm,
@@ -168,11 +174,7 @@ const routes = [
     name: "EmailError",
     component: EmailError,
   },
-  {
-    path:"/AttempQuiz",
-    name:"AttempQuiz",
-    component:AttemptQuiz
-  }
+ 
   // {
   //   path: '/about',
   //   name: 'About',
