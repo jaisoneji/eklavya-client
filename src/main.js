@@ -14,6 +14,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 // date time picker
 import { Datetime } from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
+import { createProvider } from './vue-apollo'
 
 
 Vue.config.productionTip = false
@@ -43,5 +44,8 @@ new Vue({
   router,
   store,
   queryString,
+  apolloProvider: createProvider({
+    reconnect : true
+  }),
   render: h => h(App)
 }).$mount('#app')

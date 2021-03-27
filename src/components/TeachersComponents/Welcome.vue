@@ -90,12 +90,8 @@ export default {
     async created(){
         this.name=localStorage.getItem("name")
         // if else for checking role of user if it is teacher then this sameee else new call FETCH_FORM_STUDENT
-        if(this.$store.getters.getRole === 'faculty'){
-            if(JSON.parse(localStorage.getItem('MCQs')).length > 0){
-                console.log("Inside Welcome's local fetch")
-                this.Forms = JSON.parse(localStorage.getItem('MCQs'))
-            }
-            else{
+        if(await this.$store.getters.getRole === 'faculty'){
+            
                 console.log("Inside Welcome's call fetch")
                 await this.$store.dispatch("FETCH_FORM")
                 .then(response => {
@@ -105,7 +101,7 @@ export default {
                 .catch(error=> {
                     console.log(error)
                 })
-            }
+            
         }
         else{
             if(JSON.parse(localStorage.getItem('MCQs')).length > 0){

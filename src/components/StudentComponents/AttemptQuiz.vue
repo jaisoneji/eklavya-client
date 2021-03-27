@@ -39,6 +39,7 @@ export default {
     console.log(this.$refs.videoCam)
     this.name = this.$store.getters.getName
     // navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    
     await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: false
@@ -62,6 +63,7 @@ export default {
           })
       },
       async predictPose(net,stream){
+        
         const pose = await net.estimateSinglePose(stream, {
           flipHorizontal: true
         });
@@ -76,11 +78,11 @@ export default {
           const leftEarScore = ((pose.keypoints[3].score)*100)
           const rightEarScore = ((pose.keypoints[4].score)*100)
           if(leftEarScore < 80 && leftEyeScore < 80){
-            console.log("You are looking left hand side")
-            this.posepredict = "You are looking left hand side"
+            console.log("left hand side")
+            this.posepredict = "left hand side"
           }else if(rightEarScore < 80 && rightEyeScore < 80){
-            console.log("You are looking right side")
-            this.posepredict = "You are looking right side"
+            console.log("right side")
+            this.posepredict = "right side"
           }else{
             console.log("Perfect")
             this.posepredict = "Perfeect!!"

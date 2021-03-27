@@ -2,6 +2,7 @@
 <!-- main -->
     <div class=" w-full h-full overflow-y-scroll">
         <!-- grid start -->
+        {{result}}
         <div class=" grid grid-flow-row md:grid-cols-4 md:grid-rows-3 md:grid-flow-row gap-4 grid-row-1 grid-col-1">
             <!-- for loop div start -->
             <div class="  flex justify-center bg-background-primary" :class="theme" v-for="(student) in student_data" :key="student.id" >    
@@ -31,10 +32,35 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+const SUBSCRIPTION_STUDENT_UPDATE = gql`subscription{
+    proctoredWarning{
+        proctoredWarnings{
+            user{
+                _id
+                name
+                email
+            }
+            warning
+        }
+    }
+}`
 export default {
     name:'StudentDataLive',
+    apollo:{
+        $subscribe:{
+            student_update:{
+                query:SUBSCRIPTION_STUDENT_UPDATE,
+                result({data}){
+                    this.result = data.proctoredWarning
+                    console.log(data)
+                }
+            }
+        }
+    },
     data(){
         return{
+            result:"",
             student_data:[
                 {
                     id:'1',
