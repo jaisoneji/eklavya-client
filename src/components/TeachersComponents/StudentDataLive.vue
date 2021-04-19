@@ -52,6 +52,7 @@ export default {
             student_update:{
                 query:SUBSCRIPTION_STUDENT_UPDATE,
                 result({data}){
+                    console.log("Inside subscription")
                     this.result = data.proctoredWarning
                     console.log(data)
                 }

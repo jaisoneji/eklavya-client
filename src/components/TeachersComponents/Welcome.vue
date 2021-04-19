@@ -43,9 +43,9 @@
           <div class=" md:w-19/20 w-full flex flex-col divide-y divide-gray-500 ">
             <h2 :class="theme" class="font-mono justify-start text-text-text txt-bold text-2xl">Classroom</h2>
                 <div >
-                <div class="md:h-full p-4 flex  grid grid-flow-row m md:grid-cols-4 md:grid-rows-auto md:grid-flow-col gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
+                <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
                     <div  :class="theme" v-for="(form) in Forms" :key="form.title" class=" ">
-                        <div class="flex md:flex-col flex-col border px-2 py-4 border-background-border md:w-64 w-10/12 rounded-xl md:h-56">
+                        <div class="flex md:flex-col flex-col border px-2 py-4 border-background-border md:w-64 w-10/12 rounded-xl md:h-auto">
                                 <div class="flex text-gray-700 md:w-full md:h-20 justify-center items-center" :class="getColor()">
                                     <h3 class="font-mono text-6xl">{{form.title.charAt(0)}}</h3>
                                 </div>
@@ -104,10 +104,7 @@ export default {
             
         }
         else{
-            if(JSON.parse(localStorage.getItem('MCQs')).length > 0){
-                console.log("Inside Welcome's local fetch")
-                this.Forms = JSON.parse(localStorage.getItem('MCQs'))
-            }else{
+            
 
                 await this.$store.dispatch("FETCH_FORM_STUDENT")
                 .then(response => {
@@ -117,7 +114,7 @@ export default {
                 .catch(error=> {
                     console.log(error)
                 })
-            }
+            
         }
         
     },
