@@ -21,7 +21,7 @@
               <li class="text-text-text">User is not allowed to switch its camera off, in any case</li>
             </ul>
         </div>
-        <button class=" md:my-4 shadow-lg items-center justify-center flex mx-2 row-2 border bg-white text-text-btn rounded-full w-1/4 h-10  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline text-xl font-bold rounded outline-none focus:outline-none align-center" :class="theme">Proceed </button>
+        <button @click.prevent="proceed" class=" md:my-4 shadow-lg items-center justify-center flex mx-2 row-2 border bg-white text-text-btn rounded-full w-1/4 h-10  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline text-xl font-bold rounded outline-none focus:outline-none align-center" :class="theme">Proceed </button>
        </div>
 
     </div>
@@ -29,6 +29,9 @@
 </template>
 
 <script>
+import Axios from 'axios'
+import VueCookies from 'vue-cookies'
+
 import * as posenet from '@tensorflow-models/posenet';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
@@ -36,6 +39,13 @@ export default {
   async mounted(){
     // const net = ""
     console.log(this.$route.params.quizName)
+    const MCQArray = JSON.parse(localStorage.getItem("MCQs"))
+    MCQArray.forEach(obj => {
+      if(obj.title === this.$route.params.quizName){
+        this.MCQs = obj
+      }
+    })
+    console.log(this.MCQs)
     console.log(this.$refs.videoCam)
     this.name = this.$store.getters.getName
     // navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -51,8 +61,27 @@ export default {
       .catch(error => {
         console.log("AttemptQuiz video error" +error)
       })
+
+
+      // To trigger if full screen exits
+      document.addEventListener("webkitfullscreenchange" ,function() {
+        if(document.webkitIsFullScreen === false){
+          console.log("Screen Exited Penalty")
+        }
+        
+      },true);
+    },
+    beforeDestroy(){
+        this.$refs.videoCam.pause();
+        this.$refs.videoCam.srcObject = ''
     },
     methods:{
+      enterToFullScreen(){
+        document.body.webkitRequestFullScreen()
+      },
+      proceed(){
+        this.enterToFullScreen()
+      },
       async loadModel(stream){
         console.log("Inside prediction")
         await posenet.load()
@@ -63,11 +92,13 @@ export default {
           })
       },
       async predictPose(net,stream){
-        
-        const pose = await net.estimateSinglePose(stream, {
-          flipHorizontal: true
-        });
-        this.estimatePose(pose)
+        // while(this.isVideoOn){
+
+          const pose = await net.estimateSinglePose(stream, {
+            flipHorizontal: true
+          });
+          this.estimatePose(pose)
+        // }
    
       
       },
@@ -80,17 +111,45 @@ export default {
           if(leftEarScore < 80 && leftEyeScore < 80){
             console.log("left hand side")
             this.posepredict = "left hand side"
+            this.sendPrediction(this.posepredict)
           }else if(rightEarScore < 80 && rightEyeScore < 80){
             console.log("right side")
             this.posepredict = "right side"
+            this.sendPrediction(this.posepredict)
           }else{
             console.log("Perfect")
             this.posepredict = "Perfeect!!"
+            this.sendPrediction(this.posepredict)
           }
           console.log(pose.keypoints[0].part);
 
           // --------uncomment the below line to predict in real time-----------
           // this.predictPose(this.net,this.$refs.videoCam)
+      },
+
+      async sendPrediction(posePredicted){
+        try{
+          console.log(posePredicted)
+          let method = localStorage.getItem("method")
+          let token = VueCookies.get("token")
+          let data = JSON.stringify({
+            formID:this.MCQs._id,
+            warning:posePredicted
+          })
+          const res = await Axios.post('http://localhost:5000/api/v1/proctored/students/proctoredWarning',data,
+              {
+                headers:{
+                  'Content-Type': 'application/json',
+                  "Access-Control-Allow-Origin": "*",
+                  "Authorization": `Bearer ${method} ${token}`
+                }
+              }
+            )
+            console.log(res)
+        }
+        catch(error){
+          alert("Attempt Quiz Error"+error)
+        }
       }
     },
     computed:{
@@ -108,7 +167,10 @@ export default {
       name:'',
       srcURL:'',
       posepredict:'',
-      net:{}
+      isVideoOn:true,
+      net:{},
+      predictions:[],
+      MCQs:{},
 
     }
   }

@@ -45,7 +45,7 @@ const actions = {
             }
           })
           let method = localStorage.getItem("method")
-        let token = VueCookies.get("token")
+          let token = VueCookies.get("token")
           Axios.post(`${baseDomain}/proctored/forms/`,data,
             {
               headers:{
