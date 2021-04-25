@@ -90,8 +90,8 @@ export default {
             console.log("Inside addOrUpdate")
             console.log(result)
             for (var i = 0; i < this.student_data.length; i++) {
-                if (this.student_data[i].id === result.id ) {
-                        this.student_data[i].name = result.name;
+                if (this.student_data[i].user.email === result.user.email ) {
+                        this.student_data[i].name = result.user.name;
                         this.student_data[i].warning = result.warning;
                         return;                             // exit loop and function
                     }

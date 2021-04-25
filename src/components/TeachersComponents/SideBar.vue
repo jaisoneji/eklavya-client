@@ -165,7 +165,7 @@ export default {
                 ],
                 width: '250px',
                 
-                collapsed: true,
+                collapsed: false,
                 themes: [
                     {
                     name: 'Default theme',

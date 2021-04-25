@@ -40,7 +40,7 @@
           <!-- <div class="divide-y divide-gray-500"></div> -->
 
           <!-- classroom start -->
-          <div class=" md:w-19/20 w-full flex flex-col divide-y divide-gray-500 ">
+          <div v-show="getRole" class=" md:w-19/20 w-full flex flex-col divide-y divide-gray-500 ">
             <h2 :class="theme" class="font-mono justify-start text-text-text txt-bold text-2xl">Classroom</h2>
                 <div >
                 <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
@@ -95,7 +95,7 @@ export default {
         this.name=localStorage.getItem("name")
         // if else for checking role of user if it is teacher then this sameee else new call FETCH_FORM_STUDENT
         if(await this.$store.getters.getRole === 'faculty'){
-                window. location. reload();
+                //window. location. reload();
                 console.log("Inside Welcome's call fetch")
                 await this.$store.dispatch("FETCH_FORM")
                 .then(response => {

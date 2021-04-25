@@ -83,7 +83,7 @@ import '@tensorflow/tfjs-backend-cpu';
 export default {
   watch: {
     penaltyCount: function (val) {
-      if(val >= 10){
+      if(val >= 40){
         alert("Penalty Limit exceeded..You are no longer allowed to Give Quiz")
           window.location.replace("http://localhost:8080/TeachersDashboard/");
       }
@@ -146,10 +146,14 @@ export default {
 
         
       // },true);
+
+
+      // this is for switching tabs
       document.addEventListener("visibilitychange", function() {
           if (document.hidden){
               
               console.log("Browser tab is hidden")
+              alert("You have switched tabs!. hence we are ending your quiz")
               window.location.replace("http://localhost:8080/TeachersDashboard/");
 
           } else {
