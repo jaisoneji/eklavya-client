@@ -78,20 +78,24 @@
 </template>
 
 <script>
+// import AttemptQuiz from "@/components/StudentComponents/AttemptQuiz.vue";
 export default {
+    mounted(){
+       
+    },
     data(){
         return{
             name: '',
             Forms:[],
             colors:['bg-yellow-500','bg-red-500','bg-indigo-400','bg-green-400','bg-blue-400'],
-            classroom:[]
+            classroom:[],
         }
     },
     async created(){
         this.name=localStorage.getItem("name")
         // if else for checking role of user if it is teacher then this sameee else new call FETCH_FORM_STUDENT
         if(await this.$store.getters.getRole === 'faculty'){
-            
+                window. location. reload();
                 console.log("Inside Welcome's call fetch")
                 await this.$store.dispatch("FETCH_FORM")
                 .then(response => {
@@ -105,7 +109,7 @@ export default {
         }
         else{
             
-
+                // window.location. reload()
                 await this.$store.dispatch("FETCH_FORM_STUDENT")
                 .then(response => {
                     console.log(response)

@@ -131,6 +131,36 @@ const actions = {
             })
         })
       },
+      SUBMIT_QUIZ(context,payload){
+        return new Promise((resolve,reject)=>{
+          let data = JSON.stringify({
+            formId:payload.formId,
+            studentsResponse:payload.studentsResponse
+          })
+          let method = localStorage.getItem("method")
+          let token = VueCookies.get("token")
+            Axios.post(`${baseDomain}/proctored/students/submitResult`,data,
+              {
+                headers:{
+                  'Content-Type': 'application/json',
+                  "Access-Control-Allow-Origin": "*",
+                  "Authorization": `Bearer ${method} ${token}`
+                }
+              }
+            )
+            .then(response => {
+              console.log(response.data)
+              resolve(response.data)
+              
+            })
+            .catch(error=>{
+              console.log(error)
+              alert(error.response.data.errors.message)
+              reject(error)
+    
+            })
+        })
+      }
 };
 
 const mutations = {
