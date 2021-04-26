@@ -77,11 +77,11 @@
 <script>
 import Axios from 'axios'
 import VueCookies from 'vue-cookies'
-
 import * as posenet from '@tensorflow-models/posenet';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 export default {
+
   watch: {
     penaltyCount: function (val) {
       if(val >= 40){

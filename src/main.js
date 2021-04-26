@@ -15,6 +15,8 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import { Datetime } from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 import { createProvider } from './vue-apollo'
+import VueSplide from '@splidejs/vue-splide';
+
 
 
 Vue.config.productionTip = false
@@ -37,6 +39,7 @@ Vue.use(GAuth, gauthOption);
 Vue.use(VueCookies)
 Vue.use(VueSidebarMenu)
 Vue.use(Datetime)
+Vue.use( VueSplide );
 
 
 

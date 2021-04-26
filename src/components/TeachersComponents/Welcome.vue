@@ -1,36 +1,45 @@
 <template class="">
-  <div :class="theme" class="scrollstyle overflow-y-scroll h-full w-screen bg-background-primary flex justify-center align-center ">
+  <div :class="theme" class="scrollstyle overflow-y-scroll overflow-x-hidden h-full w-screen bg-background-primary flex justify-center align-center ">
       <div class=" md:w-full md:h-full md:space-y-8 space-y-0 flex flex-col md:mt-16 mt-12  align-center items-center md:space-y-2">
           <h2 :class="theme" class="font-mono text-text-text txt-bold text-4xl">Welcome,{{name}}</h2>
           <!-- quiz start -->
-          <div class=" md:w-19/20 w-full flex flex-col ">
-            <h2 :class="theme" class="font-mono justify-start text-text-text txt-bold text-2xl">Quiz</h2>
-                <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto  gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
-                    <div  :class="theme" v-for="(form) in Forms" :key="form.title" class=" ">
-                        <div class="flex md:flex-col flex-col border px-2 py-4 border-background-border md:w-48 w-10/12 rounded-xl md:h-auto">
-                                <div class="flex text-gray-700 md:w-full md:h-20 justify-center items-center" :class="getColor()">
-                                    <h3 class="font-mono text-6xl">{{form.title.charAt(0)}}</h3>
+          <div class=" md:w-19/20 w-full   ">
+            <h2 :class="theme" class="font-mono justify-start text-text-text txt-bold text-2xl">Upcoming Quiz</h2>
+            <hr class="mt-2 ">
+                <!-- <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto  gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
+                </div> -->
+                <splide v-if="this.Forms.length > 0 "  :options="options" class="splider">
+                    <splide-slide  :class="theme" style="padding-bottom:2rem;padding-top:2rem" v-for="(form) in Forms" :key="form.title" >
+                        <div class="rounded-lg  shadow-lg md:py-4  md:w-48 w-10/12  md:h-auto">
+                                <div class="relative flex text-gray-700 md:w-full md:h-28 justify-start align-center items-center" >
+                                    <h3 class=" md:pl-4 z-10 text-white font-mono  text-6xl">{{form.title.charAt(0)}}</h3>
+                                    <img class="object-cover md:w-full md:h-full absolute" :src="getImage()" alt="" srcset="">
                                 </div>
-                                <div class="w-full flex mt-2 align-center md:space-x-1">
-                                    <div><i class="fas fa-calendar-times text-text-text align-center" :class="theme"></i></div>                    
-                                    <div class="text-text-google">{{form.schedule.startTimeStamp.substr(0,10)}}</div>
+                                <div class="w-full ml-2 text-sm flex py-2 mt-2 align-center justify-between md:space-x-1">
+                                    <div class="md:w-full flex-auto flex w-1/2">
+                                        <div class=""><i class="fas fa-calendar-times text-text-text align-center" :class="theme"></i></div>                    
+                                        <div class="md:pl-2 text-text-google">{{form.schedule.startTimeStamp.substr(0,10)}}</div>
+                                    </div>
 
-                                    <div><i class="fa fa-clock text-text-text align-center md:ml-12" :class="theme"></i></div>                    
-                                    <div class="text-text-google">{{getTime(form.schedule)}}</div>
+                                    <div class="md:w-full ml-2 flex-auto flex">
+                                        <div><i class="fa fa-clock text-text-text align-center " :class="theme"></i></div>                    
+                                    <div class="md:pl-2 text-text-google">{{getTime(form.schedule)}}</div>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col space-y-0">
+                                <div class="px-2  flex flex-col space-y-0">
                                     <div v-if="getRole" class="flex "><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
                                     <div v-else @click.prevent="attemptQuiz(form.title)" target="_blank" class="flex"><h1 class="truncate hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
                                     <p class="text-text-google">{{form.description}}</p >
                                 </div>
-                                <div class="">
+                                <div class="px-2">
                                     <h2 class="font-mono text-text-text"><span class="text-text-google">Owner: </span>{{form.owner.name}}</h2>
                                 </div>
                         </div>
-                    </div>
-
+                    </splide-slide>
+                </splide>
+                <div v-else class="justify-center align-center">
+                    <vue-loading   type="spin"  color="black" :size="{ width: '75px', height: '75px' }"></vue-loading>
                 </div>
-              
                 <!-- <h2 v-else :class="theme" class="border-background-border border font-mono justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
 
 
@@ -46,7 +55,7 @@
                 <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
                     <div  :class="theme" v-for="(form) in Forms" :key="form.title" class=" ">
                         <div class="flex md:flex-col flex-col border px-2 py-4 border-background-border md:w-64 w-10/12 rounded-xl md:h-auto">
-                                <div class="flex text-gray-700 md:w-full md:h-20 justify-center items-center" :class="getColor()">
+                                <div class="flex text-gray-700 md:w-full md:h-20 justify-center items-center" >
                                     <h3 class="font-mono text-6xl">{{form.title.charAt(0)}}</h3>
                                 </div>
                                 <div class="w-full flex mt-2 align-center md:space-x-1">
@@ -78,8 +87,18 @@
 </template>
 
 <script>
+import { VueLoading } from 'vue-loading-template'
+
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
+
 // import AttemptQuiz from "@/components/StudentComponents/AttemptQuiz.vue";
 export default {
+    components: {
+        Splide,
+        SplideSlide,
+        VueLoading
+    },
     mounted(){
        
     },
@@ -87,8 +106,25 @@ export default {
         return{
             name: '',
             Forms:[],
-            colors:['bg-yellow-500','bg-red-500','bg-indigo-400','bg-green-400','bg-blue-400'],
+            colors:['https://gstatic.com/classroom/themes/img_read.jpg','https://gstatic.com/classroom/themes/img_learnlanguage.jpg','https://gstatic.com/classroom/themes/Honors.jpg'],
             classroom:[],
+            options:{
+                drag:true,
+                breakpoints: {
+                    640: {
+                        perPage: 1,
+                        
+                    }},
+                    autoWidth: true,
+                    padding: {
+                    right: '5rem',
+                    left : '5rem',
+                },
+                rewind:true,
+                // background-color:none,
+                perPage:3,
+                gap: '1rem'
+            }
         }
     },
     async created(){
@@ -147,7 +183,7 @@ export default {
         }
     },
     methods:{
-        getColor(){
+        getImage(){
             let randomNumber = Math.floor(Math.random()*this.colors.length);
             return this.colors[randomNumber]
         },
