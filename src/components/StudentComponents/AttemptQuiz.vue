@@ -42,10 +42,11 @@
                             v-model="question.weightage" placeholder=""> -->
                     </div>
                      <!-- options -->
-                    <div class=" flex-col pl-4 m-2" >
+                    <div class=" flex-col w-full m-2" >
                        <div class="flex-col w-full" v-for="(n,index) in question.options.length" :key="question.options[n]">
-                            <input  :class="theme" class="text-white bg-background-secondary w-1/2 focus:outline-none " type="radio" value="question.options[index]" name="index" id="one" >
-                            <label class="text-white" for="index">{{question.options[index]}}</label><br>
+                            <label class="text-white" >
+                              <input  :class="theme" class="text-white bg-background-secondary focus:outline-none " v-model="question.selectedAnswer" type="radio" :value="question.options[index]" >
+                              {{question.options[index]}}</label><br>                              
                         </div>
                     </div>
                     <!-- options -->
@@ -102,6 +103,10 @@ export default {
       }
     })
     this.MCQs.content.forEach(obj=>{
+      obj.selectedAnswer = ""
+    })
+    console.log(this.MCQs.content)
+    this.MCQs.content.forEach(obj=>{
       this.studentsResponse.push({
         "contentId ":obj._id,
         "availableAnswer": obj.answer[0],
@@ -149,26 +154,30 @@ export default {
 
 
       // this is for switching tabs
-      document.addEventListener("visibilitychange", function() {
-          if (document.hidden){
+    //   document.addEventListener("visibilitychange", function() {
+    //       if (document.hidden){
               
-              console.log("Browser tab is hidden")
-              alert("You have switched tabs!. hence we are ending your quiz")
-              window.location.replace("http://localhost:8080/TeachersDashboard/");
+    //           console.log("Browser tab is hidden")
+    //           alert("You have switched tabs!. hence we are ending your quiz")
+    //           window.location.replace("http://localhost:8080/TeachersDashboard/");
 
-          } else {
-              console.log("Browser tab is visible")
-          }
-      },{
-      once: true,
-      passive: true,
-      capture: true
-    });
+    //       } else {
+    //           console.log("Browser tab is visible")
+    //       }
+    //   },{
+    //   once: true,
+    //   passive: true,
+    //   capture: true
+    // });
     },
     
     methods:{
       async submitQuiz(){
-        try{
+        console.log(this.MCQs.content)
+        for(var i = 0;i<this.MCQs.content.length;i++){
+          this.studentsResponse[i].selectedAnswer = this.MCQs.content[i].selectedAnswer
+        }
+        console.log(this.studentsResponse)
                 let tempArray=[
                   {
                     formId:this.MCQs._id,
@@ -177,10 +186,12 @@ export default {
                     ]
                   }
                 ]
+                console.log(tempArray)
+        try{
                 let data = await this.$store.dispatch('SUBMIT_QUIZ',tempArray)
                 console.log(data)
                 alert("Quiz Submitted")
-                this.$router.push('/')
+                // this.$router.push({name: "TeachersDashboard"})
             }catch(error){
                 console.log("Error Sbmiting quiz"+error)
             }
@@ -201,13 +212,13 @@ export default {
           })
       },
       async predictPose(net,stream){
-        while(this.isVideoOn){
+        // while(this.isVideoOn){
 
           const pose = await net.estimateSinglePose(stream, {
             flipHorizontal: true
           });
           this.estimatePose(pose)
-        }
+        // }
    
       
       },
@@ -283,6 +294,14 @@ export default {
                 }
               }
           },
+          // radios () {
+          //   return this.MCQs.content.map((question, i) => {
+          //     return {
+          //       fruit: fruit,
+          //       human: humanEats[i]
+          //     }
+          //   })
+          // }
     
   data(){
     return{

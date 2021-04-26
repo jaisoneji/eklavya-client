@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="flex flex-col space-y-0">
                                     <div v-if="getRole" class="flex "><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
-                                    <div v-else @click.prevent="attemptQuiz(form.title)" target="_blank" class="flex"><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
+                                    <div v-else @click.prevent="attemptQuiz(form.title)" target="_blank" class="flex"><h1 class="truncate hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
                                     <p class="text-text-google">{{form.description}}</p >
                                 </div>
                                 <div class="">
@@ -57,7 +57,7 @@
                                     <div class="text-text-google">{{getTime(form.schedule)}}</div>
                                 </div>
                                 <div class="flex flex-col space-y-0">
-                                    <div class="flex"><h1 class="p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
+                                    <div class="flex"><h1 class="break-words p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
                                     <p class="text-text-google">{{form.description}}</p >
                                 </div>
                                 <div class="">
