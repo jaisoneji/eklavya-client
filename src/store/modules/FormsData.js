@@ -133,13 +133,10 @@ const actions = {
       },
       SUBMIT_QUIZ(context,payload){
         return new Promise((resolve,reject)=>{
-          let data = JSON.stringify({
-            formId:payload.formId,
-            studentsResponse:payload.studentsResponse
-          })
+          
           let method = localStorage.getItem("method")
           let token = VueCookies.get("token")
-            Axios.post(`${baseDomain}/proctored/students/submitResult`,data,
+            Axios.post(`${baseDomain}/proctored/students/submitResult`,payload[0],
               {
                 headers:{
                   'Content-Type': 'application/json',

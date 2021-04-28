@@ -28,6 +28,7 @@
 
     <!-- --------MCQ Quiz----- -->
     <div v-else class =" justify-center flex-col w-full h-screen">
+        <button @click.prevent="openResults()">Open!!</button>
         <!-- 2. Google form start -->
         <div  class="flex-row justify-center h-screen  ">            
             <div :class="theme" class="overflow-y-scroll h-screen bg-background-primary flex content-center w-full items-center rounded-md space-y-2 flex-col ">
@@ -65,23 +66,38 @@
         
         
         </div>
-        <!-- 2. Google form end-->
-        <!-- <div v-else :class="theme" class="items-center align-center h-screen bg-background-primary flex flex-col w-full justify-center">
-            <img class="flex justify-center md:h-64 w-64" src="@/assets/nodatafound.png" alt="">
-            <h2 :class="theme" class="flex font-mono text-text-text txt-bold text-4xl">No data Found!</h2>
-        </div> -->
+        <!-- -------Modal for showing results------ -->
+        <modal ref="modalName">
+          <template v-slot:header>
+            <h1>Score!</h1>
+          </template>
+
+          <template v-slot:body>
+            <h1>You have Scored: <span>{{score}}</span></h1>
+          </template>
+
+          <template v-slot:footer>
+            <div>
+              <button @click="$refs.modalName.closeModal()">Cancel</button>
+              <button @click="$refs.modalName.closeModal()">Save</button>
+            </div>
+          </template>
+      </modal>
     </div>
   </div>
 </template>
 
 <script>
+import modal from '@/components/Modal.vue'
 import Axios from 'axios'
 import VueCookies from 'vue-cookies'
 import * as posenet from '@tensorflow-models/posenet';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 export default {
-
+  components:{
+    modal
+  },
   watch: {
     penaltyCount: function (val) {
       if(val >= 40){
@@ -270,10 +286,14 @@ export default {
               }
             )
             console.log(res)
+
         }
         catch(error){
           alert("Attempt Quiz Error"+error)
         }
+      },
+      openResults(){
+        this.$refs.modalName.openModal
       }
     },
     computed:{
@@ -294,14 +314,7 @@ export default {
                 }
               }
           },
-          // radios () {
-          //   return this.MCQs.content.map((question, i) => {
-          //     return {
-          //       fruit: fruit,
-          //       human: humanEats[i]
-          //     }
-          //   })
-          // }
+          
     
   data(){
     return{
@@ -314,7 +327,8 @@ export default {
       MCQs:{},
       penaltyCount:0,
       isVideoPage:true,
-      studentsResponse:[]
+      studentsResponse:[],
+      score:0
       
     }
   }
