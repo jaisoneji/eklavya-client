@@ -10,10 +10,10 @@
                 </div> -->
                 <splide v-if="this.Forms.length > 0 "  :options="options" class="splider">
                     <splide-slide  :class="theme" style="padding-bottom:2rem;padding-top:2rem" v-for="(form) in Forms" :key="form.title" >
-                        <div class=" rounded-lg  shadow-lg md:py-4  md:w-64 w-10/12  md:h-auto">
+                        <div class=" rounded-lg  overflow-hidden shadow-lg md:mt-4md:py-4  md:w-64 w-10/12  md:h-auto">
                                 <div class="relative  flex text-gray-700 md:w-full md:h-28 justify-start align-center items-center" >
                                     <h3 class=" md:pl-4 z-10 text-white font-mono  text-6xl">{{form.title.charAt(0)}}</h3>
-                                    <img class=" object-cover md:w-full md:h-full absolute" :src="getImage()" alt="" srcset="">
+                                    <img class="overflow-hidden object-cover md:w-full md:h-full absolute" :src="getImage()" alt="" srcset="">
                                 </div>
                                 <div class="w-full ml-2 text-sm flex py-2 mt-2 align-center justify-between md:space-x-1">
                                     <div class="md:w-full flex-auto flex w-1/2">

@@ -1,9 +1,9 @@
 <template ref="AttQuiz">
   <div :class="theme"  class="bg-background-primary h-screen w-screen ">
-    
     <div v-if="isVideoPage === true" class="border h-screen flex flex-col md:content-center overflow-y-scroll">
+
       <!-- ----------------video div---------------- -->
-      <div id="videoContainer" class="flex content-center justify-center items-center md:content-center md:justify-center md:m-auto h-screen md:w-11/12">
+      <div id="videoContainer" class="flex content-center justify-center items-center md:content-center md:justify-center  md:mt-16 md:m-auto h-screen md:w-11/12">
         <video 
           :src="srcURL"
           class="w-10/12 h-64 md:h-128   justify-center  md:justify-center border border-black shadow-lg rounded-lg flex " 
@@ -28,25 +28,24 @@
 
     <!-- --------MCQ Quiz----- -->
     <div v-else class =" justify-center flex-col w-full h-screen">
-        <button @click.prevent="openResults()">Open!!</button>
         <!-- 2. Google form start -->
-        <div  class="flex-row justify-center h-screen  ">            
-            <div :class="theme" class="overflow-y-scroll h-screen bg-background-primary flex content-center w-full items-center rounded-md space-y-2 flex-col ">
-                <Logout/>
-                <div :class="theme" class="mt-6 bg-background-secondary py-4 pl-2 rounded-lg shadow-lg w-9/12 md:w-1/2" v-for="(question) in this.MCQs.content" :key="question.id" >
+        <div  class=" flex-row justify-center h-full ">            
+            <div :class="theme" class=" overflow-y-scroll  bg-background-primary flex content-center w-full h-full items-center rounded-md space-y-2 flex-col ">
+                
+                <div :class="theme" class="mt-6 bg-background-secondary py-16 pl-2 rounded-lg shadow-lg w-10/12 h-5/6 " v-for="(question) in this.MCQs.content" :key="question.id" >
                     <div class="flex flex-row">
                         <!-- question -->
-                            <textarea :class="theme" class="text-white bg-background-secondary resize-none md:ml-2 md:mr-2 md:mt-1 rounded-md w-49/50" style="height:fit-content"
+                            <textarea :class="theme" class="text-xl text-white bg-background-secondary resize-none md:ml-2 md:mr-2 md:mt-1 rounded-md w-49/50" style="height:fit-content"
                             v-model="question.question" placeholder=""></textarea>
                         <!-- weightage -->
                             <!-- <input type="number" class="  justify-center md:ml-2 md:mr-2 mt-1 rounded-md w-10 "
                             v-model="question.weightage" placeholder=""> -->
                     </div>
                      <!-- options -->
-                    <div class=" flex-col w-full m-2" >
-                       <div class="flex-col w-full" v-for="(n,index) in question.options.length" :key="question.options[n]">
-                            <label class="text-white" >
-                              <input  :class="theme" class="text-white bg-background-secondary focus:outline-none " v-model="question.selectedAnswer" type="radio" :value="question.options[index]" >
+                    <div class=" flex-col w-full m-2 " >
+                       <div class="flex-col w-full py-2" v-for="(n,index) in question.options.length" :key="question.options[n]">
+                            <label class="text-lg h-auto py-2 text-white" >
+                              <input  :class="theme" class="ml-4 h-auto py-2 text-white bg-background-secondary focus:outline-none " v-model="question.selectedAnswer" type="radio" :value="question.options[index]" >
                               {{question.options[index]}}</label><br>                              
                         </div>
                     </div>
@@ -61,43 +60,58 @@
                     <!-- button div-->
                 </div>
             </div>      
-                <!-- ................................... -->
-            <!-- 4. question section -->
-        
-        
         </div>
         <!-- -------Modal for showing results------ -->
-        <modal ref="modalName">
-          <template v-slot:header>
-            <h1>Score!</h1>
-          </template>
-
-          <template v-slot:body>
-            <h1>You have Scored: <span>{{score}}</span></h1>
-          </template>
-
-          <template v-slot:footer>
-            <div>
-              <button @click="$refs.modalName.closeModal()">Cancel</button>
-              <button @click="$refs.modalName.closeModal()">Save</button>
+        <div>
+          
+          <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+            <div class="relative w-auto my-6 mx-auto md:w-1/3">
+              <!--content-->
+              <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <!--header-->
+                <div class="flex items-start justify-between  px-2 py-2 border-solid border-blueGray-200 rounded-t">
+                  <!-- <h3 class="text-3xl font-semibold">
+                    Thank 
+                  </h3> -->
+                  <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" v-on:click="moveToHome()">
+                    <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                      ×
+                    </span>
+                  </button>
+                </div>
+                <!--body-->
+                <div class="relative align-center items-center justify-center flex flex-col p-6 flex-auto text-center">
+                  <img class="md:w-20 align-center items-center flex " src="https://i.pinimg.com/originals/15/69/18/1569182838df53706f15f586e602dbd4.gif" alt="" srcset="">              
+                  <p class="my-4 text-blueGray-500 text-2xl leading-relaxed">
+                    Thank You for attempting the Test.
+                  </p>
+                </div>
+                <!--footer-->
+                <!-- <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <button class="md:w-full text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+                    Close
+                  </button> -->
+                  <!-- <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+                    Save Changes
+                  </button> -->
+                <!-- </div> -->
+              </div>
             </div>
-          </template>
-      </modal>
+          </div>
+          <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
-import modal from '@/components/Modal.vue'
 import Axios from 'axios'
 import VueCookies from 'vue-cookies'
 import * as posenet from '@tensorflow-models/posenet';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 export default {
-  components:{
-    modal
-  },
+ 
   watch: {
     penaltyCount: function (val) {
       if(val >= 40){
@@ -188,6 +202,10 @@ export default {
     },
     
     methods:{
+      moveToHome(){
+        this.toggleModal()
+        this.$router.push({path: "TeachersDashboard/"})
+      },
       async submitQuiz(){
         console.log(this.MCQs.content)
         for(var i = 0;i<this.MCQs.content.length;i++){
@@ -206,8 +224,7 @@ export default {
         try{
                 let data = await this.$store.dispatch('SUBMIT_QUIZ',tempArray)
                 console.log(data)
-                alert("Quiz Submitted")
-                // this.$router.push({name: "TeachersDashboard"})
+                this.toggleModal()    
             }catch(error){
                 console.log("Error Sbmiting quiz"+error)
             }
@@ -292,8 +309,8 @@ export default {
           alert("Attempt Quiz Error"+error)
         }
       },
-      openResults(){
-        this.$refs.modalName.openModal
+      toggleModal: function(){
+        this.showModal = !this.showModal;
       }
     },
     computed:{
@@ -321,14 +338,15 @@ export default {
       name:'',
       srcURL:'',
       posepredict:'',
-      isVideoOn:true,
+      isVideoOn:false,
       net:{},
       predictions:[],
       MCQs:{},
       penaltyCount:0,
       isVideoPage:true,
       studentsResponse:[],
-      score:0
+      score:0,
+      showModal: false
       
     }
   }
