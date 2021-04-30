@@ -31,11 +31,11 @@
       <button @click.prevent="toggleModal()">Show</button>
         <!-- 2. Google form start -->
         <div  class=" flex-row justify-center h-full ">            
-            <div :class="theme" class="border overflow-y-scroll  bg-background-primary flex content-center w-full h-full items-center rounded-md space-y-2 flex-col ">
-                
-                <div :class="theme" class="animate-fadeInDown duration-700 mt-6 bg-background-secondary py-16 pl-2 rounded-lg shadow-lg w-10/12 h-5/6 " v-for="(question) in this.MCQs.content" :key="question.id" >
+            <div :class="theme" class="mt-2 overflow-y-scroll  bg-background-primary flex content-center w-full h-full items-center rounded-md space-y-4 flex-col ">
+                <div :class="theme" class="animate-fadeInDown duration-700 bg-background-primary py-16 pl-2 rounded-lg shadow-lg w-10/12 h-5/6 " v-for="(question,i) in this.MCQs.content" :key="question.id" >
                     <div class="flex flex-row">
                         <!-- question -->
+                    
                             <textarea :class="theme" class="text-xl text-white bg-background-secondary resize-none md:ml-2 md:mr-2 md:mt-1 rounded-md w-49/50" style="height:fit-content"
                             v-model="question.question" placeholder=""></textarea>
                         <!-- weightage -->
@@ -44,14 +44,13 @@
                     </div>
                      <!-- options -->
                     <div class=" flex-col w-full m-2 " >
-                       <div class="flex-col w-full py-2" v-for="(n,index) in question.options.length" :key="question.options[n]">
-                            <label class="text-lg h-auto py-2 text-white" >
-                              <input  :class="theme" class="ml-4 h-auto py-2 text-white bg-background-secondary focus:outline-none " v-model="question.selectedAnswer" type="radio" :value="question.options[index]" >
-                              {{question.options[index]}}</label><br>                              
+                       <div class="flex-col w-full py-2" v-for="(n,index) in question.options" :key="question.options[n]">
+                            <label class="text-lg h-auto py-2 text-black" >
+                              <input  :class="theme" class="ml-4 h-auto py-2 text-black bg-background-secondary focus:outline-none " v-model="studentsResponse[i].selectedAnswer" type="radio" :value="question.options[index]" >
+                              {{question.options[index]}}</label>                              
                         </div>
                     </div>
                     <!-- options -->
-                    <!-- question-->
                 </div>
                 <div class="flex flex-row align-center justify-center">    
                     <!-- button div -->
@@ -134,10 +133,6 @@ export default {
       }
     })
     this.MCQs.content.forEach(obj=>{
-      obj.selectedAnswer = ""
-    })
-    console.log(this.MCQs.content)
-    this.MCQs.content.forEach(obj=>{
       this.studentsResponse.push({
         "contentId ":obj._id,
         "availableAnswer": obj.answer[0],
@@ -209,10 +204,6 @@ export default {
       },
       async submitQuiz(){
         console.log(this.MCQs.content)
-        for(var i = 0;i<this.MCQs.content.length;i++){
-          this.studentsResponse[i].selectedAnswer = this.MCQs.content[i].selectedAnswer
-        }
-        console.log(this.studentsResponse)
                 let tempArray=[
                   {
                     formId:this.MCQs._id,
@@ -225,7 +216,7 @@ export default {
         try{
                 let data = await this.$store.dispatch('SUBMIT_QUIZ',tempArray)
                 console.log(data)
-                this.toggleModal()    
+                // this.toggleModal()    
             }catch(error){
                 console.log("Error Sbmiting quiz"+error)
             }
@@ -344,7 +335,7 @@ export default {
       predictions:[],
       MCQs:{},
       penaltyCount:0,
-      isVideoPage:false,
+      isVideoPage:true,
       studentsResponse:[],
       score:0,
       showModal: false
