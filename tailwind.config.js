@@ -659,6 +659,8 @@ module.exports = {
       ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       bounce: 'bounce 1s infinite',
+      fadeIn:'fadeIn 0.5s ease-out',
+      fadeInDown:'fadeInDown 0.8s ease-out'
     },
     keyframes: {
       spin: {
@@ -683,6 +685,26 @@ module.exports = {
           animationTimingFunction: 'cubic-bezier(0,0,0.2,1)',
         },
       },
+      fadeIn: {
+        '0%': {
+            opacity: '0',
+            transform: 'scale(0.5)'
+        },
+        '100%': {
+            opacity: '1',
+            transform: 'scale(1)'
+        },
+      },
+      fadeInDown: {
+        '0%': {
+            opacity: '0',
+            transform: 'translateY(-10px)'
+        },
+        '100%': {
+            opacity: '1',
+            transform: 'translateY(0px)'
+        },
+      }
     },
   },
   variants: {

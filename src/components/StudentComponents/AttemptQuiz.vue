@@ -28,11 +28,12 @@
 
     <!-- --------MCQ Quiz----- -->
     <div v-else class =" justify-center flex-col w-full h-screen">
+      <button @click.prevent="toggleModal()">Show</button>
         <!-- 2. Google form start -->
         <div  class=" flex-row justify-center h-full ">            
-            <div :class="theme" class=" overflow-y-scroll  bg-background-primary flex content-center w-full h-full items-center rounded-md space-y-2 flex-col ">
+            <div :class="theme" class="border overflow-y-scroll  bg-background-primary flex content-center w-full h-full items-center rounded-md space-y-2 flex-col ">
                 
-                <div :class="theme" class="mt-6 bg-background-secondary py-16 pl-2 rounded-lg shadow-lg w-10/12 h-5/6 " v-for="(question) in this.MCQs.content" :key="question.id" >
+                <div :class="theme" class="animate-fadeInDown duration-700 mt-6 bg-background-secondary py-16 pl-2 rounded-lg shadow-lg w-10/12 h-5/6 " v-for="(question) in this.MCQs.content" :key="question.id" >
                     <div class="flex flex-row">
                         <!-- question -->
                             <textarea :class="theme" class="text-xl text-white bg-background-secondary resize-none md:ml-2 md:mr-2 md:mt-1 rounded-md w-49/50" style="height:fit-content"
@@ -64,12 +65,12 @@
         <!-- -------Modal for showing results------ -->
         <div>
           
-          <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-            <div class="relative w-auto my-6 mx-auto md:w-1/3">
+          <div v-if="showModal" class=" overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+            <div class=" relative w-auto my-6 mx-auto md:w-1/3">
               <!--content-->
-              <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div class="animate-fadeIn duration-700 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <!--header-->
-                <div class="flex items-start justify-between  px-2 py-2 border-solid border-blueGray-200 rounded-t">
+                <div class=" flex items-start justify-between  px-2 py-2 border-solid border-blueGray-200 rounded-t">
                   <!-- <h3 class="text-3xl font-semibold">
                     Thank 
                   </h3> -->
@@ -204,7 +205,7 @@ export default {
     methods:{
       moveToHome(){
         this.toggleModal()
-        this.$router.push({path: "TeachersDashboard/"})
+        // this.$router.push({path: "TeachersDashboard/"})
       },
       async submitQuiz(){
         console.log(this.MCQs.content)
@@ -343,7 +344,7 @@ export default {
       predictions:[],
       MCQs:{},
       penaltyCount:0,
-      isVideoPage:true,
+      isVideoPage:false,
       studentsResponse:[],
       score:0,
       showModal: false
