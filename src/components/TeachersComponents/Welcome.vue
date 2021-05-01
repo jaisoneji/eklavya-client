@@ -154,6 +154,7 @@ export default {
         this.name=localStorage.getItem("name")
         // if else for checking role of user if it is teacher then this sameee else new call FETCH_FORM_STUDENT
         if(await this.$store.getters.getRole === 'faculty'){
+                localStorage.setItem("localMCQs",JSON.stringify())
                 //window. location. reload();
                 console.log("Inside Welcome's call fetch")
                 await this.$store.dispatch("FETCH_FORM")

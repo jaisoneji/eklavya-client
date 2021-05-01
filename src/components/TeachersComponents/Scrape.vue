@@ -97,7 +97,7 @@ export default {
                     // this.QuestionsTemp.push(this.questions)
                     // await this.$store.commit('setMcq',{Rquestions: this.QuestionsTemp})
                     localStorage.setItem("isFromScrape",true)
-                    await localStorage.setItem("MCQs",JSON.stringify(this.questions))
+                    await localStorage.setItem("localMCQs",JSON.stringify(this.questions))
                     this.$router.push('/MCQForm')
                 } catch(e) {
                     console.log(e)

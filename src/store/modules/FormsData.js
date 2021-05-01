@@ -164,7 +164,7 @@ const mutations = {
     setMcq(state,{Rquestions}){
 
         state.content = Rquestions
-        localStorage.setItem("MCQs",JSON.stringify(Rquestions))
+        localStorage.setItem("localMCQs",JSON.stringify(Rquestions))
 
       },
     setSchedule(state,{title,description,users,attempts,duration,startTime,endTime}){
@@ -182,13 +182,13 @@ const mutations = {
       localStorage.removeItem("isFromScrape")
       state.content=payload.Rquestions[0]
       // console.log(payload.Rquestions[0][0])
-      localStorage.setItem("MCQs",JSON.stringify(payload.Rquestions[0]))
+      localStorage.setItem("localMCQs",JSON.stringify(payload.Rquestions[0]))
 
     },
     saveTemporaryChanges(state,payload){
       state.content=payload.Rquestions
       // console.log(payload.Rquestions[0][0])
-      localStorage.setItem("MCQs",JSON.stringify(payload.Rquestions))
+      localStorage.setItem("localMCQs",JSON.stringify(payload.Rquestions))
 
     },
     saveFetchedForms(state,payload){
@@ -202,8 +202,8 @@ const getters = {
     console.log(localStorage.getItem("isFromScrape"))
     if(localStorage.getItem("isFromScrape")){
       console.log("Inside Scrape content")
-      console.log(JSON.parse(localStorage.getItem("MCQs")))
-      return JSON.parse(localStorage.getItem("MCQs"))
+      console.log(JSON.parse(localStorage.getItem("localMCQs")))
+      return JSON.parse(localStorage.getItem("localMCQs"))
     }
     else{
       console.log("Inside normal getContent")
