@@ -19,7 +19,8 @@ module.exports = {
         secondary:'var(--bg-secondary-color)',
         google:'var(--bg-google)',
         pressed:'var(--bg-pressed)',
-        border:'var(--border)'
+        border:'var(--border)',
+        options:'var(--options)'
       },
       text:{
         text:'var(--text)',
@@ -808,6 +809,10 @@ module.exports = {
     transitionDuration: ['responsive'],
     transitionDelay: ['responsive'],
     animation: ['responsive'],
+    extend: {
+      backgroundColor: ['checked'],
+      borderColor: ['checked'],
+    }
   },
   corePlugins: {},
   plugins: [],

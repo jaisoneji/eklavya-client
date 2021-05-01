@@ -1,10 +1,25 @@
 <template class="">
   <div :class="theme" class="scrollstyle overflow-y-scroll overflow-x-hidden h-full w-screen bg-background-primary flex justify-center align-center ">
       <div class=" md:w-full md:h-full md:space-y-8 space-y-0 flex flex-col md:mt-16 mt-12  align-center items-center md:space-y-2">
-          <h2 :class="theme" class="font-mono text-text-text txt-bold text-4xl">Welcome,{{name}}</h2>
+          <h2 :class="theme" class="font-sans text-text-text txt-bold text-4xl">Welcome,{{name}}</h2>
           <!-- quiz start -->
           <div class=" md:w-19/20 w-full   ">
-            <h2 :class="theme" class="font-mono justify-start text-text-text txt-bold text-2xl">Upcoming Quiz</h2>
+            <div class="flex">
+                <div class="flex flex-1">
+                    <h2 v-if="this.$store.getters.getRole === 'faculty'" :class="theme" class="font-sans justify-start text-text-text txt-bold text-2xl">Quiz</h2>
+                    <h2 v-else :class="theme" class="font-sans justify-start text-text-text txt-bold text-2xl">Upcoming Quiz</h2>
+                </div>
+                <div class="flex px-4 rounded-md bg-background-secondary hover:shadow-outline">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                            width="20" height="20"
+                            class="flex justify-center items-center h-full"
+                            viewBox="0 0 226 226"
+                            style=" fill:#000000;"><g fill="none" fill-rule="none" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none" fill-rule="nonzero"></path><g fill="#ffffff" fill-rule="evenodd"><path d="M103.58333,18.83333v84.75h-84.75v18.83333h84.75v84.75h18.83333v-84.75h84.75v-18.83333h-84.75v-84.75z"></path></g></g>
+                    </svg>
+                    <button class="flex justify-center items-center w-full h-full  px-2 py-2 text-white font-sans font-semibold focus:outline-none ">
+                        Create from Scratch</button>
+                </div>
+            </div>
             <hr class="mt-2 ">
                 <!-- <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto  gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
                 </div> -->
@@ -12,7 +27,7 @@
                     <splide-slide  :class="theme" style="padding-bottom:2rem;padding-top:2rem" v-for="(form) in Forms" :key="form.title" >
                         <div class=" rounded-lg  overflow-hidden shadow-lg md:mt-4md:py-4  md:w-64 w-10/12  md:h-auto">
                                 <div class="relative  flex text-gray-700 md:w-full md:h-28 justify-start align-center items-center" >
-                                    <h3 class=" md:pl-4 z-10 text-white font-mono  text-6xl">{{form.title.charAt(0)}}</h3>
+                                    <h3 class=" md:pl-4 z-10 text-white font-sans  text-6xl">{{form.title.charAt(0)}}</h3>
                                     <img class="overflow-hidden object-cover md:w-full md:h-full absolute" :src="getImage()" alt="" srcset="">
                                 </div>
                                 <div class="w-full ml-2 text-sm flex py-2 mt-2 align-center justify-between md:space-x-1">
@@ -27,12 +42,12 @@
                                     </div>
                                 </div>
                                 <div class="px-2  flex flex-col space-y-0">
-                                    <div v-if="getRole" class="flex "><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-2xl">{{form.title}}</h1></div>
-                                    <div v-else @click.prevent="attemptQuiz(form.title)" target="_blank" class="flex"><h1 class="truncate hover:text-indigo-900 cursor-pointer p-0 text-text-text font-mono text-bold text-2xl">{{form.title}}</h1></div>
+                                    <div v-if="getRole" class="flex "><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-sans text-bold text-2xl">{{form.title}}</h1></div>
+                                    <div v-else @click.prevent="attemptQuiz(form.title)" target="_blank" class="flex"><h1 class="truncate hover:text-indigo-900 cursor-pointer p-0 text-text-text font-sans text-bold text-2xl">{{form.title}}</h1></div>
                                     <p class="text-text-google">{{form.description}}</p >
                                 </div>
-                                <div class="px-2">
-                                    <h2 class="truncate font-mono text-text-text"><span class="text-text-google">Owner: </span>{{form.owner.name}}</h2>
+                                <div class="px-2 mb-2">
+                                    <h2 class="truncate font-sans text-text-text"><span class="text-text-google">Owner: </span>{{form.owner.name}}</h2>
                                 </div>
                         </div>
                     </splide-slide>
@@ -40,7 +55,7 @@
                 <div v-else class="justify-center align-center">
                     <vue-loading   type="spin"  color="black" :size="{ width: '75px', height: '75px' }"></vue-loading>
                 </div>
-                <!-- <h2 v-else :class="theme" class="border-background-border border font-mono justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
+                <!-- <h2 v-else :class="theme" class="border-background-border border font-sans justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
 
 
           </div>
@@ -49,37 +64,45 @@
           <!-- <div class="divide-y divide-gray-500"></div> -->
 
           <!-- classroom start -->
-          <div v-show="getRole" class=" md:w-19/20 w-full flex flex-col divide-y divide-gray-500 ">
-            <h2 :class="theme" class="font-mono justify-start text-text-text txt-bold text-2xl">Classroom</h2>
-                <div >
-                <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
-                    <div  :class="theme" v-for="(form) in Forms" :key="form.title" class=" ">
-                        <div class="flex md:flex-col flex-col border px-2 py-4 border-background-border md:w-64 w-10/12 rounded-xl md:h-auto">
-                                <div class="flex text-gray-700 md:w-full md:h-20 justify-center items-center" >
-                                    <h3 class="font-mono text-6xl">{{form.title.charAt(0)}}</h3>
+          <div v-if="this.$store.getters.getRole === 'faculty'" class=" md:w-19/20 w-full   ">
+            
+            <h2  :class="theme" class="font-sans justify-start text-text-text txt-bold text-2xl">Classrooms</h2>
+            <hr class="mt-2 ">
+                <!-- <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto  gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
+                </div> -->
+                <splide v-if="this.Forms.length > 0 "  :options="options" class="splider">
+                    <splide-slide  :class="theme" style="padding-bottom:2rem;padding-top:2rem" v-for="(form) in Forms" :key="form.title" >
+                        <div class=" rounded-lg  overflow-hidden shadow-lg md:mt-4md:py-4  md:w-64 w-10/12  md:h-auto">
+                                <div class="relative  flex text-gray-700 md:w-full md:h-28 justify-start align-center items-center" >
+                                    <h3 class=" md:pl-4 z-10 text-white font-sans  text-6xl">{{form.title.charAt(0)}}</h3>
+                                    <img class="overflow-hidden object-cover md:w-full md:h-full absolute" :src="getImage()" alt="" srcset="">
                                 </div>
-                                <div class="w-full flex mt-2 align-center md:space-x-1">
-                                    <div><i class="fas fa-calendar-times text-text-text align-center" :class="theme"></i></div>                    
-                                    <div class="text-text-google">{{form.schedule.startTimeStamp.substr(0,10)}}</div>
+                                <div class="w-full ml-2 text-sm flex py-2 mt-2 align-center justify-between md:space-x-1">
+                                    <div class="md:w-full flex-auto flex w-1/2">
+                                        <div class=""><i class="fas fa-calendar-times text-text-text align-center" :class="theme"></i></div>                    
+                                        <div class="md:pl-2 text-text-google">{{form.schedule.startTimeStamp.substr(0,10)}}</div>
+                                    </div>
 
-                                    <div><i class="fa fa-clock text-text-text align-center md:ml-12" :class="theme"></i></div>                    
-                                    <div class="text-text-google">{{getTime(form.schedule)}}</div>
+                                    <div class="md:w-full ml-2 flex-auto flex">
+                                        <div><i class="fa fa-clock text-text-text align-center " :class="theme"></i></div>                    
+                                    <div class="md:pl-2 text-text-google">{{getTime(form.schedule)}}</div>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col space-y-0">
-                                    <div class="flex"><h1 class="break-words p-0 text-text-text font-mono text-bold text-3xl">{{form.title}}</h1></div>
+                                <div class="px-2  flex flex-col space-y-0">
+                                    <div v-if="getRole" class="flex "><h1 class="hover:text-indigo-900 cursor-pointer p-0 text-text-text font-sans text-bold text-2xl">{{form.title}}</h1></div>
+                                    <div v-else @click.prevent="attemptQuiz(form.title)" target="_blank" class="flex"><h1 class="truncate hover:text-indigo-900 cursor-pointer p-0 text-text-text font-sans text-bold text-2xl">{{form.title}}</h1></div>
                                     <p class="text-text-google">{{form.description}}</p >
                                 </div>
-                                <div class="">
-                                    <h2 class="font-mono text-text-text"><span class="text-text-google">Owner: </span>{{form.owner.name}}</h2>
+                                <div class="px-2">
+                                    <h2 class="truncate font-sans text-text-text"><span class="text-text-google">Owner: </span>{{form.owner.name}}</h2>
                                 </div>
                         </div>
-                    </div>
-
+                    </splide-slide>
+                </splide>
+                <div v-else class="justify-center align-center">
+                    <vue-loading   type="spin"  color="black" :size="{ width: '75px', height: '75px' }"></vue-loading>
                 </div>
-                </div>
-                <!-- <h2 v-else :class="theme" class="border-background-border border font-mono justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
-
-
+                <!-- <h2 v-else :class="theme" class="border-background-border border font-sans justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
           </div>
           <!-- classroom end -->
       </div>

@@ -32,21 +32,25 @@
         <!-- 2. Google form start -->
         <div  class=" flex-row justify-center h-full ">            
             <div :class="theme" class="mt-2 overflow-y-scroll  bg-background-primary flex content-center w-full h-full items-center rounded-md space-y-4 flex-col ">
-                <div :class="theme" class="animate-fadeInDown duration-700 bg-background-primary py-16 pl-2 rounded-lg shadow-lg w-10/12 h-5/6 " v-for="(question,i) in this.MCQs.content" :key="question.id" >
-                    <div class="flex flex-row">
+                <div class="flex py-4 px-4 border  w-10/12 rounded-lg shadow-xl">
+                  <h1 class="text-2xl text-text-text font-semibold font-sans">{{this.$route.params.quizName}}</h1>
+                </div>
+                <div :class="theme" class="animate-fadeInDown duration-700 border bg-background-primary  rounded-lg shadow-lg w-10/12 h-5/6 " v-for="(question,i) in this.MCQs.content" :key="question.id" >
+                    <h1 class="text-text-text w-full pl-6 py-6">Question :{{i+1}}</h1>
+                    <div class="flex flex-row px-4">
                         <!-- question -->
                     
-                            <textarea :class="theme" class="text-xl text-white bg-background-secondary resize-none md:ml-2 md:mr-2 md:mt-1 rounded-md w-49/50" style="height:fit-content"
-                            v-model="question.question" placeholder=""></textarea>
+                            <p :class="theme" class="text-xl text-text-text resize-none md:ml-2 md:mr-2 md:mt-1 rounded-md w-49/50" style="height:fit-content"
+                             placeholder="">{{question.question[0]}}</p>
                         <!-- weightage -->
                             <!-- <input type="number" class="  justify-center md:ml-2 md:mr-2 mt-1 rounded-md w-10 "
                             v-model="question.weightage" placeholder=""> -->
                     </div>
                      <!-- options -->
-                    <div class=" flex-col w-full m-2 " >
-                       <div class="flex-col w-full py-2" v-for="(n,index) in question.options" :key="question.options[n]">
-                            <label class="text-lg h-auto py-2 text-black" >
-                              <input  :class="theme" class="ml-4 h-auto py-2 text-black bg-background-secondary focus:outline-none " v-model="studentsResponse[i].selectedAnswer" type="radio" :value="question.options[index]" >
+                    <div class=" flex-col w-full mt-6 px-4" >
+                       <div :class="theme" class="flex-col w-full border overflow-x-hidden rounded-lg my-4 h-auto  bg-background-options py-2" v-for="(n,index) in question.options" :key="question.options[n]">
+                            <label class="truncate w-full text-lg h-auto  py-2 text-black" >
+                              <input  :class="theme" class="checked:bg-green-100 ml-4 h-auto py-2 text-black bg-background-secondary focus:outline-none " v-model="studentsResponse[i].selectedAnswer" type="radio" :value="question.options[index]" >
                               {{question.options[index]}}</label>                              
                         </div>
                     </div>
@@ -335,7 +339,7 @@ export default {
       predictions:[],
       MCQs:{},
       penaltyCount:0,
-      isVideoPage:true,
+      isVideoPage:false,
       studentsResponse:[],
       score:0,
       showModal: false
@@ -345,6 +349,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+input[type="radio"]:checked + label{
+     background-color: #660006;  
+}
 
 </style>
