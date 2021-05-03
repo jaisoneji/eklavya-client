@@ -31,6 +31,7 @@
     "weekstart": "^1.0.1"
   },
   "devDependencies": {
+    "@johmun/vue-tags-input": "^2.1.0",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
     "@vue/cli-plugin-pwa": "^4.4.6",

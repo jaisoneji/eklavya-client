@@ -36,15 +36,15 @@
                     <!-- -select answer dropdown ends----- -->
                 </div>
                     <!-- ---add new question--- -->
-                    <div @click.prevent="addQuestion" class="cursor-pointer flex items-center content-center justify-center  align-center border-dashed border-4 border-light-blue-500 w-10/12">
-                        <div class=" h-full  flex px-4 rounded-md bg-gray-100 ">
+                    <div @click.prevent="addQuestion"  :class="theme" class="bg-background-primary cursor-pointer flex items-center content-center justify-center  align-center border-dashed border-4 border-light-blue-500 w-10/12">
+                        <div :class="theme" class="bg-background-primary h-full  flex  rounded-md bg-gray-100 ">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                 width="24" height="24"
-                                class="flex justify-end align-end items-center h-full"
+                                :class="theme" class="bg-background-primary flex justify-end align-end items-center h-full"
                                 viewBox="0 0 172 172"
                                 style=" fill:#000000;"><g fill="none" fill-rule="none" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none" fill-rule="nonzero"></path><g fill="#1c75bc" fill-rule="evenodd"><path d="M78.83333,14.33333v64.5h-64.5v14.33333h64.5v64.5h14.33333v-64.5h64.5v-14.33333h-64.5v-64.5z"></path></g></g>
                             </svg>
-                            <button class="flex justify-center items-center w-full h-full  px-2 py-2 text-text-text font-sans font-semibold focus:outline-none ">
+                            <button :class="theme" class="bg-background-primary flex justify-center items-center w-full h-full  px-2 py-2 text-text-text font-sans font-semibold focus:outline-none ">
                                 Add</button>
                         </div>
                     </div>

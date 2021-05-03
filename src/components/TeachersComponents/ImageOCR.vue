@@ -1,12 +1,12 @@
 <template>
-  <div>
-      <div>
+  <div class="h-full">
+      <div class="h-132  ">
         <!-- ---Image divv-------------- -->
-        <div class="flex flex-col space-y-4 align-center items-center justify-center">
+        <div class="h-128 flex flex-col space-y-4 align-center items-center justify-center">
             <h3 class="text-text-btn text-xl font-bold md:mt-2" :class="theme">Upload Image Below</h3>
-            <div  class="md:w-4/5 w-11/12 h-80 md:h-80 overflow-scroll shadow-lg flex flex-1 bg-gray-300">
-                <img v-if="isImageAdded===true" :src="image" class="object-contain w-full">
-                <div v-if="isUploading===true" class="absolute md:w-4/5 w-11/12 h-80 md:h-80 shadow-lg">
+            <div  class=" md:w-4/5 w-11/12 h-80 md:h-128 overflow-scroll shadow-lg flex flex-1 bg-gray-300">
+                <img v-if="isImageAdded===true" :src="image" class="object-contain h-full w-full">
+                <div v-if="isUploading===true" class="absolute md:w-4/5 w-11/12 h-80 border md:h-80 shadow-lg">
                     <div  class="md:mt-32 md:w-full md:h-full">
                         <vue-loading  type="bars"  color="#d9544e" :size="{ width: '75px', height: '75px' }"></vue-loading>
                     </div>

@@ -1,17 +1,14 @@
 <template>
-  <div class="flex flex-col justify-center align-center items-center">
-    <div class="h-128 md:h-148 w-full md:w-full rounded-lg bg-background-secondary flex shadow-xl justify-center flex-col" >
-        <!-- --------Chips box-------------- -->
-        <div class="flex justify-center w-full">
-         <input type="textarea" class=" mt-4  border rounded-md w-49/50 h-10" placeholder="Enter tags">
-        </div>
+  <div class="flex w-full shadow-2xl rounded-xl pb-4 flex-col bg-background-secondary justify-center align-center items-center">
+    <div class="h-132 md:h-148 w-full md:w-11/12   flex  justify-center flex-col" >
+        
         <!-- text and submit -->
         <div class=" w-full mt-6 flex flex-row ">
-            <input v-model="url" type="url" class="  mx-2 border rounded-md w-5/6 h-10" placeholder="Enter Url : https://www.sanfoundary.com/web/quiz1">
+            <input v-model="url" type="url" class="  px-4 py-2 border rounded-md w-5/6 h-10" placeholder="Enter Url : https://www.sanfoundary.com/web/quiz1">
             <button @click.prevent="getQuestion()" class="mx-2 row-2 border bg-white text-text-btn rounded-full w-1/4 h-10  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline md:text-xl text-lg text-text-btn font-bold rounded outline-none align-center" :class="theme">Submit</button>
         </div>
 
-        <div  class="w-49/50 flex-1 mx-2 my-4 border overflow-x-scroll bg-white md:h-8 h-16 rounded-md p-6">
+        <div  class="w-49/50 flex-1 px-2 my-4 border overflow-x-scroll bg-white md:h-8 h-16 rounded-md p-6">
             <vue-loading  v-if="isUploading===true" type="bars"  color="#d9544e" :size="{ width: '75px', height: '75px' }"></vue-loading>
             <div  v-else class="question" v-for="(item,index) in questions" :key="index">
                 <div class="flex flex-row justify-center  items-center">
