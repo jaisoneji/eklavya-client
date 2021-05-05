@@ -11,8 +11,11 @@
                             <textarea @change="saveTemproryChanges" :class="theme" class="pt-2 bg-background-primary text-xl text-text-text resize-none md:ml-6 md:mr-2 md:mt-6 rounded-md w-49/50" style="height:fit-content"
                             v-model="question.question" placeholder=""></textarea>
                         <!-- weightage -->
-                            <input @change="saveTemproryChanges" type="number" class="  justify-center md:ml-2 md:mr-2 mt-1 rounded-md w-10 "
-                            v-model="question.weightage" placeholder="">
+                            <label class="text-text-text justify-center align-center items-center content-center flex flex-1">
+                                Marks:
+                                <input min="1" @change="saveTemproryChanges" type="number" class="w-16 border mx-2 border-dashed border-8 "
+                                v-model="question.weightage" placeholder="">
+                            </label>
                     </div>
                     <!-- question end-->
                      <!-- options -->
@@ -28,7 +31,7 @@
                         <h1 class="w-full px-4 text-xl font-semibold">Select Your Answer</h1>
                        <div :class="theme" class="flex-col w-full border overflow-x-hidden rounded-lg my-4 h-auto bg-green-300  py-2"> 
                             <select @change="saveTemproryChanges" class=" w-full text-lg h-auto  py-2 text-black  bg-green-300 ml-4 h-auto py-2 focus:outline-none" v-model="question.answer">
-                                <option @change="saveTemproryChanges" disabled value="">select Answer </option>
+                                <option class="text-white" @change="saveTemproryChanges" disabled value="">select Answer </option>
                                 <option @change="saveTemproryChanges" v-for="option in question.options" :key="option" :value="option">{{option}}</option>
                             </select>
                         </div>

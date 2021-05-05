@@ -205,6 +205,8 @@ export default {
                     console.log(response)
                     // this.Forms = response
                     this.makeHistory(response)
+                    // this.Forms.sort((a,b)=> b.schedule.startTimeStamp - a.schedule.startTimeStamp)
+                    this.sortData()
                     this.isLoading = false
                 })
                 .catch(error=> {
@@ -214,15 +216,17 @@ export default {
             
         }
         else{
-            
+                this.isLoading = true
                 // window.location. reload()
                 await this.$store.dispatch("FETCH_FORM_STUDENT")
                 .then(response => {
                     console.log(response)
-                    this.Forms = response
+                    this.makeHistory(response)
+                     this.isLoading = false
                 })
                 .catch(error=> {
                     console.log(error)
+                     this.isLoading = false
                 })
             
         }
@@ -288,6 +292,15 @@ export default {
                     this.Forms.push(obj)
                     console.log("current")
                 }
+                
+            })
+        },
+        sortData(){
+            this.Forms = this.Forms.sort((a,b)=> {
+                let c =a.schedule.startTimeStamp
+                
+                let d = b.schedule.startTimeStamp
+                return new Date(c) - new Date(d)
             })
         }
     }
