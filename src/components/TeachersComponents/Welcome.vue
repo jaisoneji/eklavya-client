@@ -1,13 +1,23 @@
 <template class="">
   <div :class="theme" class=" py-10   h-screen w-11/12 bg-background-primary flex justify-center align-center ">
-      <div :class="theme" class="bg-background-primary md:w-11/12 md:h-full md:space-y-8 space-y-0 flex flex-col md:my-16 mt-12  align-center items-center">
+      <div :class="theme" class="bg-background-primary md:w-49/50 md:h-full md:space-y-8 space-y-0 flex flex-col md:my-16 mt-12  align-center items-start">
           <h2 :class="theme" class="font-sans text-text-text txt-bold text-4xl">Welcome,{{name}}</h2>
           <!-- quiz start -->
-          <div class=" shadow-2xl  rounded-lg mt-2 md:w-19/20 w-full">
-            <div class="rounded-t-lg flex w-full bg-background-secondary py-2">
-                <div class="flex ml-2 flex-1 ">
-                    <h2 v-if="this.$store.getters.getRole === 'faculty'" :class="theme" class="font-sans  text-white text-bold text-2xl">Quiz</h2>
+          <div class="  mt-2 md:w-19/20 w-full">
+            <div class="border-b-2 rounded-t-lg flex w-full  py-2">
+                <div class="flex   w-full py-2 ml-2 flex-1 ">
+                    <h2 v-if="this.$store.getters.getRole === 'faculty'" :class="theme" class="font-sans  text-text-text text-bold text-2xl">Quiz</h2>
                     <h2 v-else :class="theme" class="font-sans justify-start text-text-text text-bold text-2xl">Upcoming Quiz</h2>
+                </div>
+                <div class="flex px-4 rounded-md bg-background-secondary hover:shadow-outline">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                            width="20" height="20"
+                            class="flex justify-center items-center h-full"
+                            viewBox="0 0 226 226"
+                            style=" fill:#000000;"><g fill="none" fill-rule="none" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none" fill-rule="nonzero"></path><g fill="#ffffff" fill-rule="evenodd"><path d="M103.58333,18.83333v84.75h-84.75v18.83333h84.75v84.75h18.83333v-84.75h84.75v-18.83333h-84.75v-84.75z"></path></g></g>
+                    </svg>
+                    <button class="flex justify-center items-center w-full h-full  px-2 py-2 text-white font-sans font-semibold focus:outline-none ">
+                        Create from Scratch</button>
                 </div>
                 
             </div>
@@ -61,11 +71,7 @@
                         </div>
                         <h3 class="text-xl font-sans ml-4 font-semibold text-text-text"><span class="">Whoops</span>,No quiz is scheduled yet</h3>
                     </div>
-                    <div v-if="this.$store.getters.getRole === 'faculty'" class="mt-2 shadow-btn1 flex  content-center justify-center items-center align-center  w-1/4 mx-auto flex px-4 rounded-md bg-background-primary">
-                        
-                        <button class="flex justify-center items-center w-full h-full  px-2 py-4 text-text-text font-sans font-semibold focus:outline-none ">
-                            Create from Scratch</button>
-                    </div>
+                    
                 </div>
                 <vue-loading v-show="isLoading"  type="spin"  color="black" :size="{ width: '75px', height: '75px' }"></vue-loading>
                 <!-- <h2 v-else :class="theme" class="border-background-border border font-sans justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
@@ -77,11 +83,11 @@
           <!-- <div class="divide-y divide-gray-500"></div> -->
 
           <!-- classroom start -->
-          <div v-if="this.$store.getters.getRole === 'faculty'" class="border shadow-2xl  rounded-lg  mt-2 md:w-19/20 w-full   ">
+          <div v-if="this.$store.getters.getRole === 'faculty'" class="mt-2 md:w-19/20 w-full   ">
             
-            <div class="rounded-t-lg flex w-full bg-background-secondary py-2">
-                <div class="flex ml-2 flex-1 ">
-                    <h2 :class="theme" class="font-sans  text-white text-bold text-2xl">You past Quizzes</h2>
+            <div class=" rounded-t-lg flex w-full  py-2">
+                <div class="border-b-2 py-2 flex ml-2 flex-1 ">
+                    <h2 :class="theme" class="font-sans  text-text-text text-bold text-2xl">Your past Quizzes</h2>
                 </div>    
             </div>
             <!-- <hr class="mt-2 "> -->
@@ -112,6 +118,9 @@
                                 </div>
                                 <div class="px-2 mb-2">
                                     <h2 class="truncate font-sans text-text-text"><span class="text-text-google">Owner: </span>{{form.owner.name}}</h2>
+                                </div>
+                                <div class="px-2 my-4 flex justify-center">
+                                    <button @click.prevent="downloadReport(form._id)" class=" w-11/12 px-2 py-2 text-white text-lg hover:shadow-btn focus:outline-none font-light bg-background-secondary">Download Report</button>
                                 </div>
                         </div>
                     </splide-slide>
@@ -302,6 +311,16 @@ export default {
                 let d = b.schedule.startTimeStamp
                 return new Date(c) - new Date(d)
             })
+        },
+        async downloadReport(id){
+            console.log(typeof(id))
+            await this.$store.dispatch("DOWNLOAD_REPORT",id)
+            .then(()=>{
+                alert("Report Downloaded")
+            })
+            .catch((err)=>{
+                alert("Error in download: "+err)
+            })
         }
     }
 }
@@ -311,5 +330,8 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 .whoops{
   font-family: 'Sriracha', cursive;
+}
+.splide__arrow svg{
+    fill:#1c75bc;
 }
 </style>

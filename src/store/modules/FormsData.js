@@ -157,6 +157,32 @@ const actions = {
     
             })
         })
+      },
+      DOWNLOAD_REPORT(context,payload){
+        return new Promise((resolve,reject)=>{
+          console.log(payload)
+            let id = payload
+            Axios.post(`http://localhost:5000/api/v1/proctored/forms/generateReport/${id} `,
+              // {
+              //   headers:{
+              //     'Content-Type': 'application/json',
+              //     "Access-Control-Allow-Origin": "*",
+                 
+              //   }
+              // }
+            )
+            .then(response => {
+              console.log(response.data)
+              resolve()
+              
+            })
+            .catch(error=>{
+              console.log(error)
+              // alert(error.response.data.errors.message)
+              reject(error)
+    
+            })
+        })
       }
 };
 

@@ -1,6 +1,6 @@
 <template>
-  <div @click.prevent="deleteProfile()" :class="theme" class="cursor-pointer align-center flex justify-center text-text-text mt-4 mr-20text-center   w-full h-8">
-        <p class="w-11/12 bg-red-700 text-white focus:outline-none  rounded-lg text-center">Delete Profile</p>
+  <div @click.prevent="deleteProfile()" :class="theme" class="cursor-pointer align-center flex justify-center text-text-text mt-4  text-center   w-full h-10">
+        <p class="text-xl font-semibold bg-red-600 rounded-lg w-11/12 text-white focus:outline-none h-full align-center justify-center items-center flex">Delete Profile</p>
     </div>
 </template>
 

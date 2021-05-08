@@ -34,3 +34,9 @@
     --options:#D1D5DB;
     /* background-color:#0D2438 ; */
 }
+.splide__arrow svg{
+    fill:#1c75bc;
+}
+.splide__pagination__page.is-active{
+    background:#1c75bc ;
+}

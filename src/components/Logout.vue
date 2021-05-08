@@ -1,6 +1,6 @@
 <template>
-  <div @click.prevent="logout()" :class="theme" class="cursor-pointer align-center flex justify-center text-text-text absolute top-0 right-0 mt-4 mr-20 bg-background-secondary text-center rounded-lg  w-20 h-8">
-        <p class="text-white focus:outline-none">Logout</p>
+  <div @click.prevent="logout()" :class="theme" class="mt-8 cursor-pointer align-center flex align-center justify-center text-text-text  text-center rounded-lg  w-full h-10">
+        <p class="text-xl font-semibold bg-background-secondary rounded-lg w-11/12 text-white focus:outline-none h-full align-center justify-center items-center flex">Logout</p>
     </div>
 </template>
 

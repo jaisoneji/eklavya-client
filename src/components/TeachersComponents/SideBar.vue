@@ -1,7 +1,6 @@
 <template>
   <!-- main div with the theme -->
   <div class="flex justify-center align-center items-center content-center w-screen h-full bg-background-primary" :class="theme">
-    <Logout/>
     <!-- sidebar start -->
 
     <sidebar-menu
@@ -56,11 +55,7 @@ export default {
             return {
                role:'',
                 teacher: [
-                    {
-                        header: true,
-                        title: 'Eklavya',
-                        hiddenOnCollapse: true
-                    },
+                    
                     {
                         component: ProfilePic,
                         hidden: false,
@@ -117,6 +112,11 @@ export default {
                         icon: 'fa fa-cog '
                     },
                     {
+                        component: Logout,
+                        hidden: false,
+                        hiddenOnCollapse: true,
+                    },
+                    {
                         component: DeleteProfile,
                         hidden: false,
                         hiddenOnCollapse: true,
@@ -124,11 +124,7 @@ export default {
                    
                 ],
                 student:[
-                    {
-                        header: true,
-                        title: 'Eklavya_Student',
-                        hiddenOnCollapse: true
-                    },
+                   
                     {
                         component: ProfilePic,
                         hidden: false,
@@ -143,6 +139,11 @@ export default {
                         header: true,
                         title: 'Classroom',
                         hiddenOnCollapse: true
+                    },
+                    {
+                        component: Logout,
+                        hidden: false,
+                        hiddenOnCollapse: true,
                     },
                     {
                         component: DeleteProfile,
@@ -183,7 +184,7 @@ export default {
         
 components: {
         SidebarMenu,
-        Logout,
+        
     },
 computed:{
         theme(){
@@ -227,6 +228,10 @@ computed:{
 content: "\f0c9";
 font-family: FontAwesome;
 border:1px solid red !important
+}
+.v-sidebar-menu{
+    position:relative !important;
+    height:100vh !important;
 }
 
 </style>
