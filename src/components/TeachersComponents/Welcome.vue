@@ -16,7 +16,7 @@
                             viewBox="0 0 226 226"
                             style=" fill:#000000;"><g fill="none" fill-rule="none" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none" fill-rule="nonzero"></path><g fill="#ffffff" fill-rule="evenodd"><path d="M103.58333,18.83333v84.75h-84.75v18.83333h84.75v84.75h18.83333v-84.75h84.75v-18.83333h-84.75v-84.75z"></path></g></g>
                     </svg>
-                    <button class="flex justify-center items-center w-full h-full  px-2 py-2 text-white font-sans font-semibold focus:outline-none ">
+                    <button @click="toggleModal" class="flex justify-center items-center w-full h-full  px-2 py-2 text-white font-sans font-semibold focus:outline-none ">
                         Create from Scratch</button>
                 </div>
                 
@@ -25,16 +25,6 @@
                 <!-- <div class="md:h-full p-4 flex  grid grid-flow-row md:grid-cols-4 md:grid-rows-auto  gap-4 grid-row-1 grid-col-1 w-full  md:w-full">
                 </div> -->
                 <splide v-if="this.Forms.length > 0 "  :options="options" class="splider">
-                    <splide-slide style="padding-bottom:3rem;padding-top:1rem">
-                        <div class="px-2 justify-center align-center items-center flex flex-col rounded-lg  overflow-hidden shadow-lg md:mt-4 md:py-4  md:w-64 w-10/12  md:h-full">
-                            <div class="justify-center align-center items-center h-8 flex-1 border border-dashed border-4 w-full">
-                                <h1 class="flex">Create Now</h1>
-                            </div>
-                            <div class="justify-center align-center items-center h-1/2 mt-2 mx-2 flex-1 border border-dashed border-4 w-full">
-                                <h1 class="flex">Use our features</h1>
-                            </div>
-                        </div>
-                    </splide-slide>
                     <splide-slide  :class="theme" style="padding-bottom:2rem;padding-top:2rem" v-for="(form) in Forms" :key="form.title" >
                         <div class=" rounded-lg  overflow-hidden shadow-xl md:mt-4md:py-4  md:w-64 w-10/12  md:h-auto">
                                 <div class="relative  flex text-gray-700 md:w-full md:h-28 justify-start align-center items-center" >
@@ -73,14 +63,12 @@
                     </div>
                     
                 </div>
-                <vue-loading v-show="isLoading"  type="spin"  color="black" :size="{ width: '75px', height: '75px' }"></vue-loading>
+                <vue-loading v-show="isLoading"  type="balls"  color="#1c75bc" :size="{ width: '75px', height: '75px' }"></vue-loading>
                 <!-- <h2 v-else :class="theme" class="border-background-border border font-sans justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
 
 
           </div>
           <!-- quiz end -->
-          
-          <!-- <div class="divide-y divide-gray-500"></div> -->
 
           <!-- classroom start -->
           <div v-if="this.$store.getters.getRole === 'faculty'" class="mt-2 md:w-19/20 w-full   ">
@@ -133,17 +121,22 @@
                         <h3 class="text-xl font-sans ml-4 font-semibold text-text-text"><span class="">Whoops</span>,Your history is empty</h3>
                     </div>
                 </div>
-                <vue-loading v-show="isLoading"  type="spin"  color="black" :size="{ width: '75px', height: '75px' }"></vue-loading>
+                <vue-loading v-show="isLoading"  type="balls"  color="#1c75bc" :size="{ width: '75px', height: '75px' }"></vue-loading>
                 <!-- <h2 v-else :class="theme" class="border-background-border border font-sans justify-start text-text-text txt-bold text-2xl">No Quiz Scheduled</h2> -->
           </div>
           <!-- classroom end -->
+
+            <!-- -Modal for creating quiz starts here--- -->
+            <QuizModal @toggle="toggleModal" v-show="showModal"></QuizModal>
+            <!-- -Modal for creating quiz ends here--- -->
+                        
       </div>
   </div>
 </template>
 
 <script>
 import { VueLoading } from 'vue-loading-template'
-
+import QuizModal from '@/components/QuizModal'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
 
@@ -152,7 +145,8 @@ export default {
     components: {
         Splide,
         SplideSlide,
-        VueLoading
+        VueLoading,
+        QuizModal
     },
     mounted(){
        
@@ -198,10 +192,12 @@ export default {
                 perPage:2,
                 gap: '1rem'
             },
-            isLoading:false
+            isLoading:false,
+            showModal:false
         }
     },
     async created(){
+        
         this.name=localStorage.getItem("name")
         // if else for checking role of user if it is teacher then this sameee else new call FETCH_FORM_STUDENT
         if(await this.$store.getters.getRole === 'faculty'){
@@ -312,15 +308,11 @@ export default {
                 return new Date(c) - new Date(d)
             })
         },
-        async downloadReport(id){
-            console.log(typeof(id))
-            await this.$store.dispatch("DOWNLOAD_REPORT",id)
-            .then(()=>{
-                alert("Report Downloaded")
-            })
-            .catch((err)=>{
-                alert("Error in download: "+err)
-            })
+        downloadReport(id){
+            window.open(`http://eklavya-server.herokuapp.com/api/v1/proctored/forms/generateReport/${id}`, '_blank');
+        },
+        toggleModal: function(){
+            this.showModal = !this.showModal;
         }
     }
 }
