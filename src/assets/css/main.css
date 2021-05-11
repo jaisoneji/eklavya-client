@@ -40,3 +40,14 @@
 .splide__pagination__page.is-active{
     background:#1c75bc ;
 }
+.vue-input-tag-wrapper .input-tag{
+    background-color:rgb(92,107,192) !important;
+    color:white !important;
+    border-color: none !important;
+    border:none !important;
+    padding:4px !important;
+
+}
+.vue-input-tag-wrapper .input-tag .remove{
+    color:white !important;
+}
