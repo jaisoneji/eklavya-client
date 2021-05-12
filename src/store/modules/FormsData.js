@@ -158,6 +158,37 @@ const actions = {
             })
         })
       },
+      FETCH_FROM_REPO(context,payload){
+        return new Promise((resolve,reject)=>{
+          
+          let method = localStorage.getItem("method")
+          let token = VueCookies.get("token")
+          let data = JSON.stringify({
+            topic:payload.topics,
+            questionLimit:payload.questionLimit
+          })
+            Axios.post(`${baseDomain}/proctored/forms/autoPopulateQuestions`,data,
+              {
+                headers:{
+                  'Content-Type': 'application/json',
+                  "Access-Control-Allow-Origin": "*",
+                  "Authorization": `Bearer ${method} ${token}`
+                }
+              }
+            )
+            .then(response => {
+              console.log(response.data)
+              resolve(response.data)
+              
+            })
+            .catch(error=>{
+              console.log(error)
+              alert(error.response.data.errors.message)
+              reject(error)
+    
+            })
+        })
+      }
       
 };
 

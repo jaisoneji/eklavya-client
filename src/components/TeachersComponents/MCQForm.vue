@@ -4,7 +4,7 @@
         <!-- 2. Google form start -->
         <div  class="flex-row justify-center h-screen ">            
             <div :class="theme" class="pt-10 overflow-y-scroll  bg-background-primary flex content-center w-full h-full items-center rounded-md space-y-4 flex-col ">
-                <Logout/>
+
                 <div :class="theme" class="animate-fadeInDown duration-700 border bg-background-primary  rounded-lg shadow-lg w-10/12 h-5/6 " v-for="(question) in Questions" :key="question.id" >
                     <div class="flex flex-row">
                         <!-- question -->
@@ -74,11 +74,11 @@
     <!-- 1. end main div -->
 </template>
 <script>
-import Logout from '@/components/Logout'
+// import Logout from '@/components/Logout'
 
 export default {
     components:{
-        Logout
+        
     },
     name: 'McqForm',
      mounted() {

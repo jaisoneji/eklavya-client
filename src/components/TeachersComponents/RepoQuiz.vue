@@ -6,7 +6,7 @@
             <div class="h-80 mt-20 px-2  w-full ">
                 <div class="h-32 px-2 py-4  overflow-hidden ">
                     <h2 class="text-text-text font-sans text-xl py-2 mb-2 w-full  ">Add Keywords for Question</h2>
-                    <input-tag class="" placeholder="Add Keywords for Question" v-model="tags" :add-tag-on-blur="true" :limit="limit"></input-tag>
+                    <input-tag class="" placeholder="Add Keywords for Question" v-model="tags" :add-tag-on-blur="true" ></input-tag>
                 </div>
 
                 <div class="h-32 mt-4 px-2 py-4 overflow-hidden ">
@@ -36,9 +36,49 @@
 
          </div>
       </div>
-      <div class="border-l border-l-8 flex flex-col w-128  h-full">
-          <div class="flex w-full h-full justify-center ">
-              <h1 class="mt-16 font-sans text-gray-800 text-4xl text-center">Your Suggestion appears here!</h1>
+      <!-- ------------Suggestions and questions div------ -->
+      <div class="border-l border-l-8 flex bg-background-primary justify-center items-center flex-col w-128  h-full">
+          <div v-if="isShowSuggestionsPage === false" class="flex w-full h-full justify-center ">
+              <h1 class="my-auto font-sans text-gray-800 text-4xl text-center">Your Suggestion appears here!</h1>
+          </div>
+          <div v-else class="h-132 justify-around  flex flex-col w-11/12">
+            <!-- -------Questions Box----- -->
+            <div class="border-t border-b  px-2 w-full  h-80">
+                <div v-if="this.Questions.length > 0" class="h-full overflow-y-scroll w-full">
+                    <h1 class="text-text-text text-xl font-sans font-semibold">Suggested Questions </h1>
+                    <div class="question " v-for="(item,index) in Questions" :key="index">
+                    <div class="flex flex-row justify-center  items-center">
+                        <div class="flex mr-2">{{index+1}}</div>
+                        <div v-html="Questions[index].question[0]" class="mt-2 flex-1"></div>
+                    </div>
+                    <div class="ml-4 mt-4" v-for="(item,index) in Questions[index].options" :key="index">
+                        <p>{{item}}</p>
+                    </div>
+                    
+                </div>
+                <button v-show="this.Questions.length > 0" @click.prevent="redirectToForms" class=" md:my-4 shadow-lg items-center justify-center flex  border bg-white text-text-btn rounded-full w-full h-10  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline text-xl font-bold rounded outline-none focus:outline-none align-center" :class="theme">Export</button>
+                </div>
+                <div v-if="this.Questions.length <= 0" class=" flex flex-col justify-center align-center items-center w-full h-full">
+                    <h3 class="text-2xl font-sans text-gray-700 text-center font-bold">Oops! No Questions Found</h3>
+                    <button @click.prevent="createFromFeatures" class=" md:my-4 shadow-lg items-center justify-center flex  border bg-white text-text-btn w-1/2 h-10  transform motion-reduce:transform-none hover:-translate-y-1 hover:scale-60 transition ease-in-out duration-300 hover:shadow-outline text-xl font-semibold  outline-none focus:outline-none align-center" :class="theme">Create from Scratch</button>
+                </div>
+
+            </div>
+            <!-- ---------Sugggestions box-------- -->
+            <div v-if="showSuggestions === true" class="border-t border-b flex px-2  w-full  h-64">
+                <div v-if="this.Suggestions.length > 0" class="w-full">
+                    <h1 class="text-text-text text-xl font-sans font-semibold">Suggested Links </h1>
+                    <div>
+
+                    </div>
+                </div>
+                <div v-else class=" flex justify-center align-center items-center w-full h-full">
+                    <h3 class="text-2xl font-sans text-gray-700 text-center font-bold">No links to Suggest</h3>
+                </div>
+
+
+            </div>
+
           </div>
       </div>
       
@@ -54,11 +94,13 @@ export default {
     },
     data(){
         return{
-            isShowSuggestions:true,
+            isShowSuggestionsPage:false,
             noOfQuestion:1,
             tags:[],
             topics:"",
-            showSuggestions:false
+            showSuggestions:false,
+            Questions:[],
+            Suggestions:[]
         }
     },
     methods:{
@@ -74,9 +116,40 @@ export default {
         changeSuggestion(){
             this.showSuggestions = !this.showSuggestions
         },
-        submitForm(){
+        async submitForm(){
             this.tags.forEach((tag)=> this.topics= this.topics + tag+ " ")
-            console.log(this.topics)
+            await this.$store.dispatch('FETCH_FROM_REPO',{
+                topics:this.topics,
+                questionLimit:this.noOfQuestion
+            })
+            .then((res)=>{
+                console.log("RepoQuiz: "+res)
+                this.Questions = res.questions
+                this.Suggestions = res.suggestions
+                this.isShowSuggestionsPage = true
+                console.log(this.Questions)
+                this.topic = ""
+                this.tags=[]
+                this.noOfQuestion = 0
+            })
+            .catch((err)=>{
+                console.log("Error RepoQuiz: "+err)
+            })
+        },
+        async redirectToForms(){
+            try {
+                    this.$emit('toggle')
+                    // localStorage.setItem("isFromScrape",true)
+                    await localStorage.setItem("localMCQs",JSON.stringify(this.Questions))
+                    this.$router.push('/MCQForm')
+                } catch(e) {
+                    console.log(e)
+                }
+        },
+        createFromFeatures(){
+            this.$emit('toggle')
+            this.$router.push('/Collapse')
+
         }
 
     }

@@ -12,7 +12,7 @@
                     </span>
                   </button>
                 </div>
-                <RepoQuiz></RepoQuiz>
+                <RepoQuiz @toggle="toggleModal"></RepoQuiz>
                 <!--body-->
                 <!-- <div class="relative align-center items-center justify-center flex flex-col p-6 flex-auto text-center">
                   <img class="md:w-20 align-center items-center flex " src="https://i.pinimg.com/originals/15/69/18/1569182838df53706f15f586e602dbd4.gif" alt="" srcset="">              

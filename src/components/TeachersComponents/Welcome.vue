@@ -17,7 +17,7 @@
                             style=" fill:#000000;"><g fill="none" fill-rule="none" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none" fill-rule="nonzero"></path><g fill="#ffffff" fill-rule="evenodd"><path d="M103.58333,18.83333v84.75h-84.75v18.83333h84.75v84.75h18.83333v-84.75h84.75v-18.83333h-84.75v-84.75z"></path></g></g>
                     </svg>
                     <button @click="toggleModal" class="flex justify-center items-center w-full h-full  px-2 py-2 text-white font-sans font-semibold focus:outline-none ">
-                        Create from Scratch</button>
+                        Create Now</button>
                 </div>
                 
             </div>
