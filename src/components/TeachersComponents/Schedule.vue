@@ -9,17 +9,17 @@
             
             <!-- Name -->
                 <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 justify-center items-center mt-10">
-                                <input required type="title" v-model="title" class="border rounded-full w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Title">
+                                <input required type="title" v-model="title" class="border rounded-md w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Title">
                 </div>
             <!-- name ends -->
             <!-- Description -->
                 <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 justify-center items-center mt-10">
-                                <input required type="desc" v-model="desc" class="border rounded-full w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Description">
+                                <input required type="desc" v-model="desc" class="border rounded-md w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Description">
                 </div>
             <!-- desc ends -->
             <!-- user -->
                 <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 justify-center items-center mt-10">
-                                <input required type="user" v-model="user" class="border rounded-full w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="User(optional)">
+                    <input-tag class="w-full" placeholder="Add Keywords for Quiz" v-model="tags" :add-tag-on-blur="true" ></input-tag>
                 </div>
             <!-- user ends -->
             
@@ -114,16 +114,19 @@
 </template>
 
 <script>
+import InputTag from 'vue-input-tag'
+
 import { Datetime } from 'vue-datetime';
 export default {
      components: {
-    datetime: Datetime
-  },
+        datetime: Datetime,
+        InputTag
+    },
     data() {
       return{
           title:'',
           desc:'',
-          user:'',
+          tags:[],
           course:'',
           dept:'',
           division:'',
@@ -149,7 +152,7 @@ methods:{
             await this.$store.dispatch('SCHEDULE',{
                 title:this.title,
                 desc:this.desc,
-                user:this.user,
+                tags:this.tags,
                 course:this.course,
                 dept:this.dept,
                 division:this.division,

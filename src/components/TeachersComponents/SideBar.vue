@@ -73,7 +73,7 @@ export default {
                     },
                     {
                         href:'/StudentDataLive',
-                        title: 'Student Data Live',
+                        title: 'Live Quiz',
                         icon: 'fas fa-address-card'
                     },
                     {

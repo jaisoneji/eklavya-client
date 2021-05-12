@@ -9,7 +9,6 @@ const defaultState = {
     content:JSON.parse(localStorage.getItem("MCQs")) || [],
     title:'',
     description:'',
-    users:[],
     class:[],
     duration:'',
     attempts:'',
@@ -32,10 +31,9 @@ const actions = {
             title:payload.title,
             description:payload.desc,
             attempts:payload.attempts,
-            users:payload.user,
             class:[payload.dept],
             division:[payload.division],
-            keywords: [payload.title],
+            keywords: payload.tags,
             course:payload.course,
             content: getters.getContent,
             duration: 30,
@@ -199,10 +197,10 @@ const mutations = {
         localStorage.setItem("localMCQs",JSON.stringify(Rquestions))
 
       },
-    setSchedule(state,{title,description,users,attempts,duration,startTime,endTime}){
+    setSchedule(state,{title,description,attempts,duration,startTime,endTime}){
       state.title=title,
       state.description=description,
-      state.users=users,
+      
       state.attempts=attempts,  
       state.duration=duration,
       state.schedule.startTime=startTime,

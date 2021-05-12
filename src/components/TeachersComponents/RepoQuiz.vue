@@ -66,10 +66,11 @@
             </div>
             <!-- ---------Sugggestions box-------- -->
             <div v-if="showSuggestions === true" class="border-t border-b flex px-2  w-full  h-64">
-                <div v-if="this.Suggestions.length > 0" class="w-full">
+                <div v-if="this.Suggestions.length > 0" class="overflow-y-scroll w-full">
                     <h1 class="text-text-text text-xl font-sans font-semibold">Suggested Links </h1>
-                    <div>
-
+                    <div class="flex my-2 bg-gray-100" v-for="(suggestion) in this.Suggestions" :key="suggestion">
+                        <p class="p-2 font-sans">https://www.indiabix.com{{suggestion}}</p>
+                        <button @click.prevent="redirectToScrape(suggestion)" class="focus:outline-none bg-green-500 border text-md font-sans text-white px-2">Open</button>
                     </div>
                 </div>
                 <div v-else class=" flex justify-center align-center items-center w-full h-full">
@@ -150,6 +151,11 @@ export default {
             this.$emit('toggle')
             this.$router.push('/Collapse')
 
+        },
+        redirectToScrape(suggestion){
+            window.open(`https://www.indiabix.com${suggestion}`, '_blank');
+            this.$emit('toggle')
+            this.$router.push('/Collapse')
         }
 
     }

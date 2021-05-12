@@ -78,7 +78,7 @@ export default {
             })
             .then(response=>{
                 console.log(response)
-                this.questions.push(... response.data.quizContent)
+                this.questions = response.data.quizContent
                 this.isUploading = false
                 console.log(this.questions)
             })
