@@ -28,7 +28,6 @@
 
     <!-- --------MCQ Quiz----- -->
     <div v-else class =" justify-center flex-col w-full h-screen">
-      <button @click.prevent="toggleModal()">Show</button>
         <!-- 2. Google form start -->
         <div  class=" flex-row justify-center h-full ">            
             <div :class="theme" class="mt-2 overflow-y-scroll  bg-background-primary flex content-center w-full h-full items-center rounded-md space-y-4 flex-col ">
@@ -162,44 +161,24 @@ export default {
         console.log("AttemptQuiz video error" +error)
       })
 
-      // To trigger if full screen exits
-      // this.fulldiv = document.getElementById('AttQuiz')
-      // const fulldiv = document.getElementById('AttQuiz')
-      // console.log(fulldiv)
-      // document.addEventListener("webkitfullscreenchange" ,function() {
-      //   if(!document.webkitIsFullScreen){ 
-      //     // document.body.webkitRequestFullScreen()
-      //     console.log(this)
-          
-      //     setTimeout(()=>{
-      //       this.addPenalty(4)
-      //       console.log(this.penaltyCount)
-      //       console.log("Penalty")
-      //     },3000)
-      //   }
+ 
 
 
-        
-      // },true);
-
-
-      // this is for switching tabs
-    //   document.addEventListener("visibilitychange", function() {
-    //       if (document.hidden){
-              
-    //           console.log("Browser tab is hidden")
-    //           alert("You have switched tabs!. hence we are ending your quiz")
-    //           window.location.replace("http://localhost:8080/TeachersDashboard/");
-
-    //       } else {
-    //           console.log("Browser tab is visible")
-    //       }
-    //   },{
-    //   once: true,
-    //   passive: true,
-    //   capture: true
-    // });
-    },
+        // this is for switching tabs
+//document.addEventListener("visibilitychange", function() {
+//if (document.hidden){
+//console.log("Browser tab is hidden")
+//alert("You have switched tabs!. hence we are ending your quiz")
+//window.location.replace("http://localhost:8080/TeachersDashboard/");
+//} else {
+//console.log("Browser tab is visible")
+//}
+//},{
+//once: true,
+//passive: true,
+//capture: true
+//});
+   },
     
     methods:{
       moveToHome(){
@@ -220,7 +199,7 @@ export default {
         try{
                 let data = await this.$store.dispatch('SUBMIT_QUIZ',tempArray)
                 console.log(data)
-                // this.toggleModal()    
+                this.toggleModal()
             }catch(error){
                 console.log("Error Sbmiting quiz"+error)
             }
@@ -241,13 +220,14 @@ export default {
           })
       },
       async predictPose(net,stream){
-        // while(this.isVideoOn){
+        while(this.isVideoOn){
 
-          const pose = await net.estimateSinglePose(stream, {
-            flipHorizontal: true
-          });
-          this.estimatePose(pose)
-        // }
+              const pose = await net.estimateSinglePose(stream, {
+                flipHorizontal: true
+              });
+              this.estimatePose(pose)
+
+        }
    
       
       },
@@ -334,12 +314,12 @@ export default {
       name:'',
       srcURL:'',
       posepredict:'',
-      isVideoOn:false,
+      isVideoOn:true,
       net:{},
       predictions:[],
       MCQs:{},
       penaltyCount:0,
-      isVideoPage:false,
+      isVideoPage:true,
       studentsResponse:[],
       score:0,
       showModal: false

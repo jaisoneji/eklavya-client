@@ -13,9 +13,9 @@
             <div  v-else class="question" v-for="(item,index) in questions" :key="index">
                 <div class="flex flex-row justify-center  items-center">
                     <div class="flex mr-2">{{index+1}}</div>
-                    <div v-html="questions[index].question" class="mt-2 flex-1"></div>
+                    <div v-html="questions[index].question" class="text-xl font-sans font-semibold mt-2 flex-1"></div>
                 </div>
-                <div class="ml-4 mt-4" v-for="(item,index) in questions[index].options" :key="index">
+                <div class="bg-gray-200 p-2 ml-4 mt-4" v-for="(item,index) in questions[index].options" :key="index">
                     <p>{{item}}</p>
                 </div>
                 

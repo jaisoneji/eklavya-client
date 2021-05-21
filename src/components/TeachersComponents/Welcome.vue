@@ -9,7 +9,7 @@
                     <h2 v-if="this.$store.getters.getRole === 'faculty'" :class="theme" class="font-sans  text-text-text text-bold text-2xl">Quiz</h2>
                     <h2 v-else :class="theme" class="font-sans justify-start text-text-text text-bold text-2xl">Upcoming Quiz</h2>
                 </div>
-                <div class="flex px-4 rounded-md bg-background-secondary hover:shadow-outline">
+                <div v-show="this.$store.getters.getRole === 'faculty'" class="flex px-4 rounded-md bg-background-secondary hover:shadow-outline">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                             width="20" height="20"
                             class="flex justify-center items-center h-full"
