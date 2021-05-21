@@ -1,5 +1,5 @@
 <template>
-  <div class="background-back h-32 flex flex-col justify-center items-center">
+  <div class="mb-4 mt-10 background-back h-32 flex flex-col justify-center items-center">
         <div class="bg-white rounded-full h-24 w-24 items-center justify-center flex">
           <img v-if="isLocal === false" class="h-full w-full rounded-full" :src="imageurl" alt="">
           <img v-else class="h-full w-full rounded-full" src="@/assets/avatar.png" alt="">

@@ -14,7 +14,7 @@
                 <div class="mt-10 px-3 inline-block relative w-18 h-8">
                             <select v-model="RegisterAs" class="text-background-secondary appearance-none bg-white border border-white px-8 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
                                 <option disabled value="">Register as </option>
-                                <option value="Teacher">Teacher</option>
+                                <option value="faculty">Faculty</option>
                                 <option value="Student">Student</option>
                             </select>
                              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-background-secondary" :class="theme">
@@ -140,7 +140,7 @@
 <script>
 import ProfileError from '@/components/AuthenticationComponents/ProfileError.vue';
 import Loader from '@/components/Loader.vue';
-
+import router from '@/router'
 export default {
     components:{
           ProfileError,
@@ -202,7 +202,7 @@ export default {
             .then(response=>{
                 console.log(response)
                 this.Loading=false
-                this.$router.push('TeachersDashboard')
+                router.push({name:'TeachersDashboard'})
                 
             })
             .catch(error=>{

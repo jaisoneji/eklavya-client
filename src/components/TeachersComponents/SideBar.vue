@@ -1,11 +1,23 @@
 <template>
   <!-- main div with the theme -->
   <div class="flex justify-center align-center items-center content-center w-screen h-full bg-background-primary" :class="theme">
-    <Logout/>
     <!-- sidebar start -->
 
     <sidebar-menu
-        :menu="menu"
+    v-if="this.role === 'student' "
+        :menu="student"
+        :width="width"
+        :collapsed="collapsed"
+        :theme="selectedTheme"
+        :show-one-child="true"
+        :isOnMobile="isOnMobile"
+        @toggle-collapse="onToggleCollapse"
+        @item-click="onItemClick"
+        :to="href"
+      />
+      <sidebar-menu
+        v-else
+        :menu="teacher"
         :width="width"
         :collapsed="collapsed"
         :theme="selectedTheme"
@@ -16,7 +28,7 @@
         :to="href"
       />
       <!-- sidebar start ends-->
-    <router-view  class="mt-16 pt-0 md:ml-8 ml-14 h-128 md:w-11/12 w-64 md:mt-0 md:h-130"/>
+    <router-view  class="overflow-y-scroll pt-0 md:ml-8 ml-14 h-128 md:w-screen w-64 md:mt-0 md:h-screen"/>
         <!-- Main right contents of the dashboard -->
        
 
@@ -29,18 +41,21 @@
 import { SidebarMenu } from 'vue-sidebar-menu'
 import ProfilePic from '@/components/AuthenticationComponents/ProfilePic'
 import Logout from '@/components/Logout'
+import DeleteProfile from '@/components/DeleteProfile'
+
 
 
 
 export default { 
+     mounted(){
+        this.role = this.$store.getters.getRole
+        console.log("role:::::"+typeof(this.role))
+    },
   data() {
             return {
-                menu: [
-                    {
-                        header: true,
-                        title: 'Eklavya',
-                        hiddenOnCollapse: true
-                    },
+               role:'',
+                teacher: [
+                    
                     {
                         component: ProfilePic,
                         hidden: false,
@@ -58,8 +73,13 @@ export default {
                     },
                     {
                         href:'/StudentDataLive',
-                        title: 'Student Data Live',
+                        title: 'Live Quiz',
                         icon: 'fas fa-address-card'
+                    },
+                    {
+                        href:'/Classroom',
+                        title: 'Create Classroom',
+                        icon: 'fas fa-folder-plus'
                     },
                     // quizes start
                     {
@@ -91,11 +111,62 @@ export default {
                         title: 'Settings',
                         icon: 'fa fa-cog '
                     },
+                    {
+                        component: Logout,
+                        hidden: false,
+                        hiddenOnCollapse: true,
+                    },
+                    {
+                        component: DeleteProfile,
+                        hidden: false,
+                        hiddenOnCollapse: true,
+                    },
                    
+                ],
+                student:[
+                   
+                    {
+                        component: ProfilePic,
+                        hidden: false,
+                        hiddenOnCollapse: true,
+                    },
+                    {
+                        href:'/TeachersDashboard/',
+                        title: 'Home',
+                        icon: 'fas fa-home'
+                    },
+                    {
+                        header: true,
+                        title: 'Classroom',
+                        hiddenOnCollapse: true
+                    },
+                    {
+                        component: Logout,
+                        hidden: false,
+                        hiddenOnCollapse: true,
+                    },
+                    {
+                        component: DeleteProfile,
+                        hidden: false,
+                        hiddenOnCollapse: true,
+                    },
+                    
+                    // quizes start
+                    // {
+                    //     header: true,
+                    //     title: 'Quizes',
+                    //     hiddenOnCollapse: true
+                    // },
+                    // {
+                    //     href:'/Collapse',
+                    //     title: 'Quiz',
+                    //     icon: 'fas fa-pen'
+                    // },
+                    // QUIZES ENDS
                 ],
                 width: '250px',
                 
-                collapsed: true,
+                collapsed: false,
                 themes: [
                     {
                     name: 'Default theme',
@@ -113,17 +184,26 @@ export default {
         
 components: {
         SidebarMenu,
-        Logout
+        
     },
 computed:{
-    theme(){
-        if(this.$store.getters.getMode === 'theme-dark'){
-            return 'theme-dark'
-        }
-        else{
-            return 'theme-light'
-        }
-        }
+        theme(){
+                if(this.$store.getters.getMode === 'theme-dark'){
+                    return 'theme-dark'
+                }
+                else{
+                    return 'theme-light'
+                }
+            },
+        getRole(){
+                if(this.role === 'student'){
+                    console.log("inside getRole")
+                    return 'student'
+                }
+                else{
+                    return 'teacher'
+                }
+            },
     },
     methods:{
         hideError(){
@@ -148,6 +228,10 @@ computed:{
 content: "\f0c9";
 font-family: FontAwesome;
 border:1px solid red !important
+}
+.v-sidebar-menu{
+    position:relative !important;
+    height:100vh !important;
 }
 
 </style>

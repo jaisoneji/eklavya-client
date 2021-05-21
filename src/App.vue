@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="w-screen h-screen overflow-hidden">
+  <div id="app" class="w-screen h-screen ">
     <Mode/>
     <router-view />
   </div>
@@ -18,6 +18,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

@@ -30,7 +30,6 @@
 </template>
 
 <script>
-
 // import queryString from 'query-string'
 import GoogleLogin from '../components/AuthenticationComponents/GoogleLogin.vue'
 import {checkServerStatus} from '../services/index';
@@ -42,7 +41,6 @@ export default {
     const status = await checkServerStatus();
     console.log(status);
   },
-
   components: {
     GoogleLogin
     
@@ -70,7 +68,6 @@ export default {
   data(){
       return {
         
-
       }
   },
   methods:{
@@ -86,8 +83,6 @@ export default {
 .LoginButton{
   border: solid white 1px;
   border-radius: 15px;
-
 }
-
   
 </style>

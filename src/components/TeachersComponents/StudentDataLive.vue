@@ -2,6 +2,7 @@
 <!-- main -->
     <div class=" w-full h-full overflow-y-scroll">
         <!-- grid start -->
+        
         <div class=" grid grid-flow-row md:grid-cols-4 md:grid-rows-3 md:grid-flow-row gap-4 grid-row-1 grid-col-1">
             <!-- for loop div start -->
             <div class="  flex justify-center bg-background-primary" :class="theme" v-for="(student) in student_data" :key="student.id" >    
@@ -15,8 +16,8 @@
                                 </div>
                                 <!-- details -->
                                 <div class="flex flex-col justify-center items-center text-center  m-5" >
-                                        <h3 class="text-white">{{student.Student_name}} , {{student.Class}}</h3>
-                                        <h3 class="text-white">{{student.Status}}</h3>
+                                        <h3 class="text-white">{{student.user.name}} , {{student.user.email}}</h3>
+                                        <h3 class="text-white">{{student.warning}}</h3>
                                         <!-- <h3 class="text-white">{{student.Submitted}}</h3> -->
                                 </div>
                                 <!-- details -->
@@ -31,180 +32,43 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+const SUBSCRIPTION_STUDENT_UPDATE = gql`subscription{
+    proctoredWarning{
+        proctoredWarnings{
+            user{
+                _id
+                name
+                email
+            }
+            warning
+        }
+    }
+}`
 export default {
     name:'StudentDataLive',
+    apollo:{
+        $subscribe:{
+            student_update:{
+                query:SUBSCRIPTION_STUDENT_UPDATE,
+                result({data}){
+                    console.log("Inside subscription")
+                    this.result = data.proctoredWarning.proctoredWarnings
+                    console.log(data)
+                    for (let k = 0; k < data.proctoredWarning.proctoredWarnings.length; k++) {
+                        this.addOrUpdate(data.proctoredWarning.proctoredWarnings[k])
+                        
+                    }
+
+                }
+            }
+        }
+    },
     data(){
         return{
+            result:"",
             student_data:[
-                {
-                    id:'1',
-                    Student_name:'Sonia',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },
-                {
-                    id:'2',
-                    Student_name:'Hrithik',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                {
-                    id:'3',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                 {
-                    id:'4',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                 {
-                    id:'5',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                 {
-                    id:'6',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                 {
-                    id:'7',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                 {
-                    id:'8',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                {
-                    id:'9',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                {
-                    id:'10',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                {
-                    id:'11',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Submitted',
-                },
-                {
-                    id:'12',
-                    Student_name:'Smith',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },
-                {
-                    id:'13',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'14',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:' Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:' Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:' Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },{
-                    id:'15',
-                    Student_name:'kiftt',
-                    Class:'D17A',
-                    Status:'up',
-                    Submitted:'Not Submitted',
-                },
+                
             ]
         }
     },
@@ -221,7 +85,20 @@ export default {
     methods:{
         getColor(student){
             return student.Submitted === 'Submitted' ? 'border-8 border-green-500 border-opacity-100 ' : 'border-8 border-red-500 border-opacity-100'
-        },    
+        },
+        addOrUpdate(result){
+            console.log("Inside addOrUpdate")
+            console.log(result)
+            for (var i = 0; i < this.student_data.length; i++) {
+                if (this.student_data[i].user.email === result.user.email ) {
+                        this.student_data[i].name = result.user.name;
+                        this.student_data[i].warning = result.warning;
+                        return;                             // exit loop and function
+                    }
+            }
+            this.student_data.push(result);
+            console.log(this.student_data)
+        }  
     }
 
 }

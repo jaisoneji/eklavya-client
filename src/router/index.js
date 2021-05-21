@@ -12,7 +12,8 @@ import Schedule from '../components/TeachersComponents/Schedule.vue'
 import MCQForm from '../components/TeachersComponents/MCQForm.vue'
 import Welcome from '../components/TeachersComponents/Welcome.vue'
 import StudentDataLive from '../components/TeachersComponents/StudentDataLive.vue'
-
+import Classroom from '../components/TeachersComponents/Classroom.vue'
+import AttemptQuiz from '../components/StudentComponents/AttemptQuiz.vue'
 // import Dummy from '../components/TeachersComponents/Dummy.vue'
 
 import store from '@/store'
@@ -20,6 +21,9 @@ import VueCookies from 'vue-cookies'
 import Scrape from '../components/TeachersComponents/Scrape.vue'
 import Collapse from '../components/TeachersComponents/Collapse'
 import ProfilePic from '../components/AuthenticationComponents/ProfilePic'
+import DeleteProfile from '../components/DeleteProfile'
+// import { component } from 'vue/types/umd'
+
 
 
 // http://localhost:8000/GoogleLoader
@@ -45,7 +49,18 @@ const routes = [
     name: "ProfilePic",
     component: ProfilePic,
   },
-  
+  // Delte User route
+  {
+    path: "/DeleteProfile",
+    name: "DeleteProfile",
+    component: DeleteProfile,
+  },
+  {
+    path:"/AttemptQuiz/:quizName",
+    params: true,
+    name:"AttemptQuiz",
+    component:AttemptQuiz
+  },
   {
     path: "/MCQForm",
     name: "MCQForm",
@@ -95,6 +110,11 @@ const routes = [
         name: "StudentDataLive",
         component: StudentDataLive,
       },
+      {
+        path: "/Classroom",
+        name: "Classroom",
+        component: Classroom,
+      },
     ],
     beforeEnter(to, from, next) {
       if(VueCookies.get("token")){
@@ -115,7 +135,7 @@ const routes = [
       }
       else{
         next({
-          name:"Home"
+          path:"/"
         })
       }
     },
@@ -154,6 +174,7 @@ const routes = [
     name: "EmailError",
     component: EmailError,
   },
+ 
   // {
   //   path: '/about',
   //   name: 'About',

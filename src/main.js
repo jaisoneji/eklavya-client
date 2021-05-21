@@ -6,6 +6,7 @@ import queryString from 'query-string'
 
 // import Axios from 'axios'
 import '@/assets/css/main.css'
+
 import './registerServiceWorker'
 import GAuth from "vue-google-oauth2";
 import VueCookies from 'vue-cookies'
@@ -14,6 +15,9 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 // date time picker
 import { Datetime } from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
+import { createProvider } from './vue-apollo'
+import VueSplide from '@splidejs/vue-splide';
+
 
 
 Vue.config.productionTip = false
@@ -36,6 +40,7 @@ Vue.use(GAuth, gauthOption);
 Vue.use(VueCookies)
 Vue.use(VueSidebarMenu)
 Vue.use(Datetime)
+Vue.use( VueSplide );
 
 
 
@@ -43,5 +48,8 @@ new Vue({
   router,
   store,
   queryString,
+  apolloProvider: createProvider({
+    reconnect : true
+  }),
   render: h => h(App)
 }).$mount('#app')

@@ -18,6 +18,7 @@
     --bg-google:white;
     --bg-pressed:#EEEEEE;
     --border:black;
+    --options:#F7FAFC;
    
 
 }
@@ -30,6 +31,23 @@
     --bg-google:#4285f4;
     --bg-pressed:#3367D6;
     --border:rgb(236, 228, 228);
-
+    --options:#D1D5DB;
     /* background-color:#0D2438 ; */
+}
+.splide__arrow svg{
+    fill:#1c75bc;
+}
+.splide__pagination__page.is-active{
+    background:#1c75bc ;
+}
+.vue-input-tag-wrapper .input-tag{
+    background-color:rgb(92,107,192) !important;
+    color:white !important;
+    border-color: none !important;
+    border:none !important;
+    padding:4px !important;
+
+}
+.vue-input-tag-wrapper .input-tag .remove{
+    color:white !important;
 }

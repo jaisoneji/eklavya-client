@@ -9,17 +9,17 @@
             
             <!-- Name -->
                 <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 justify-center items-center mt-10">
-                                <input required type="title" v-model="title" class="border rounded-full w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Title">
+                                <input required type="title" v-model="title" class="border rounded-md w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Title">
                 </div>
             <!-- name ends -->
             <!-- Description -->
                 <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 justify-center items-center mt-10">
-                                <input required type="desc" v-model="desc" class="border rounded-full w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Description">
+                                <input required type="desc" v-model="desc" class="border rounded-md w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="Description">
                 </div>
             <!-- desc ends -->
             <!-- user -->
                 <div :class="theme" class="flex flex-row w-11/12 md:w-9/12 justify-center items-center mt-10">
-                                <input required type="user" v-model="user" class="border rounded-full w-full py-2 px-4 outline-none focus:shadow-outline " placeholder="User(optional)">
+                    <input-tag class="w-full" placeholder="Add Keywords for Quiz" v-model="tags" :add-tag-on-blur="true" ></input-tag>
                 </div>
             <!-- user ends -->
             
@@ -42,11 +42,11 @@
                         <!-- dept -->
                         <div class="mr-4 mt-10 inline-block relative ">
                             <select v-model="dept" type="dept"  class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
-                                <option disabled value="">DIV</option>
-                                <option value="CMPN">D17A</option>
-                                <option value="IT">D16A</option>
-                                <option value="EXTC">D15A</option>
-                                <option value="ETRX">D14A</option>
+                                <option disabled value="">DEPT</option>
+                                <option value="CMPN">CMPN</option>
+                                <option value="IT">IT</option>
+                                <option value="EXTC">EXTC</option>
+                                <option value="ETRX">ETRX</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -54,7 +54,21 @@
                             </div>
                         </div>
                         <!-- dept ends-->
+                        <!-- ---division starts-- -->
+                        <div class="mr-4 mt-10 inline-block relative ">
+                            <select v-model="division" type="dept"  class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
+                                <option disabled value="">DIVISION</option>
+                                <option value="D17A">D17A</option>
+                                <option value="D16A">D16A</option>
+                                <option value="D15A">D15A</option>
+                                <option value="D14A">D14A</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  text-background-secondary" :class="theme">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="5 -2 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
 
+                            </div>
+                        </div>
+                        <!-- --division ends-- -->
                         <!-- attempts -->
                         <div class="mt-10 inline-block relative w-18">
                             <select v-model="attempts" type="attempts"  class=" text-background-secondary appearance-none bg-white border border-white px-6 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline" :class="theme">
@@ -100,18 +114,22 @@
 </template>
 
 <script>
+import InputTag from 'vue-input-tag'
+
 import { Datetime } from 'vue-datetime';
 export default {
      components: {
-    datetime: Datetime
-  },
+        datetime: Datetime,
+        InputTag
+    },
     data() {
       return{
           title:'',
           desc:'',
-          user:'',
+          tags:[],
           course:'',
           dept:'',
+          division:'',
           attempts:'',
           startTime:'',
           endTime:'',
@@ -134,9 +152,10 @@ methods:{
             await this.$store.dispatch('SCHEDULE',{
                 title:this.title,
                 desc:this.desc,
-                user:this.user,
+                tags:this.tags,
                 course:this.course,
                 dept:this.dept,
+                division:this.division,
                 attempts:this.attempts,
                 startTime:this.startTime,
                 endTime:this.endTime

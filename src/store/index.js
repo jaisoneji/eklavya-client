@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 import Axios from 'axios'
 import FormsData from './modules/FormsData'
+import Classroom from './modules/Classroom'
 
 // import router from '@/router'
 const baseDomain="https://eklavya-server.herokuapp.com/api/v1"
@@ -298,11 +299,35 @@ export default new Vuex.Store({
           reject(error)
         })
       })
-    }
+    },
     // Image OCR login ends
+    DELETE_USER(context,payload){
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        data: {
+          email: payload
+        }
+      }
+      return new Promise((resolve,reject)=>{
+        Axios.delete(`${baseDomain}/auth/delete/user`,config)
+        .then(res=>{
+          console.log("Delete user Store"+res)
+          resolve(res)
+        })
+        .catch(error=>{
+
+          console.log("Delete user Store: "+error)
+          reject(error)
+        })
+      })
+    }
   },
   modules: {
     // to import form data
-    formsData: FormsData
+    formsData: FormsData,
+    classroom: Classroom
   }
 })
